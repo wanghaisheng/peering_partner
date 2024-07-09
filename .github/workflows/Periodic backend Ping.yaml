@@ -1,0 +1,20 @@
+name: Periodic cURL Requests to backend server
+
+on:
+  schedule:
+    - cron: '*/12 * * * *' # Run every 12 minutes
+
+jobs:
+  make-requests:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Make cURL requests
+      run: |
+        for i in {1..5}; do
+          curl -s https://peering-partner-backend.onrender.com/
+          sleep 1 # Optional: Add a delay between requests
+        done
