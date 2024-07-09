@@ -50,12 +50,10 @@ export default function AsnDetailedInfo({
 
   console.log(asn_number);
   const handleValueChange = (newValue: any) => {
-    console.log("newValue:", newValue);
     setValue(newValue);
   };
 
   const handleChangeCountry = (newCountry: any) => {
-    console.log("Selected Country:", newCountry);
     setCountry(newCountry);
   };
   // Ensure that the response structure is as expected
@@ -65,28 +63,6 @@ export default function AsnDetailedInfo({
     setSelectedOption(option);
   };
 
-  const contactMap = new Map();
-  contactMap.set('address', []);
-  contactMap.set('abuse-mailbox', []);
-  contactMap.set('e-mail', []);
-
-  const requiredNameValues = ['address', 'abuse-mailbox', 'e-mail'];
-  const filteredObjects = res_whois?.filter((element: any) => element.type == 'object');
-  const filteredNames = filteredObjects.map((attributes : any) => attributes.attributes).flat().filter((names : any) => requiredNameValues.includes(names.name));
-  //console.log(filteredNames);
-  filteredNames.forEach((name : any) => {
-    if (contactMap.has(name.name)) {
-      contactMap.get(name.name).push(...name.values);
-    }
-  });
-
-  const uniqueMap = new Map();
-  contactMap.forEach((values, key) => {
-    const uniqueSet = new Set(values); 
-    uniqueMap.set(key, uniqueSet); 
-  });
-
-  //console.log(uniqueMap.get('address'));
   // Ensure that the response structure is as expected
   res_peers.data = res_peers.data || {};
   const ipv4Count = res_peers.data.ipv4_peers?.length || 0;
@@ -125,8 +101,6 @@ export default function AsnDetailedInfo({
 
             </div>
           </div>
-
-
           <div className="w-2/3 p-4">
             <div className="text-4xl ">
               <p>AS{res_asn?.data?.asn} {res_asn?.data?.description_short}</p>
@@ -136,14 +110,7 @@ export default function AsnDetailedInfo({
             </div>
 
           </div>
-
-
-
-
-
-
         </div>
-
         <hr></hr>
         <div className="flex flex-wrap">
           <div className="w-full sm:w-1/3 p-2">
@@ -300,72 +267,6 @@ export default function AsnDetailedInfo({
 
 
     )
-  }
-
-  const ASNNetwork = () => {
-    return (
-    <div>
-      <div className="header-row pt-2 pb-4">
-        <h1 className="font-bold text-2xl">AS{res_asn?.data?.asn} Network</h1>
-      </div>
-      <div className="flex">
-        <div className="flex-1">
-          <div><h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV4 PREFIXES:</h2><b>{ipv4Prefixes}</b></div>
-          <div><h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV4 PEERS:</h2><b>{ipv4Count}</b></div>
-          <div><h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV4 UPSTREAMS:</h2><b>{ipv4Upstreams}</b></div>
-          <div><h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV4 DOWNSTREAMS:</h2><b>{ipv4Downstreams}</b></div>
-        </div>
-        <div className="flex-1">
-          <div><h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV6 PREFIXES:</h2><b>{ipv6Prefixes}</b></div>
-          <div><h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV6 PEERS:</h2><b>{ipv6Count}</b></div>
-          <div><h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV6 UPSTREAMS:</h2><b>{ipv6Upstreams}</b></div>
-          <div><h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV6 DOWNSTREAMS:</h2><b>{ipv6Downstreams}</b></div>
-        </div>
-      </div>
-    </div>
-    )
-  }
-
-  const ASNContacts = () => {
-    return (
-      <div>
-        <div className="header-row pt-2 pb-4">
-          <h1 className="font-bold text-2xl">Contacts</h1>
-        </div>
-        <div className="flex">
-            <div className="flex-1">
-              <div>
-                <h2 className="text-l text-gray-400 font-bold p-1 block">EMAIL CONTACTS:</h2>
-                {res_asn?.data?.email_contacts?.map((email: any) => (
-                  <b className="block" key={`${email}`}>
-                    {email}
-                  </b>
-                ))}
-              </div>
-            </div>
-            <div className="flex-1">
-              <div>
-                <h2 className="text-l text-gray-400 font-bold p-1 block">ABUSE CONTACTS:</h2>
-                {res_asn?.data?.abuse_contacts?.map((abuse: any) => (
-                  <b className="block" key={`${abuse}`}>
-                    {abuse}
-                  </b>
-                ))}
-              </div>
-            </div>
-            <div className="flex-1">
-              <div>
-                <h2 className="text-l text-gray-400 font-bold p-1 block">ADDRESS:</h2>
-                {res_asn?.data?.owner_address?.map((address: any) => (
-                  <b className="block" key={`${address}`}>
-                    {address}
-                  </b>
-                ))}
-              </div>
-            </div>
-        </div>
-      </div>
-    );
   }
 
   const renderContent = () => {
@@ -677,248 +578,7 @@ export default function AsnDetailedInfo({
       </div>
     );
   };
-
-
-
-
-
-
-  // useEffect(() => {
-  //   const chartDom = document.getElementById('peers');
-  //   const myChart = echarts.init(chartDom);
-
-  //   const option = {
-  //     tooltip: {
-  //       trigger: 'item',
-  //     },
-  //     legend: {
-  //       top: '5%',
-  //       left: 'center',
-  //     },
-  //     series: [
-  //       {
-  //         name: 'Peers Count',
-  //         type: 'pie',
-  //         radius: ['40%', '70%'],
-  //         avoidLabelOverlap: false,
-  //         itemStyle: {
-  //           borderRadius: 10,
-  //           borderColor: '#fff',
-  //           borderWidth: 2,
-  //         },
-  //         label: {
-  //           show: false,
-  //           position: 'center',
-  //         },
-  //         emphasis: {
-  //           label: {
-  //             show: true,
-  //             fontSize: 40,
-  //             fontWeight: 'bold',
-  //           },
-  //         },
-  //         labelLine: {
-  //           show: false,
-  //         },
-  //         data: [
-  //           { value: ipv4Count, name: 'IPv4' },
-  //           { value: ipv6Count, name: 'IPv6' },
-  //         ],
-  //       },
-  //     ],
-  //   };
-
-  //   option && myChart.setOption(option);
-
-  //   // Cleanup function
-  //   return () => {
-  //     myChart.dispose();
-  //   };
-  // }, []); // Run only once on mount
-
-
-  //prefix count
-  // useEffect(() => {
-  //   const chartDom = document.getElementById('prefix');
-  //   const myChart = echarts.init(chartDom);
-
-  //   const option = {
-  //     tooltip: {
-  //       trigger: 'item',
-  //     },
-  //     legend: {
-  //       top: '5%',
-  //       left: 'center',
-  //     },
-  //     series: [
-  //       {
-  //         name: 'Prefixes Count',
-  //         type: 'pie',
-  //         radius: ['40%', '70%'],
-  //         avoidLabelOverlap: false,
-  //         itemStyle: {
-  //           borderRadius: 10,
-  //           borderColor: '#fff',
-  //           borderWidth: 2,
-  //         },
-  //         label: {
-  //           show: false,
-  //           position: 'center',
-  //         },
-  //         emphasis: {
-  //           label: {
-  //             show: true,
-  //             fontSize: 40,
-  //             fontWeight: 'bold',
-  //           },
-  //         },
-  //         labelLine: {
-  //           show: false,
-  //         },
-  //         data: [
-  //           { value: ipv4Prefixes, name: 'IPv4' },
-  //           { value: ipv6Prefixes, name: 'IPv6' },
-  //         ],
-  //       },
-  //     ],
-  //   };
-
-  //   option && myChart.setOption(option);
-
-  //   // Cleanup function
-  //   return () => {
-  //     myChart.dispose();
-  //   };
-  // }, []); // Run only once on mount
-
-
-  //upstream
-  // useEffect(() => {
-  //   const chartDom = document.getElementById('upstream');
-  //   const myChart = echarts.init(chartDom);
-
-  //   const option = {
-  //     tooltip: {
-  //       trigger: 'item'
-  //     },
-  //     legend: {
-  //       top: '5%',
-  //       left: 'center',
-  //       // doesn't perfectly work with our tricks, disable it
-  //       selectedMode: false
-  //     },
-  //     series: [
-  //       {
-
-  //         name: 'Upstream data of',
-  //         type: 'pie',
-  //         radius: ['40%', '70%'],
-  //         center: ['50%', '70%'],
-  //         // adjust the start angle
-  //         startAngle: 180,
-  //         label: {
-  //           show: true,
-  //           formatter(param: any) {
-  //             // correct the percentage
-  //             return param.name + ' (' + param.percent * 2 + '%)';
-  //           }
-  //         },
-  //         data: [
-  //           { value: ipv4Upstreams, name: 'IPv4 Upstreams' },
-  //           { value: ipv6Upstreams, name: 'IPv6 Upstreams' },
-  //           {
-  //             // make an record to fill the bottom 50%
-  //             value: ipv4Upstreams + ipv6Upstreams,
-  //             itemStyle: {
-  //               // stop the chart from rendering this piece
-  //               color: 'none',
-  //               decal: {
-  //                 symbol: 'none'
-  //               }
-  //             },
-  //             label: {
-  //               show: false
-  //             }
-  //           }
-  //         ]
-  //       }
-  //     ]
-  //   };
-
-
-  //   option && myChart.setOption(option);
-
-  //   // Cleanup function
-  //   return () => {
-  //     myChart.dispose();
-  //   };
-  // }, []); // Run only once on mount
-
-  //downstream
-  // useEffect(() => {
-  //   const chartDom = document.getElementById('downstream');
-  //   const myChart = echarts.init(chartDom);
-
-  //   const option = {
-  //     tooltip: {
-  //       trigger: 'item'
-  //     },
-  //     legend: {
-  //       top: '5%',
-  //       left: 'center',
-  //       // doesn't perfectly work with our tricks, disable it
-  //       selectedMode: false
-  //     },
-  //     series: [
-  //       {
-  //         name: 'Downstream data of',
-  //         type: 'pie',
-  //         radius: ['40%', '70%'],
-  //         center: ['50%', '70%'],
-  //         // adjust the start angle
-  //         startAngle: 180,
-  //         label: {
-  //           show: true,
-  //           formatter(param: any) {
-  //             // correct the percentage
-  //             return param.name + ' (' + param.percent * 2 + '%)';
-  //           }
-  //         },
-  //         data: [
-  //           { value: ipv4Downstreams, name: 'IPv4 Downstreams' },
-  //           { value: ipv6Downstreams, name: 'IPv6 Downstreams' },
-  //           {
-  //             // make an record to fill the bottom 50%
-  //             value: ipv4Downstreams + ipv6Downstreams,
-  //             itemStyle: {
-  //               // stop the chart from rendering this piece
-  //               color: 'none',
-  //               decal: {
-  //                 symbol: 'none'
-  //               }
-  //             },
-  //             label: {
-  //               show: false
-  //             }
-  //           }
-  //         ]
-  //       }
-  //     ]
-  //   };
-
-
-  //   option && myChart.setOption(option);
-
-  //   // Cleanup function
-  //   return () => {
-  //     myChart.dispose();
-  //   };
-  // }, []); // Run only once on mount
-
-
-
-
-  return (
+    return (
     <div className="bg-gray-150">
 
 
@@ -945,7 +605,10 @@ export default function AsnDetailedInfo({
           </div> */}
           <div className="w-full md:w-3/4 p-4 border border-gray-150 bg-white mb-4 p-4">
             <div>
-              {/* {<ASNContacts />} */renderContent()}
+              {
+                /* {<ASNContacts />} */
+                renderContent()
+              }
             </div>
           </div>
 
