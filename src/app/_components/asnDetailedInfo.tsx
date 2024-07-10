@@ -287,6 +287,74 @@ export default function AsnDetailedInfo({
     )
   }
 
+  const ASNNetwork = () => {
+    return (
+    <div>
+      <div className="header-row pt-2 pb-4">
+        <h1 className="font-bold text-2xl">AS{res_asn?.data?.asn} Network</h1>
+      </div>
+      <div className="flex">
+        <div className="flex-1">
+          <div><h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV4 PREFIXES:</h2><b>{ipv4Prefixes}</b></div>
+          <div><h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV4 PEERS:</h2><b>{ipv4Count}</b></div>
+          <div><h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV4 UPSTREAMS:</h2><b>{ipv4Upstreams}</b></div>
+          <div><h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV4 DOWNSTREAMS:</h2><b>{ipv4Downstreams}</b></div>
+        </div>
+        <div className="flex-1">
+          <div><h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV6 PREFIXES:</h2><b>{ipv6Prefixes}</b></div>
+          <div><h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV6 PEERS:</h2><b>{ipv6Count}</b></div>
+          <div><h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV6 UPSTREAMS:</h2><b>{ipv6Upstreams}</b></div>
+          <div><h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV6 DOWNSTREAMS:</h2><b>{ipv6Downstreams}</b></div>
+        </div>
+      </div>
+      <hr />
+    </div>
+    )
+  }
+
+  const ASNContacts = () => {
+    return (
+      <div>
+        <div className="header-row pt-2 pb-4">
+          <h1 className="font-bold text-2xl">Contacts</h1>
+        </div>
+        <div className="flex">
+            <div className="flex-1">
+              <div>
+                <h2 className="text-l text-gray-400 font-bold p-1 block">EMAIL CONTACTS:</h2>
+                {res_asn?.data?.email_contacts?.map((email: any) => (
+                  <b className="block" key={`${email}`}>
+                    {email}
+                  </b>
+                ))}
+              </div>
+            </div>
+            <div className="flex-1">
+              <div>
+                <h2 className="text-l text-gray-400 font-bold p-1 block">ABUSE CONTACTS:</h2>
+                {res_asn?.data?.abuse_contacts?.map((abuse: any) => (
+                  <b className="block" key={`${abuse}`}>
+                    {abuse}
+                  </b>
+                ))}
+              </div>
+            </div>
+            <div className="flex-1">
+              <div>
+                <h2 className="text-l text-gray-400 font-bold p-1 block">ADDRESS:</h2>
+                {res_asn?.data?.owner_address?.map((address: any) => (
+                  <b className="block" key={`${address}`}>
+                    {address}
+                  </b>
+                ))}
+              </div>
+            </div>
+        </div>
+        <hr />
+      </div>
+    );
+  }
+
   const renderContent = () => {
     switch (selectedOption) {
       case "ASN":
@@ -851,14 +919,20 @@ export default function AsnDetailedInfo({
         <div className="flex flex-wrap">
 
           {/* First Row */}
-          <div className="w-full md:w-1/4 p-4 border border-gray-150 bg-white mb-4 p-2">
-            {/* Content for the first column (1/4 width) */}
+          <div className="w-full md:w-3/4 border border-gray-150 bg-white mb-4 p-2">
+            {/* Content for the first column (3/4 width) */}
             <ASNHeader />
           </div>
-          <div className="w-full md:w-3/4 p-4 border border-gray-150 bg-white mb-4 p-4">
+          <div className="w-full md:w-3/4 border border-gray-150 bg-white mb-4 p-4">
             <div>
               {/* Content for the second column (3/4 width) */}
               <ASNSummary />
+            </div>
+            <div>
+              <ASNNetwork/>
+            </div>
+            <div>
+              <ASNContacts />
             </div>
           </div>
 
