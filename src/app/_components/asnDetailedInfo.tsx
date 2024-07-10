@@ -100,7 +100,7 @@ export default function AsnDetailedInfo({
     return (
       <div>
         {/* Main Header */}
-        <div className="flex">
+        <div className="md:flex">
 
           <div className="w-1/8 pt-4 ">
 
@@ -110,7 +110,7 @@ export default function AsnDetailedInfo({
             </div>
           </div>
 
-          <div className="w-2/3 p-4">
+          <div className="md:w-2/3 md:p-4">
             <div className="text-4xl ">
               <p>AS{res_asn?.data?.asn} {res_asn?.data?.description_short}</p>
             </div>
@@ -193,7 +193,7 @@ export default function AsnDetailedInfo({
         </div>
 
         {/* Two Columns */}
-        <div className="flex">
+        <div className="md:flex">
           {/* First Column */}
           <div className="flex-1">
             <div><h2 className="text-l text-gray-400 font-bold p-1 inline-block">REGIONAL REGISTRY:</h2><b>{res_asn?.data?.rir_allocation.rir_name}</b></div>
@@ -293,7 +293,7 @@ export default function AsnDetailedInfo({
       <div className="header-row pt-2 pb-4">
         <h1 className="font-bold text-2xl">AS{res_asn?.data?.asn} Network</h1>
       </div>
-      <div className="flex">
+      <div className="md:flex">
         <div className="flex-1">
           <div><h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV4 PREFIXES:</h2><b>{ipv4Prefixes}</b></div>
           <div><h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV4 PEERS:</h2><b>{ipv4Count}</b></div>
@@ -318,7 +318,7 @@ export default function AsnDetailedInfo({
         <div className="header-row pt-2 pb-4">
           <h1 className="font-bold text-2xl">Contacts</h1>
         </div>
-        <div className="flex">
+        <div className="md:flex">
             <div className="flex-1">
               <div>
                 <h2 className="text-l text-gray-400 font-bold p-1 block">EMAIL CONTACTS:</h2>
@@ -897,7 +897,7 @@ export default function AsnDetailedInfo({
   // }, []); // Run only once on mount
 
   return (
-    <div className="bg-gray-150">
+    <div className="md:bg-gray-150">
 
 
       {/* Information Box */}
@@ -905,11 +905,11 @@ export default function AsnDetailedInfo({
         {/* Add content for the information box */}
         <div className="flex flex-wrap">
           {/* First Row */}
-          <div className="w-full md:w-3/4 border border-gray-150 bg-white mb-4 p-2">
+          <div className="w-full 2xl:w-3/4 border border-gray-150 bg-white mb-4 p-2">
             {/* Content for the first column (3/4 width) */}
             <ASNHeader />
           </div>
-          <div className="w-full md:w-3/4 border border-gray-150 bg-white mb-4 p-4">
+          <div className="w-full 2xl:w-3/4 border border-gray-150 bg-white mb-4 p-4">
             <div>
                 {/* Content for the second column (3/4 width) */}
                 <ASNSummary />

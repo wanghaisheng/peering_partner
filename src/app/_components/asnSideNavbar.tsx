@@ -124,7 +124,7 @@ navigation: `/graph/${slug}`,
       <div className={`min-h-screen bg-gray-100 pt-28 ${isSidebarOpen ? 'overflow-x-hidden overflow-hidden border-r w-56 hover:shadow-lg transition-width duration-500 ' : 'overflow-x-visible'}`}>
          <div className={`min-h-screen bg-gray-100 sidebar ${isSidebarOpen ? 'md:w-[3.35rem] ' : 'w-18 '} `}>
             {/* Toggle button */}
-            <div className="flex h-screen flex-col bg-gray-100  justify-between pt-2 pb-6 ">
+            <div className="flex h-screen flex-col bg-gray-100 xl:justify-between pt-2 pb-6 ">
                <div>
                   <ul className="mt-6 space-y-2 tracking-wide">
                      {sidebarItems.map((item, index) => (item?.navigation&&(

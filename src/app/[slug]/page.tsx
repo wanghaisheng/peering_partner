@@ -35,18 +35,18 @@ export default async function Page({ params }: { params: { slug: string } }) {
   await delay(400);
 
   return (
-    <div className="flex flex-col min-h-screen overflow-hidden">
+    <div className="flex flex-col min-h-screen">
       <div className="flex flex-row min-h-screen bg-gray-100 text-gray-800">
         <div className="fixed md:static top-0 left-0 z-10 md:z-1 h-full md:h-auto">
           <ASNSideNavbar   activeOption="ASN Stats" sidebarOpen={false} slug={asn} />
         </div>
 
-        <main className="main flex flex-col flex-grow -ml-64 md:ml-0 transition-all duration-150 ease-in">
+        <main className="flex flex-col md:ml-0 transition-all duration-150 ease-in flex-grow">
           <div className="fixed top-0 left-0 right-0 z-20 bg-white shadow">
             <Navbar />
           </div>
 
-          <div className="mt-4 pt-24 md:mt-8 lg:mt-12 md:mx-0 pl-8 overflow-y-auto flex-grow">
+          <div className="mt-0 pt-24 md:mx-0 pl-12 md:pl-0 overflow-auto">
             <hr/>
             <AsnDetailedInfo
               res_asn={res_asn}
@@ -60,7 +60,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
             />
           </div>
 
-          <Footer />
+          <div>
+            <Footer />
+          </div>
         </main>
       </div>
     </div>
