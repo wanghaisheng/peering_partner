@@ -6,15 +6,17 @@ import React, { useEffect, useState } from 'react';
 import * as echarts from 'echarts';
 import Datepicker from "react-tailwindcss-datepicker";
 import Link from 'next/link';
-
+import AsnHeader from './asnHeaderInfo';
 
 interface PeersDetailsInfoProps {
     res_peers: Record<string, any>;
-    asn_number: string;
+    asn_number: string; // This type assumes that the JSON data can be of any shape
+    res_prefixes: Record<string, any>;
+    res_asn: Record<string, any>;
 }
 
 
-export default function PeersDetailsInfo({ res_peers, asn_number }: PeersDetailsInfoProps) {
+export default function PeersDetailsInfo({ res_asn, res_peers, asn_number, res_prefixes}: PeersDetailsInfoProps) {
 
     res_peers.data = res_peers.data || {};
     const ipv4Count = res_peers.data.ipv4_peers?.length || 0;
@@ -34,60 +36,58 @@ export default function PeersDetailsInfo({ res_peers, asn_number }: PeersDetails
     }
 
 
-    useEffect(() => {
-        const chartDom = document.getElementById('peers');
-        const myChart = echarts.init(chartDom);
+    // useEffect(() => {
+    //     const chartDom = document.getElementById('peers');
+    //     const myChart = echarts.init(chartDom);
 
-        const option = {
-            tooltip: {
-                trigger: 'item',
-            },
-            legend: {
-                top: '5%',
-                left: 'center',
-            },
-            series: [
-                {
-                    name: 'Peers Count',
-                    type: 'pie',
-                    radius: ['40%', '70%'],
-                    avoidLabelOverlap: false,
-                    itemStyle: {
-                        borderRadius: 10,
-                        borderColor: '#fff',
-                        borderWidth: 2,
-                    },
-                    label: {
-                        show: false,
-                        position: 'center',
-                    },
-                    emphasis: {
-                        label: {
-                            show: true,
-                            fontSize: 40,
-                            fontWeight: 'bold',
-                        },
-                    },
-                    labelLine: {
-                        show: false,
-                    },
-                    data: [
-                        { value: ipv4Count, name: 'IPv4' },
-                        { value: ipv6Count, name: 'IPv6' },
-                    ],
-                },
-            ],
-        };
+    //     const option = {
+    //         tooltip: {
+    //             trigger: 'item',
+    //         },
+    //         legend: {
+    //             top: '5%',
+    //             left: 'center',
+    //         },
+    //         series: [
+    //             {
+    //                 name: 'Peers Count',
+    //                 type: 'pie',
+    //                 radius: ['40%', '70%'],
+    //                 avoidLabelOverlap: false,
+    //                 itemStyle: {
+    //                     borderRadius: 10,
+    //                     borderColor: '#fff',
+    //                     borderWidth: 2,
+    //                 },
+    //                 label: {
+    //                     show: false,
+    //                     position: 'center',
+    //                 },
+    //                 emphasis: {
+    //                     label: {
+    //                         show: true,
+    //                         fontSize: 40,
+    //                         fontWeight: 'bold',
+    //                     },
+    //                 },
+    //                 labelLine: {
+    //                     show: false,
+    //                 },
+    //                 data: [
+    //                     { value: ipv4Count, name: 'IPv4' },
+    //                     { value: ipv6Count, name: 'IPv6' },
+    //                 ],
+    //             },
+    //         ],
+    //     };
 
-        option && myChart.setOption(option);
+    //     option && myChart.setOption(option);
 
-        // Cleanup function
-        return () => {
-            myChart.dispose();
-        };
-    }, []); // Run only once on mount
-
-
+    //     // Cleanup function
+    //     return () => {
+    //         myChart.dispose();
+    //     };
+    // }, []); // Run only once on mount
 
     const Ipv4PeersTable: React.FC = () => {
         res_peers.data = res_peers.data || {};
@@ -192,11 +192,6 @@ export default function PeersDetailsInfo({ res_peers, asn_number }: PeersDetails
             </div>
         );
     };
-
-
-
-
-
 
     const Ipv6PeersTable: React.FC = () => {
         res_peers.data = res_peers.data || {};
@@ -323,57 +318,17 @@ export default function PeersDetailsInfo({ res_peers, asn_number }: PeersDetails
 
 
                 {/* Add content for the information box */}
-                <div className="flex flex-wrap">
-
+                <div className="md:flex flex-wrap">
+                    <div className="w-full border border-gray-150 bg-white mb-4 p-4">
+                        <AsnHeader res_asn={res_asn} res_peers={res_peers} res_prefixes={res_prefixes}/>
+                    </div>
                     {/* First Row */}
-                    <div className="w-full md:w-1/4 p-4 ">
-                        {/* Content for the first column (1/4 width) */}
-                        <div className="md:flex md:flex-wrap">
-                            <div className="w-full p-4 bg-white border border-gray-150 mb-4">
-                                {/* Content for the first sub-row within the second column */}
-                                <div className={`w-full p-4 bg-white  mb-4 pb-1 `}
-
-                                >
-                                    <a href={`/peers/${asn_number}`} rel="noopener noreferrer">
-                                        {/* Content for the first sub-row within the second column */}
-                                        <div className="flex items-center m-2">
-                                            <b className="mr-2 hover:text-blue-500 underline">{asn_number} Peers</b>
-                                            <Image src={External_link} alt="Logo" width={20} height={20} />
-                                        </div>
-                                    </a>
-                                </div>
-
-
-
-
-
-                                <div className="flex flex-wrap">
-                                    <div id="peers" className="w-56 h-56"></div>
-                                    <div>
-                                        <div className="mb-4">
-                                            <h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV4 PEERS:</h2>
-                                            <b>{ipv4Count}</b>
-                                        </div>
-
-                                        <div>
-                                            <h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV6 PEERS:</h2>
-                                            <b>{ipv6Count}</b>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div className="w-full md:w-3/4 p-4 border border-gray-150">
-                        {/* Content for the second column (3/4 width) */}
-                        <p>Second Column Content</p>
-                    </div>
+                    {/*  */}
 
 
 
                     {/* Third Row */}
-                    <div className="w-full p-4 max-w-screen-lg mx-auto overflow-x-auto" style={{ maxWidth: '1930px' }}>
+                    <div className="lg:w-full p-4 md:mx-auto overflow-scroll">
                         {/* Content for the third row (full width) */}
                         <div className="col-sm-10 box">
                             <div className="flex mb-4">

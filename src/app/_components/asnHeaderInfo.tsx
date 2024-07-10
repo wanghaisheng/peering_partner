@@ -15,28 +15,39 @@ interface AsnHeaderInfoProps {
 
 
 export default function AsnHeaderInfo({ res_asn, res_peers, res_prefixes }: AsnHeaderInfoProps) {
+  
+  // Ensure that the response structure is as expected
+  res_peers.data = res_peers.data || {};
+  const ipv4Count = res_peers.data.ipv4_peers?.length || 0;
+  const ipv6Count = res_peers.data.ipv6_peers?.length || 0;
 
+  const totalPeersCount = ipv4Count + ipv6Count;
 
+  res_prefixes.data = res_prefixes.data || {};
+  // Ensure that the response structure is as expected
+  const ipv4Prefixes = res_prefixes.data.ipv4_prefixes?.length || 0;
+  const ipv6Prefixes = res_prefixes.data.ipv6_prefixes?.length || 0;
+  const totalPrefixes = ipv4Prefixes + ipv6Prefixes;
 
   return (
     <div>
       {/* Main Header */}
-      {/* <div className="flex">
+      <div className="md:flex">
 
         <div className="w-1/8 pt-4 ">
 
           <div className="flag-icon">
-            <img className="pull-left title-flag" width="78" height="78" src={`https://bgpview.io/assets/flags/shiny/64/${res_asn.data.country_code}.png`} title="<?php echo $country_name; ?>" />
+            <img className="pull-left title-flag" width="78" height="78" src={`https://bgpview.io/assets/flags/shiny/64/${res_asn?.data?.country_code}.png`} title="<?php echo $country_name; ?>" />
 
           </div>
         </div>
 
-        <div className="w-2/3 p-4">
+        <div className="md:w-2/3 md:p-4">
           <div className="text-4xl ">
-            <p>AS{res_asn.data.asn} {res_asn.data.description_short}</p>
+            <p>AS{res_asn?.data?.asn} {res_asn?.data?.description_short}</p>
           </div>
           <div className="text-xl font-bold">
-            <p className="text-gray-300">{res_asn.data.name}</p>
+            <p className="text-gray-300">{res_asn?.data?.name}</p>
           </div>
 
         </div>
@@ -44,19 +55,7 @@ export default function AsnHeaderInfo({ res_asn, res_peers, res_prefixes }: AsnH
 
 
 
-        <div className="w-1/6 p-4 ml-auto">
-        {/* <label className="block text-sm font-medium text-gray-700">
-                        Select a date
-                    </label>
-                    <Datepicker
-                        primaryColor={"blue"}
-                        value={value}
-                        onChange={handleValueChange}
-                        showShortcuts={true}
-                    /> 
 
-
-        </div>
 
       </div>
 
@@ -69,16 +68,23 @@ export default function AsnHeaderInfo({ res_asn, res_peers, res_prefixes }: AsnH
           <strong>Number of Prefixes:</strong> {totalPrefixes}
         </div>
         <div className="w-full sm:w-1/3 p-2">
-         
+          { /* Inserted logic from PHP code here */}
           {
             (() => {
-              const asnDate = new Date(res_asn.data.rir_allocation.date_allocated);
+              const asnDate = new Date(res_asn?.data?.rir_allocation?.date_allocated);
               const year = asnDate.getFullYear();
               const monthNum = asnDate.getMonth() + 1; // JavaScript months are 0-based
-              const dateObj = new Intl.DateTimeFormat('en', { month: 'long' }).formatToParts(asnDate);
-              const monthName = dateObj.find(part => part.type === 'month')?.value || 'UnknownMonth';
 
-              const day = asnDate.getDate();
+              let dateObj : any = null;
+              let monthName = '';
+              let day = 0;
+              try{
+                dateObj = new Intl.DateTimeFormat('en', { month: 'long' }).formatToParts(asnDate);
+                monthName = (dateObj || []).find((part : any ) => part.type === 'month')?.value || 'UnknownMonth';
+                day = asnDate.getDate();
+              }catch(err){
+                console.log("Invalid date obj" , asnDate );
+              }
 
               const lastDigit = day % 10;
               let suffix;
@@ -104,8 +110,7 @@ export default function AsnHeaderInfo({ res_asn, res_peers, res_prefixes }: AsnH
           }
         </div>
 
-      </div>*/}
-    </div>
+      </div>
+    </div>)
 
-  );
 }

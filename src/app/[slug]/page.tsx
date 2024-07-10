@@ -17,28 +17,31 @@ export default async function Page({ params }: { params: { slug: string } }) {
   const asn = params.slug;
 
   // Fetch data using the functions from the api folder
-  const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
+  // const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
+    
+  // const res_asn = await getASNData(asn);
+  // await delay(250); // Delay for 1000 milliseconds (1 second)
+  // const res_asn_peers = await getPeersData(asn);
+  // await delay(250);
+  // const res_asn_prefixes = await getPrefixData(asn);
+  // await delay(250);
+  // const res_asn_upstreams = await getUpstreamData(asn);
+  // await delay(250);
+  // const res_asn_downstreams = await getDownstreamData(asn);
+  // await delay(250);
+  // const res_asn_ix = await getIXData(asn);
+  // await delay(400);
+  // const res_asn_whois = await getWhoIsData(asn);
+  // await delay(400);
 
-  const res_asn = await getASNData(asn);
-  await delay(250); // Delay for 1000 milliseconds (1 second)
-  const res_asn_peers = await getPeersData(asn);
-  await delay(250);
-  const res_asn_prefixes = await getPrefixData(asn);
-  await delay(250);
-  const res_asn_upstreams = await getUpstreamData(asn);
-  await delay(250);
-  const res_asn_downstreams = await getDownstreamData(asn);
-  await delay(250);
-  const res_asn_ix = await getIXData(asn);
-  await delay(400);
-  const res_asn_whois = await getWhoIsData(asn);
-  await delay(400);
+  const [res_asn, res_asn_peers, res_asn_prefixes, res_asn_upstreams, res_asn_downstreams, res_asn_ix] = await
+  Promise.all([getASNData(asn), getPeersData(asn), getPrefixData(asn), getUpstreamData(asn), getDownstreamData(asn), getIXData(asn)]);
 
   return (
     <div className="flex flex-col min-h-screen">
       <div className="flex flex-row min-h-screen bg-gray-100 text-gray-800">
         <div className="fixed md:static top-0 left-0 z-10 md:z-1 h-full md:h-auto">
-          <ASNSideNavbar   activeOption="ASN Stats" sidebarOpen={false} slug={asn} />
+          <ASNSideNavbar activeOption="ASN Stats" sidebarOpen={false} slug={asn} />
         </div>
 
         <main className="flex flex-col md:ml-0 transition-all duration-150 ease-in flex-grow">
@@ -46,7 +49,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
             <Navbar />
           </div>
 
-          <div className="mt-0 pt-24 md:mx-0 pl-12 md:pl-0 overflow-auto">
+          <div className="mt-4 md:pt-24 md:mt-8 lg:mt-12 mx-4 md:pl-8 overflow-y-auto flex-grow pt-24 md:mx-0 pl-12 overflow-auto">
             <hr/>
             <AsnDetailedInfo
               res_asn={res_asn}
@@ -55,9 +58,6 @@ export default async function Page({ params }: { params: { slug: string } }) {
               res_upstreams={res_asn_upstreams}
               res_downstreams={res_asn_downstreams}
               res_ix={res_asn_ix}
-              asn_number={asn}
-              res_whois={res_asn_whois}
-              
             />
              <div className="block md:hidden">
               <Footer />
