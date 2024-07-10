@@ -46,7 +46,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
             <Navbar />
           </div>
 
-          <div className="mt-4  pt-24 md:mt-8  lg:mt-12 mx-4 md:mx-0 pl-8 overflow-y-auto flex-grow">
+          <div className="mt-4 pt-24 md:mt-8 lg:mt-12 mx-4 md:mx-0 pl-8 overflow-y-auto flex-grow">
             <hr/>
             <AsnDetailedInfo
               res_asn={res_asn}
