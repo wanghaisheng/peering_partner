@@ -543,7 +543,6 @@ export default function AsnDetailedInfo({
     }
   };
 
-
   const Graphs: React.FC = () => {
     const [svgContent, setSvgContent] = useState<string | null>(null);
 
@@ -575,10 +574,6 @@ export default function AsnDetailedInfo({
       </div>
     );
   };
-
-
-
-
 
   const IXS: React.FC = () => {
     const data = res_ix?.data?.map((item: any) => ({
@@ -669,245 +664,237 @@ export default function AsnDetailedInfo({
     );
   };
 
+  // useEffect(() => {
+  //   // const chartDom = document.getElementById('peers');  
+  //   // const myChart = echarts.init(chartDom); 
+
+  //   const option = {
+  //     tooltip: {
+  //       trigger: 'item',
+  //     },
+  //     legend: {
+  //       top: '5%',
+  //       left: 'center',
+  //     },
+  //     series: [
+  //       {
+  //         name: 'Peers Count',
+  //         type: 'pie',
+  //         radius: ['40%', '70%'],
+  //         avoidLabelOverlap: false,
+  //         itemStyle: {
+  //           borderRadius: 10,
+  //           borderColor: '#fff',
+  //           borderWidth: 2,
+  //         },
+  //         label: {
+  //           show: false,
+  //           position: 'center',
+  //         },
+  //         emphasis: {
+  //           label: {
+  //             show: true,
+  //             fontSize: 40,
+  //             fontWeight: 'bold',
+  //           },
+  //         },
+  //         labelLine: {
+  //           show: false,
+  //         },
+  //         data: [
+  //           { value: ipv4Count, name: 'IPv4' },
+  //           { value: ipv6Count, name: 'IPv6' },
+  //         ],
+  //       },
+  //     ],
+  //   };
+
+  //   option && myChart.setOption(option);
+
+  //   // Cleanup function
+  //   return () => {
+  //     myChart.dispose();
+  //   };
+  // }, []); // Run only once on mount
 
 
+  // //prefix count
+  // useEffect(() => {
+  //   const chartDom = document.getElementById('prefix');
+  //   const myChart = echarts.init(chartDom);
+
+  //   const option = {
+  //     tooltip: {
+  //       trigger: 'item',
+  //     },
+  //     legend: {
+  //       top: '5%',
+  //       left: 'center',
+  //     },
+  //     series: [
+  //       {
+  //         name: 'Prefixes Count',
+  //         type: 'pie',
+  //         radius: ['40%', '70%'],
+  //         avoidLabelOverlap: false,
+  //         itemStyle: {
+  //           borderRadius: 10,
+  //           borderColor: '#fff',
+  //           borderWidth: 2,
+  //         },
+  //         label: {
+  //           show: false,
+  //           position: 'center',
+  //         },
+  //         emphasis: {
+  //           label: {
+  //             show: true,
+  //             fontSize: 40,
+  //             fontWeight: 'bold',
+  //           },
+  //         },
+  //         labelLine: {
+  //           show: false,
+  //         },
+  //         data: [
+  //           { value: ipv4Prefixes, name: 'IPv4' },
+  //           { value: ipv6Prefixes, name: 'IPv6' },
+  //         ],
+  //       },
+  //     ],
+  //   };
+
+  //   option && myChart.setOption(option);
+
+  //   // Cleanup function
+  //   return () => {
+  //     myChart.dispose();
+  //   };
+  // }, []); // Run only once on mount
 
 
+  // //upstream
+  // useEffect(() => {
+  //   const chartDom = document.getElementById('upstream');
+  //   const myChart = echarts.init(chartDom);
 
-  useEffect(() => {
-    const chartDom = document.getElementById('peers');
-    const myChart = echarts.init(chartDom);
+  //   const option = {
+  //     tooltip: {
+  //       trigger: 'item'
+  //     },
+  //     legend: {
+  //       top: '5%',
+  //       left: 'center',
+  //       // doesn't perfectly work with our tricks, disable it
+  //       selectedMode: false
+  //     },
+  //     series: [
+  //       {
 
-    const option = {
-      tooltip: {
-        trigger: 'item',
-      },
-      legend: {
-        top: '5%',
-        left: 'center',
-      },
-      series: [
-        {
-          name: 'Peers Count',
-          type: 'pie',
-          radius: ['40%', '70%'],
-          avoidLabelOverlap: false,
-          itemStyle: {
-            borderRadius: 10,
-            borderColor: '#fff',
-            borderWidth: 2,
-          },
-          label: {
-            show: false,
-            position: 'center',
-          },
-          emphasis: {
-            label: {
-              show: true,
-              fontSize: 40,
-              fontWeight: 'bold',
-            },
-          },
-          labelLine: {
-            show: false,
-          },
-          data: [
-            { value: ipv4Count, name: 'IPv4' },
-            { value: ipv6Count, name: 'IPv6' },
-          ],
-        },
-      ],
-    };
-
-    option && myChart.setOption(option);
-
-    // Cleanup function
-    return () => {
-      myChart.dispose();
-    };
-  }, []); // Run only once on mount
-
-
-  //prefix count
-  useEffect(() => {
-    const chartDom = document.getElementById('prefix');
-    const myChart = echarts.init(chartDom);
-
-    const option = {
-      tooltip: {
-        trigger: 'item',
-      },
-      legend: {
-        top: '5%',
-        left: 'center',
-      },
-      series: [
-        {
-          name: 'Prefixes Count',
-          type: 'pie',
-          radius: ['40%', '70%'],
-          avoidLabelOverlap: false,
-          itemStyle: {
-            borderRadius: 10,
-            borderColor: '#fff',
-            borderWidth: 2,
-          },
-          label: {
-            show: false,
-            position: 'center',
-          },
-          emphasis: {
-            label: {
-              show: true,
-              fontSize: 40,
-              fontWeight: 'bold',
-            },
-          },
-          labelLine: {
-            show: false,
-          },
-          data: [
-            { value: ipv4Prefixes, name: 'IPv4' },
-            { value: ipv6Prefixes, name: 'IPv6' },
-          ],
-        },
-      ],
-    };
-
-    option && myChart.setOption(option);
-
-    // Cleanup function
-    return () => {
-      myChart.dispose();
-    };
-  }, []); // Run only once on mount
+  //         name: 'Upstream data of',
+  //         type: 'pie',
+  //         radius: ['40%', '70%'],
+  //         center: ['50%', '70%'],
+  //         // adjust the start angle
+  //         startAngle: 180,
+  //         label: {
+  //           show: true,
+  //           formatter(param: any) {
+  //             // correct the percentage
+  //             return param.name + ' (' + param.percent * 2 + '%)';
+  //           }
+  //         },
+  //         data: [
+  //           { value: ipv4Upstreams, name: 'IPv4 Upstreams' },
+  //           { value: ipv6Upstreams, name: 'IPv6 Upstreams' },
+  //           {
+  //             // make an record to fill the bottom 50%
+  //             value: ipv4Upstreams + ipv6Upstreams,
+  //             itemStyle: {
+  //               // stop the chart from rendering this piece
+  //               color: 'none',
+  //               decal: {
+  //                 symbol: 'none'
+  //               }
+  //             },
+  //             label: {
+  //               show: false
+  //             }
+  //           }
+  //         ]
+  //       }
+  //     ]
+  //   };
 
 
-  //upstream
-  useEffect(() => {
-    const chartDom = document.getElementById('upstream');
-    const myChart = echarts.init(chartDom);
+  //   option && myChart.setOption(option);
 
-    const option = {
-      tooltip: {
-        trigger: 'item'
-      },
-      legend: {
-        top: '5%',
-        left: 'center',
-        // doesn't perfectly work with our tricks, disable it
-        selectedMode: false
-      },
-      series: [
-        {
+  //   // Cleanup function
+  //   return () => {
+  //     myChart.dispose();
+  //   };
+  // }, []); // Run only once on mount
 
-          name: 'Upstream data of',
-          type: 'pie',
-          radius: ['40%', '70%'],
-          center: ['50%', '70%'],
-          // adjust the start angle
-          startAngle: 180,
-          label: {
-            show: true,
-            formatter(param: any) {
-              // correct the percentage
-              return param.name + ' (' + param.percent * 2 + '%)';
-            }
-          },
-          data: [
-            { value: ipv4Upstreams, name: 'IPv4 Upstreams' },
-            { value: ipv6Upstreams, name: 'IPv6 Upstreams' },
-            {
-              // make an record to fill the bottom 50%
-              value: ipv4Upstreams + ipv6Upstreams,
-              itemStyle: {
-                // stop the chart from rendering this piece
-                color: 'none',
-                decal: {
-                  symbol: 'none'
-                }
-              },
-              label: {
-                show: false
-              }
-            }
-          ]
-        }
-      ]
-    };
+  // //downstream
+  // useEffect(() => {
+  //   const chartDom = document.getElementById('downstream');
+  //   const myChart = echarts.init(chartDom);
 
-
-    option && myChart.setOption(option);
-
-    // Cleanup function
-    return () => {
-      myChart.dispose();
-    };
-  }, []); // Run only once on mount
-
-  //downstream
-  useEffect(() => {
-    const chartDom = document.getElementById('downstream');
-    const myChart = echarts.init(chartDom);
-
-    const option = {
-      tooltip: {
-        trigger: 'item'
-      },
-      legend: {
-        top: '5%',
-        left: 'center',
-        // doesn't perfectly work with our tricks, disable it
-        selectedMode: false
-      },
-      series: [
-        {
-          name: 'Downstream data of',
-          type: 'pie',
-          radius: ['40%', '70%'],
-          center: ['50%', '70%'],
-          // adjust the start angle
-          startAngle: 180,
-          label: {
-            show: true,
-            formatter(param: any) {
-              // correct the percentage
-              return param.name + ' (' + param.percent * 2 + '%)';
-            }
-          },
-          data: [
-            { value: ipv4Downstreams, name: 'IPv4 Downstreams' },
-            { value: ipv6Downstreams, name: 'IPv6 Downstreams' },
-            {
-              // make an record to fill the bottom 50%
-              value: ipv4Downstreams + ipv6Downstreams,
-              itemStyle: {
-                // stop the chart from rendering this piece
-                color: 'none',
-                decal: {
-                  symbol: 'none'
-                }
-              },
-              label: {
-                show: false
-              }
-            }
-          ]
-        }
-      ]
-    };
+  //   const option = {
+  //     tooltip: {
+  //       trigger: 'item'
+  //     },
+  //     legend: {
+  //       top: '5%',
+  //       left: 'center',
+  //       // doesn't perfectly work with our tricks, disable it
+  //       selectedMode: false
+  //     },
+  //     series: [
+  //       {
+  //         name: 'Downstream data of',
+  //         type: 'pie',
+  //         radius: ['40%', '70%'],
+  //         center: ['50%', '70%'],
+  //         // adjust the start angle
+  //         startAngle: 180,
+  //         label: {
+  //           show: true,
+  //           formatter(param: any) {
+  //             // correct the percentage
+  //             return param.name + ' (' + param.percent * 2 + '%)';
+  //           }
+  //         },
+  //         data: [
+  //           { value: ipv4Downstreams, name: 'IPv4 Downstreams' },
+  //           { value: ipv6Downstreams, name: 'IPv6 Downstreams' },
+  //           {
+  //             // make an record to fill the bottom 50%
+  //             value: ipv4Downstreams + ipv6Downstreams,
+  //             itemStyle: {
+  //               // stop the chart from rendering this piece
+  //               color: 'none',
+  //               decal: {
+  //                 symbol: 'none'
+  //               }
+  //             },
+  //             label: {
+  //               show: false
+  //             }
+  //           }
+  //         ]
+  //       }
+  //     ]
+  //   };
 
 
-    option && myChart.setOption(option);
+  //   option && myChart.setOption(option);
 
-    // Cleanup function
-    return () => {
-      myChart.dispose();
-    };
-  }, []); // Run only once on mount
-
-
-
+  //   // Cleanup function
+  //   return () => {
+  //     myChart.dispose();
+  //   };
+  // }, []); // Run only once on mount
 
   return (
     <div className="bg-gray-150">
@@ -917,7 +904,6 @@ export default function AsnDetailedInfo({
       <div className="p-4 border border-gray-150">
         {/* Add content for the information box */}
         <div className="flex flex-wrap">
-
           {/* First Row */}
           <div className="w-full md:w-3/4 border border-gray-150 bg-white mb-4 p-2">
             {/* Content for the first column (3/4 width) */}
@@ -925,158 +911,17 @@ export default function AsnDetailedInfo({
           </div>
           <div className="w-full md:w-3/4 border border-gray-150 bg-white mb-4 p-4">
             <div>
-              {/* Content for the second column (3/4 width) */}
-              <ASNSummary />
-            </div>
-            <div>
-              <ASNNetwork/>
-            </div>
-            <div>
-              <ASNContacts />
-            </div>
-          </div>
-
-          {/* Second Row */}
-          <div className="w-full md:w-1/3 p-4 bg-white mb-4">
-            {/* Content for the second column (1/3 width) */}
-            <div className="md:flex md:flex-wrap">
-              <div className="w-full p-4 bg-white border border-gray-150 mb-4">
-                {/* Content for the first sub-row within the second column */}
-                <div className={`w-full p-4 bg-white  mb-4 pb-1 ${selectedOption === "Peers"
-                  ? "text-[rgba(37,169,189,0.97)] font-bold"
-                  : ""
-                  }`}
-                  onClick={() => handleOptionClick("prefixes")}
-                >
-                  <a href={`/peers/${asn_number}`} rel="noopener noreferrer">
-                    {/* Content for the first sub-row within the second column */}
-                    <div className="flex items-center m-2">
-                      <b className="mr-2 hover:text-blue-500 underline">{asn_number} Peers</b>
-                      <Image src={External_link} alt="Logo" width={20} height={20} />
-                    </div>
-                  </a>
-                </div>
-
-
-
-
-
-                <div className="flex flex-wrap">
-                  <div id="peers" className="w-56 h-56"></div>
-                  <div>
-                    <div className="mb-4">
-                      <h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV4 PEERS:</h2>
-                      <b>{ipv4Count}</b>
-                    </div>
-
-                    <div>
-                      <h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV6 PEERS:</h2>
-                      <b>{ipv6Count}</b>
-                    </div>
-                  </div>
-                </div>
+                {/* Content for the second column (3/4 width) */}
+                <ASNSummary />
               </div>
-              <div className="w-full p-4 bg-white border border-gray-150 mb-4">
-                {/* Content for the second sub-row within the second column */}
-                <div className={`w-full p-4 bg-white  mb-4 pb-1 ${selectedOption === "Peers"
-                  ? "text-[rgba(37,169,189,0.97)] font-bold"
-                  : ""
-                  }`}
-                  onClick={() => handleOptionClick("prefixes")}
-                >
-                    {/* Content for the first sub-row within the second column */}
-                    <a href={`/prefixes/${asn_number}`} rel="noopener noreferrer">
-                      {/* Content for the first sub-row within the second column */}
-                      <div className="flex items-center m-2">
-                        <b className="mr-2 hover:text-blue-500 underline">{asn_number} Prefixes</b>
-                        <Image src={External_link} alt="Logo" width={20} height={20} />
-                      </div>
-                    </a>
-                </div>
-                <div className="flex flex-wrap">
-
-                  <div id="prefix" className="w-56 h-56"></div>
-                  <div>
-                    <div className="mb-4">
-                      <h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV4 PREFIXES:</h2>
-                      <b>{ipv4Prefixes}</b>
-                    </div>
-
-                    <div>
-                      <h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV6 PREFIXES:</h2>
-                      <b>{ipv6Prefixes}</b>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="w-full md:w-1/3 p-4 bg-white mb-4 border border-gray-150">
-            {/* Content for the first column (1/3 width) */}
-            <a href={`/upstreams/${asn_number}`} rel="noopener noreferrer">
-              {/* Content for the first sub-row within the second column */}
-              <div className="flex items-center m-2">
-                <b className="mr-2 hover:text-blue-500 underline">{asn_number} Upstreams</b>
-                <Image src={External_link} alt="Logo" width={20} height={20} />
-              </div>
-            </a>
-            <div className="flex flex-wrap">
-
-              <div id="upstream" className="w-96 h-96"></div>
               <div>
-                <div className="mb-4">
-                  <h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV4 UPSTREAM:</h2>
-                  <b>{ipv4Upstreams}</b>
-                </div>
-
-                <div>
-                  <h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV6 UPSTREAM:</h2>
-                  <b>{ipv6Upstreams}</b>
-                </div>
+                <ASNNetwork/>
               </div>
-            </div>
-          </div>
-
-          <div className="w-full md:w-1/3 p-4 bg-white mb-4 border border-gray-150">
-            {/* Content for the third column (1/3 width) */}
-            <a href={`/downstreams/${asn_number}`} rel="noopener noreferrer">
-              {/* Content for the first sub-row within the second column */}
-              <div className="flex items-center m-2">
-                <b className="mr-2 hover:text-blue-500 underline">{asn_number} Downstreams</b>
-                <Image src={External_link} alt="Logo" width={20} height={20} />
-              </div>
-            </a>
-            <div className="flex flex-wrap">
-
-              <div id="downstream" className="w-96 h-96"></div>
               <div>
-                <div className="mb-4">
-                  <h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV4 DOWNSTREAM:</h2>
-                  <b>{ipv4Downstreams}</b>
-                </div>
-
-                <div>
-                  <h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV6 DOWNSTREAM:</h2>
-                  <b>{ipv6Downstreams}</b>
-                </div>
+                <ASNContacts />
               </div>
             </div>
           </div>
-
-          {/* Third Row */}
-          <div className="w-full p-4 bg-white mb-4 border border-gray-150">
-            <div className="flex items-center m-2">
-              <b className="mr-2 hover:text-blue-500 underline">{asn_number} Graphs</b>
-              <Image src={External_link} alt="Logo" width={20} height={20} />
-            </div>
-            {/* Content for the third row (full width) */}
-            <div className="overflow-x-auto " style={{ maxWidth: '1730px' }}>
-              <Graphs />
-            </div>
-          </div>
-          
-
-        </div>
       </div>
     </div>
   );

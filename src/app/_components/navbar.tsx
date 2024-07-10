@@ -172,7 +172,7 @@ export default function Navbar() {
                 About
               </a>
             </div>
-            <div className="flex-grow md:text-right lg:pl-44"> {/* Use md:text-right for medium screens and above */}
+            <div className="flex-grow md:text-right lg:pl-44 hidden md:block"> {/* Use md:text-right for medium screens and above */}
               <form className="relative pr-2 md:pr-32 pl-2 md:pl-96" onSubmit={handleSubmit}>
                 <label className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                 <div className="relative">
