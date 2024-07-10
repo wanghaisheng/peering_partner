@@ -121,8 +121,8 @@ navigation: `/graph/${slug}`,
 ];
 
    return (
-      <div className={`min-h-screen bg-gray-100 pt-28 ${isSidebarOpen ? 'overflow-x-hidden  overflow-hidden border-r w-56  hover:shadow-lg transition-width duration-500 ' : 'overflow-x-visible '}`}>
-         <div className={`min-h-screen bg-gray-100 sidebar ${isSidebarOpen ? 'w-[3.35rem] ' : 'w-18 '} `}>
+      <div className={`min-h-screen bg-gray-100 pt-28 ${isSidebarOpen ? 'overflow-x-hidden overflow-hidden border-r w-56 hover:shadow-lg transition-width duration-500 ' : 'overflow-x-visible'}`}>
+         <div className={`min-h-screen bg-gray-100 sidebar ${isSidebarOpen ? 'md:w-[3.35rem] ' : 'w-18 '} `}>
             {/* Toggle button */}
             <div className="flex h-screen flex-col bg-gray-100  justify-between pt-2 pb-6 ">
                <div>
@@ -131,7 +131,7 @@ navigation: `/graph/${slug}`,
                         <li className="min-w-max hover:bg-white rounded-xl" key={index}>
                            <a
                               href={`${item?.navigation}`}
-                              className={`group flex items-center space-x-4 rounded-md px-4 py-3 text-gray-600 ${activeItem === item.text ? 'bg-gradient-to-r from-sky-600 to-cyan-400 text-white' : ''
+                              className={`group flex items-center space-x-4 rounded-md pl-2 md:px-4 py-3 text-gray-600 ${activeItem === item.text ? 'bg-gradient-to-r from-sky-600 to-cyan-400 text-white' : ''
                                  }`}
                               onClick={() => handleItemClick(item?.text||'')}
                            >
@@ -141,7 +141,7 @@ navigation: `/graph/${slug}`,
                         </li>)
                      ))}
                   </ul>
-                  <div className="fixed bottom-0 left-0 right-0  p-2">
+                  <div className="fixed bottom-0 left-0 right-0 p-1 md:p-2">
                      {/* Place your button content here */}
                      <button
                         className="bg-[rgba(37,169,189,0.97)] rounded-full p-2 shadow-lg"
