@@ -57,10 +57,14 @@ export default async function Page({ params }: { params: { slug: string } }) {
               res_ix={res_asn_ix}
               asn_number={asn}
               res_whois={res_asn_whois}
+              
             />
+             <div className="block md:hidden">
+              <Footer />
+            </div>  
           </div>
 
-          <div>
+          <div className="hidden md:block">
             <Footer />
           </div>
         </main>

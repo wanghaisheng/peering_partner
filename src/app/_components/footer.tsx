@@ -4,7 +4,7 @@ import { FaTwitter, FaLinkedin, FaFacebook, FaYoutube, FaSearch } from 'react-ic
 
 export default function Footer() {
   return (
-    <footer id="footer" className="fusion-footer-copyright-area bg-white text-black p-8 text-right">
+    <footer id="footer" className="fusion-footer-copyright-area bg-white text-black md:py-8 px-8 text-right">
       <div className="fusion-row">
         <div className="fusion-footer-copyright-area bg-white text-black p-8 text-left">
           <hr style={{ borderTop: '2px solid #333' }} />

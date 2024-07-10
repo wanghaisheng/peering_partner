@@ -897,15 +897,15 @@ export default function AsnDetailedInfo({
   // }, []); // Run only once on mount
 
   return (
-    <div className="md:bg-gray-150">
+    <div className="bg-gray-150">
 
 
       {/* Information Box */}
-      <div className="p-4 border border-gray-150">
+      <div className="md:p-4 border border-gray-150">
         {/* Add content for the information box */}
         <div className="flex flex-wrap">
           {/* First Row */}
-          <div className="w-full 2xl:w-3/4 border border-gray-150 bg-white mb-4 p-2">
+          <div className="w-full 2xl:w-3/4 border border-gray-150 bg-white mb-4 p-4">
             {/* Content for the first column (3/4 width) */}
             <ASNHeader />
           </div>
