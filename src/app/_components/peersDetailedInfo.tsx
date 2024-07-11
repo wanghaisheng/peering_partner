@@ -35,60 +35,6 @@ export default function PeersDetailsInfo({ res_asn, res_peers, asn_number, res_p
         setValue(newValue);
     }
 
-
-    // useEffect(() => {
-    //     const chartDom = document.getElementById('peers');
-    //     const myChart = echarts.init(chartDom);
-
-    //     const option = {
-    //         tooltip: {
-    //             trigger: 'item',
-    //         },
-    //         legend: {
-    //             top: '5%',
-    //             left: 'center',
-    //         },
-    //         series: [
-    //             {
-    //                 name: 'Peers Count',
-    //                 type: 'pie',
-    //                 radius: ['40%', '70%'],
-    //                 avoidLabelOverlap: false,
-    //                 itemStyle: {
-    //                     borderRadius: 10,
-    //                     borderColor: '#fff',
-    //                     borderWidth: 2,
-    //                 },
-    //                 label: {
-    //                     show: false,
-    //                     position: 'center',
-    //                 },
-    //                 emphasis: {
-    //                     label: {
-    //                         show: true,
-    //                         fontSize: 40,
-    //                         fontWeight: 'bold',
-    //                     },
-    //                 },
-    //                 labelLine: {
-    //                     show: false,
-    //                 },
-    //                 data: [
-    //                     { value: ipv4Count, name: 'IPv4' },
-    //                     { value: ipv6Count, name: 'IPv6' },
-    //                 ],
-    //             },
-    //         ],
-    //     };
-
-    //     option && myChart.setOption(option);
-
-    //     // Cleanup function
-    //     return () => {
-    //         myChart.dispose();
-    //     };
-    // }, []); // Run only once on mount
-
     const Ipv4PeersTable: React.FC = () => {
         res_peers.data = res_peers.data || {};
         const ipv6Data = res_peers.data.ipv6_peers;
