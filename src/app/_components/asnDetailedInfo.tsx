@@ -243,15 +243,15 @@ export default function AsnDetailedInfo({
   }
 
   return (
-    <div className="bg-gray-150">
+    <div className="bg-white-150">
 
 
       {/* Information Box */}
-      <div className="md:p-4 border border-gray-150">
+      <div className="md:p-4 border border-white-150">
         {/* Add content for the information box */}
         <div className="flex flex-wrap">
           {/* First Row */}
-          <div className="w-full border border-gray-150 bg-white mb-4 p-4">
+          <div className="w-full border border-white-150 bg-white mb-4 p-4">
             {/* Content for the first column (3/4 width) */}
             <ASNHeader 
               res_asn={res_asn}
@@ -259,7 +259,7 @@ export default function AsnDetailedInfo({
               res_prefixes={res_prefixes}
             />
           </div>
-          <div className="w-full border border-gray-150 bg-white mb-4 p-4">
+          <div className="w-full border border-white-150 bg-white mb-4 p-4">
             <div>
                 {/* Content for the second column (3/4 width) */}
                 <ASNSummary />

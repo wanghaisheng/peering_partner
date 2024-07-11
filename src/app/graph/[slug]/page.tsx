@@ -19,10 +19,13 @@ export default function Page({ params }: { params: { slug: string } }) {
     useEffect(() => {
       const fetchSvg = async () => {
         try {
-                    const response = await fetch(`https://api.bgpview.io/assets/graphs/${asn_number}_Combined.svg`);
+          const response = await fetch(`https://api.bgpview.io/assets/graphs/${asn_number}_Combined.svg`);
+          console.log(response);
           const svgText = await response.text();
+          console.log(svgText);
           // Update xlink:href attribute for every <a> tag
           const modifiedSvg = svgText.replace(/xlink:href="https:\/\/bgpview\.io\/asn\//g, 'xlink:href="/AS');
+          console.log(modifiedSvg);
           setSvgContent(modifiedSvg);
         } catch (error) {
           console.error('Error fetching SVG:', error);

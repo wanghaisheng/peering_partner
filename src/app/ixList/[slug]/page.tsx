@@ -75,7 +75,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
     // </div>
     
     <div className="flex flex-col min-h-screen ">
-      <div className="md:flex flex-row min-h-screen bg-gray-100 text-gray-800 overflow-hidden">
+      <div className="md:flex flex-row min-h-screen bg-white text-gray-800 overflow-hidden">
           <div className="fixed md:static top-0 left-0 z-10 md:z-1 h-full md:h-auto">
               <ASNSideNavbar activeOption="IX" sidebarOpen={false} slug={asn_number} />
           </div>
@@ -92,8 +92,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
                         <AsnHeader res_asn={res_asn} res_peers={res_asn_peers} res_prefixes={res_asn_prefixes}/>
                     </div>
 
-                  <hr />
-                  <div className="overflow-y-auto bg-white border-1 border-gray-150 p-4">
+                  <div className="overflow-y-auto bg-white border-1 border-gray-150">
+                    <div className="w-full border border-gray-150 bg-white mb-4 p-4">
                     <div>
                     <table className="min-w-full border-t border-b bg-white">
                       <thead>
@@ -125,7 +125,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
                   </div>
                  </div>
               </div>
-
+            </div>
               <Footer />
           </main>
       </div>

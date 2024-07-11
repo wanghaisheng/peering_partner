@@ -39,7 +39,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <div className="flex flex-row min-h-screen bg-gray-100 text-gray-800">
+      <div className="flex flex-row min-h-screen bg-white text-gray-800">
         <div className="fixed md:static top-0 left-0 z-10 md:z-1 h-full md:h-auto">
           <ASNSideNavbar activeOption="ASN Stats" sidebarOpen={false} slug={asn} />
         </div>

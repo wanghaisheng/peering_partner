@@ -159,7 +159,7 @@ export default function DownstreamsDetailsInfo({ res_downstreams, asn_number, re
             </tr>
           </thead>
           <tbody>
-            {paginatedData?.map((item: any, index: number) => (
+            {data?.map((item: any, index: number) => (
               <tr key={index}>
                 <td className="border-b border-gray-300 px-4 py-2 text-center"><img src={`https://bgpview.io/assets/flags/shiny/24/${item.country}.png`} alt="Flag" className="inline-block" />
                 </td>
@@ -187,13 +187,13 @@ export default function DownstreamsDetailsInfo({ res_downstreams, asn_number, re
             ))}
           </tbody>
         </table>
-        {totalPages > 1 && (
+        {/* {totalPages > 1 && (
           <div className="flex justify-center mt-4">
             <PaginationArrow direction="prev" onClick={handlePrevPage} />
 
             <PaginationArrow direction="next" onClick={handleNextPage} />
           </div>
-        )}
+        )} */}
       </div>
     );
 
@@ -265,7 +265,7 @@ export default function DownstreamsDetailsInfo({ res_downstreams, asn_number, re
             </tr>
           </thead>
           <tbody>
-            {paginatedData.map((item: any, index: number) => (
+            {data.map((item: any, index: number) => (
               <tr key={index}>
                 <td className="border-b border-gray-300 px-4 py-2 text-center"><img src={`https://bgpview.io/assets/flags/shiny/24/${item.country}.png`} alt="Flag" className="inline-block" />
                 </td>
@@ -294,13 +294,13 @@ export default function DownstreamsDetailsInfo({ res_downstreams, asn_number, re
             ))}
           </tbody>
         </table>
-        {totalPages > 1 && (
+        {/* {totalPages > 1 && (
           <div className="flex justify-center mt-4">
             <PaginationArrow direction="prev" onClick={handlePrevPage} />
 
             <PaginationArrow direction="next" onClick={handleNextPage} />
           </div>
-        )}
+        )} */}
       </div>
     );
 
@@ -334,30 +334,33 @@ export default function DownstreamsDetailsInfo({ res_downstreams, asn_number, re
           {/* Third Row */}
           <div className="w-full md:overflow-hidden overflow-scroll">
             {/* Content for the third row (full width) */}
-            <div className="col-sm-10 box">
-              <div className="flex mb-4">
-                <div
-                  className={`cursor-pointer p-2 ${selectedOptionDownstreams === 'IPv4 Downstreams' ? 'border-b-0 border' : ''}`}
-                  style={{ color: selectedOptionDownstreams === 'IPv4 Downstreams' ? 'rgba(37, 169, 189, 0.97)' : '' }}
-                  onClick={() => setSelectedOptionDownstreams('IPv4 Downstreams')}
-                >
-                  IPv4 Downstreams
+            <div className="w-full border border-gray-150 bg-white mb-4 p-4">
+              <div className="col-sm-10 box">
+                <div className="flex mb-4">
+                  <div
+                    className={`cursor-pointer p-2 ${selectedOptionDownstreams === 'IPv4 Downstreams' ? 'border-b-0 border' : ''}`}
+                    style={{ color: selectedOptionDownstreams === 'IPv4 Downstreams' ? 'rgba(37, 169, 189, 0.97)' : '' }}
+                    onClick={() => setSelectedOptionDownstreams('IPv4 Downstreams')}
+                  >
+                    IPv4 Downstreams
+                  </div>
+                  <div
+                    className={`cursor-pointer p-2 ${selectedOptionDownstreams === 'IPv6 Downstreams' ? 'border-b-0 border' : ''}`}
+                    style={{ color: selectedOptionDownstreams === 'IPv6 Downstreams' ? 'rgba(37, 169, 189, 0.97)' : '' }}
+                    onClick={() => setSelectedOptionDownstreams('IPv6 Downstreams')}
+                  > 
+                  
+                    IPv6 Downstreams
+                    
+                  </div>
+                  
                 </div>
-                <div
-                  className={`cursor-pointer p-2 ${selectedOptionDownstreams === 'IPv6 Downstreams' ? 'border-b-0 border' : ''}`}
-                  style={{ color: selectedOptionDownstreams === 'IPv6 Downstreams' ? 'rgba(37, 169, 189, 0.97)' : '' }}
-                  onClick={() => setSelectedOptionDownstreams('IPv6 Downstreams')}
-                >
-                  IPv6 Downstreams
-                </div>
-
+                
+                {selectedOptionDownstreams === 'IPv4 Downstreams' && <Ipv4DownstreamsTable />}
+                {selectedOptionDownstreams === 'IPv6 Downstreams' && <Ipv6DownstreamsTable />}
               </div>
-
-              {selectedOptionDownstreams === 'IPv4 Downstreams' && <Ipv4DownstreamsTable />}
-              {selectedOptionDownstreams === 'IPv6 Downstreams' && <Ipv6DownstreamsTable />}
             </div>
           </div>
-
         </div>
       </div>
     </div>

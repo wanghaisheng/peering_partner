@@ -35,11 +35,11 @@ export default function AsnHeaderInfo({ res_asn, res_peers, res_prefixes }: AsnH
       <div className="md:flex">
 
         <div className="w-1/8 pt-4 ">
-
+          
           <div className="flag-icon">
             <img className="pull-left title-flag" width="78" height="78" src={`https://bgpview.io/assets/flags/shiny/64/${res_asn?.data?.country_code}.png`} title="<?php echo $country_name; ?>" />
-
-          </div>
+            
+          </div>  
         </div>
 
         <div className="md:w-2/3 md:p-4">
@@ -51,7 +51,9 @@ export default function AsnHeaderInfo({ res_asn, res_peers, res_prefixes }: AsnH
           </div>
 
         </div>
-
+        <div className="lg:block hidden my-auto">
+          <a className="bg-sky-500 text-white font-bold py-2 px-4 rounded inline-block" href="https://www.cloudflare.com" target="_blank" rel="nofollow noopener noreferrer">Company Website</a>
+        </div>
 
 
 

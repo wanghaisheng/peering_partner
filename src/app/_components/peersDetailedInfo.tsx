@@ -103,7 +103,7 @@ export default function PeersDetailsInfo({ res_asn, res_peers, asn_number, res_p
                         </tr>
                     </thead>
                     <tbody>
-                        {paginatedData.reverse().map((item: any, index: number) => (
+                        {data.reverse().map((item: any, index: number) => (
                             <tr key={index}>
                                 <td className="border-b border-gray-300 px-4 py-2 text-center">
                                     <img src={`https://bgpview.io/assets/flags/shiny/24/${item.country}.png`} alt="Flag" className="inline-block" />
@@ -128,13 +128,13 @@ export default function PeersDetailsInfo({ res_asn, res_peers, asn_number, res_p
                         ))}
                     </tbody>
                 </table>
-                {totalPages > 1 && (
+                {/* {totalPages > 1 && (
                     <div className="flex justify-center mt-4">
                         <PaginationArrow direction="prev" onClick={handlePrevPage} />
 
                         <PaginationArrow direction="next" onClick={handleNextPage} />
                     </div>
-                )}
+                )} */}
             </div>
         );
     };
@@ -204,7 +204,7 @@ export default function PeersDetailsInfo({ res_asn, res_peers, asn_number, res_p
                         </tr>
                     </thead>
                     <tbody>
-                        {paginatedData.reverse().map((item: any, index: number) => (
+                        {data.reverse().map((item: any, index: number) => (
                             <tr key={index}>
                                 <td className="border-b border-gray-300 px-4 py-2 text-center"><img src={`https://bgpview.io/assets/flags/shiny/24/${item.country}.png`} alt="Flag" className="inline-block" />
                                 </td>
@@ -233,13 +233,13 @@ export default function PeersDetailsInfo({ res_asn, res_peers, asn_number, res_p
                         ))}
                     </tbody>
                 </table>
-                {totalPages > 1 && (
+                {/* {totalPages > 1 && (
                     <div className="flex justify-center mt-4">
                         <PaginationArrow direction="prev" onClick={handlePrevPage} />
 
                         <PaginationArrow direction="next" onClick={handleNextPage} />
                     </div>
-                )}
+                )} */}
             </div>
         );
 
@@ -276,30 +276,31 @@ export default function PeersDetailsInfo({ res_asn, res_peers, asn_number, res_p
                     {/* Third Row */}
                     <div className="lg:w-full overflow-scroll md:overflow-hidden">
                         {/* Content for the third row (full width) */}
-                        <div className="col-sm-10 box">
-                            <div className="flex mb-4">
-                                <div
-                                    className={`cursor-pointer p-2 ${selectedOptionPeers === 'IPv4 Peers' ? 'border-b-0 border' : ''}`}
-                                    style={{ color: selectedOptionPeers === 'IPv4 Peers' ? 'rgba(37, 169, 189, 0.97)' : '' }}
-                                    onClick={() => setSelectedOptionPeers('IPv4 Peers')}
-                                >
-                                    IPv4 Peers
-                                </div>
-                                <div
-                                    className={`cursor-pointer p-2 ${selectedOptionPeers === 'IPv6 Peers' ? 'border-b-0 border' : ''}`}
-                                    style={{ color: selectedOptionPeers === 'IPv6 Peers' ? 'rgba(37, 169, 189, 0.97)' : '' }}
-                                    onClick={() => setSelectedOptionPeers('IPv6 Peers')}
-                                >
-                                    IPv6 Peers
+                        <div className="w-full border border-gray-150 bg-white mb-4 p-4">
+                            <div className="col-sm-10 box">
+                                <div className="flex mb-4">
+                                    <div
+                                        className={`cursor-pointer p-2 ${selectedOptionPeers === 'IPv4 Peers' ? 'border-b-0 border' : ''}`}
+                                        style={{ color: selectedOptionPeers === 'IPv4 Peers' ? 'rgba(37, 169, 189, 0.97)' : '' }}
+                                        onClick={() => setSelectedOptionPeers('IPv4 Peers')}
+                                    >
+                                        IPv4 Peers
+                                    </div>
+                                    <div
+                                        className={`cursor-pointer p-2 ${selectedOptionPeers === 'IPv6 Peers' ? 'border-b-0 border' : ''}`}
+                                        style={{ color: selectedOptionPeers === 'IPv6 Peers' ? 'rgba(37, 169, 189, 0.97)' : '' }}
+                                        onClick={() => setSelectedOptionPeers('IPv6 Peers')}
+                                    >
+                                        IPv6 Peers
+                                    </div>
+
                                 </div>
 
+                                {selectedOptionPeers === 'IPv4 Peers' && <Ipv4PeersTable />}
+                                {selectedOptionPeers === 'IPv6 Peers' && <Ipv6PeersTable />}
                             </div>
-
-                            {selectedOptionPeers === 'IPv4 Peers' && <Ipv4PeersTable />}
-                            {selectedOptionPeers === 'IPv6 Peers' && <Ipv6PeersTable />}
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

@@ -166,7 +166,7 @@ export default function PeersDetailsInfo({ res_asn, res_peers, res_prefixes, asn
             </tr>
           </thead>
           <tbody>
-            {paginatedData?.map((item: any, index: number) => (
+            {data?.map((item: any, index: number) => (
               <tr key={index}>
                 <td className="border-b border-gray-300 px-4 py-2 text-center"><img src={`https://bgpview.io/assets/flags/shiny/24/${item.country}.png`} alt="Flag" className="inline-block" />
                 </td>
@@ -190,13 +190,13 @@ export default function PeersDetailsInfo({ res_asn, res_peers, res_prefixes, asn
             ))}
           </tbody>
         </table>
-        {totalPages > 1 && (
+        {/* {totalPages > 1 && (
           <div className="flex justify-center mt-4">
             <PaginationArrow direction="prev" onClick={handlePrevPage} />
 
             <PaginationArrow direction="next" onClick={handleNextPage} />
           </div>
-        )}
+        )} */}
       </div>
     );
 
@@ -270,7 +270,7 @@ export default function PeersDetailsInfo({ res_asn, res_peers, res_prefixes, asn
             </tr>
           </thead>
           <tbody>
-            {paginatedData.map((item: any, index: number) => (
+            {data.map((item: any, index: number) => (
               <tr key={index}>
                 <td className="border-b border-gray-300 px-4 py-2 text-center"><img src={`https://bgpview.io/assets/flags/shiny/24/${item.country}.png`} alt="Flag" className="inline-block" />
                 </td>
@@ -288,13 +288,13 @@ export default function PeersDetailsInfo({ res_asn, res_peers, res_prefixes, asn
             ))}
           </tbody>
         </table>
-        {totalPages > 1 && (
+        {/* {totalPages > 1 && (
           <div className="flex justify-center mt-4">
             <PaginationArrow direction="prev" onClick={handlePrevPage} />
 
             <PaginationArrow direction="next" onClick={handleNextPage} />
           </div>
-        )}
+        )} */}
       </div>
     );
 
@@ -328,30 +328,31 @@ export default function PeersDetailsInfo({ res_asn, res_peers, res_prefixes, asn
           {/* Third Row */}
           <div className="lg:w-full md:overflow-hidden overflow-scroll">
             {/* Content for the third row (full width) */}
-            <div className="col-sm-10 box">
-              <div className="flex mb-4">
-                <div
-                  className={`cursor-pointer p-2 ${selectedOptionPrefixes === 'IPv4' ? 'border-b-0 border' : ''}`}
-                  style={{ color: selectedOptionPrefixes === 'IPv4' ? 'rgba(37, 169, 189, 0.97)' : '' }}
-                  onClick={() => setSelectedOptionPrefixes('IPv4')}
-                >
-                  IPv4 Prefixes
-                </div>
-                <div
-                  className={`cursor-pointer p-2 ${selectedOptionPrefixes === 'IPv6' ? 'border-b-0 border' : ''}`}
-                  style={{ color: selectedOptionPrefixes === 'IPv6' ? 'rgba(37, 169, 189, 0.97)' : '' }}
-                  onClick={() => setSelectedOptionPrefixes('IPv6')}
-                >
-                  IPv6 Prefixes
+            <div className="w-full border border-gray-150 bg-white mb-4 p-4">
+              <div className="col-sm-10 box">
+                <div className="flex mb-4">
+                  <div
+                    className={`cursor-pointer p-2 ${selectedOptionPrefixes === 'IPv4' ? 'border-b-0 border' : ''}`}
+                    style={{ color: selectedOptionPrefixes === 'IPv4' ? 'rgba(37, 169, 189, 0.97)' : '' }}
+                    onClick={() => setSelectedOptionPrefixes('IPv4')}
+                  >
+                    IPv4 Prefixes
+                  </div>
+                  <div
+                    className={`cursor-pointer p-2 ${selectedOptionPrefixes === 'IPv6' ? 'border-b-0 border' : ''}`}
+                    style={{ color: selectedOptionPrefixes === 'IPv6' ? 'rgba(37, 169, 189, 0.97)' : '' }}
+                    onClick={() => setSelectedOptionPrefixes('IPv6')}
+                  >
+                    IPv6 Prefixes
+                  </div>
+
                 </div>
 
+                {selectedOptionPrefixes === 'IPv4' && <Ipv4PrefixsTable />}
+                {selectedOptionPrefixes === 'IPv6' && <Ipv6PrefixsTable />}
               </div>
-
-              {selectedOptionPrefixes === 'IPv4' && <Ipv4PrefixsTable />}
-              {selectedOptionPrefixes === 'IPv6' && <Ipv6PrefixsTable />}
             </div>
           </div>
-
         </div>
       </div>
     </div>
