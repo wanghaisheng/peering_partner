@@ -93,9 +93,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
                     </div>
 
                   <hr />
-                  <div className="overflow-y-auto bg-gray-200 border-2 p-4">
+                  <div className="overflow-y-auto bg-white border-1 border-gray-150 p-4">
                     <div>
-                    <table className="min-w-full bg-white border-t border-b border-gray-300">
+                    <table className="min-w-full border-t border-b bg-white">
                       <thead>
                         <tr>
                           <th className="border-b border-gray-300 px-4 py-2 text-center">Country</th>

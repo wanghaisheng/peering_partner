@@ -274,7 +274,7 @@ export default function PeersDetailsInfo({ res_asn, res_peers, asn_number, res_p
 
 
                     {/* Third Row */}
-                    <div className="lg:w-full p-4 md:mx-auto overflow-scroll">
+                    <div className="lg:w-full overflow-scroll md:overflow-hidden">
                         {/* Content for the third row (full width) */}
                         <div className="col-sm-10 box">
                             <div className="flex mb-4">

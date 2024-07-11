@@ -32,7 +32,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         <div className="flex flex-col min-h-screen ">
             <div className="md:flex flex-row min-h-screen bg-gray-100 text-gray-800 md:overflow-hidden">
                 <div className="fixed md:static top-0 left-0 z-10 md:z-1 h-full md:h-auto">
-                    <ASNSideNavbar activeOption="Down streams" sidebarOpen={false} slug={asn_number} />
+                    <ASNSideNavbar activeOption="Downstream" sidebarOpen={false} slug={asn_number} />
                 </div>
 
                 <main className="flex flex-col md:ml-0 transition-all duration-150 ease-in flex-grow">

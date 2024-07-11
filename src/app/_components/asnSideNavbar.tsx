@@ -124,23 +124,6 @@ navigation: `/graph/${slug}`,
             {/* Toggle button */}
             <div className="flex h-screen flex-col bg-gray-100 xl:justify-between pt-2 xl:pb-6 ">
                <div>
-                  {/* <ul className="mt-6 space-y-2 tracking-wide">
-                     {sidebarItems.map((item, index) => (item?.navigation&&(
-                        <li className="min-w-max hover:bg-white rounded-xl" key={index}>
-                           <Link href={item?.navigation}>
-                              <a
-                                 href={`${item?.navigation}`}
-                                 className={`group flex items-center space-x-4 rounded-md pl-2 md:px-4 py-3 text-gray-600 ${activeItem === item.text ? 'bg-gradient-to-r from-sky-600 to-cyan-400 text-white' : ''
-                                    }`}
-                                 onClick={() => handleItemClick(item?.text||'')}
-                              >
-                                 {item?.svg}
-                                 <span className="group-hover:text-gray-700">{isSidebarOpen ? item?.text : ''}</span>
-                              </a>
-                           </Link>
-                        </li>)
-                     ))}
-                  </ul> */}
                   <ul className="mt-6 space-y-2 tracking-wide">
                      {sidebarItems.map((item, index) => item?.navigation && (
                      <li className="min-w-max hover:bg-white rounded-xl" key={index}>

@@ -332,7 +332,7 @@ export default function DownstreamsDetailsInfo({ res_downstreams, asn_number, re
           {/* First Row */}
 
           {/* Third Row */}
-          <div className="w-full p-4 md:mx-auto overflow-scroll">
+          <div className="w-full md:overflow-hidden overflow-scroll">
             {/* Content for the third row (full width) */}
             <div className="col-sm-10 box">
               <div className="flex mb-4">

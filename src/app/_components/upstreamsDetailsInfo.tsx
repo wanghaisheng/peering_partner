@@ -25,9 +25,6 @@ export default function UpstreamsDetailsInfo({ res_upstreams, asn_number, res_pe
   const ipv6Upstreams = res_upstreams?.data?.ipv6_upstreams?.length || 0;
   const [selectedOptionUpstreams, setSelectedOptionUpstreams] = useState<'IPv4 Upstreams' | 'IPv6 Upstreams'>('IPv4 Upstreams');
 
-
-
-
   const [value, setValue] = useState({
     startDate: new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000), // 7 days before
     endDate: new Date(),
@@ -332,7 +329,7 @@ export default function UpstreamsDetailsInfo({ res_upstreams, asn_number, res_pe
           {/* First Row */}
 
           {/* Third Row */}
-          <div className="lg:w-full p-4 md:mx-auto overflow-scroll">
+          <div className="lg:w-full md:overflow-hidden overflow-scroll">
             {/* Content for the third row (full width) */}
             <div className="col-sm-10 box">
               <div className="flex mb-4">
