@@ -50,23 +50,23 @@ export default function AsnDetailedInfo({
   });
 
   // Ensure that the response structure is as expected
-  res_peers.data = res_peers.data || {};
-  const ipv4Count = res_peers.data.ipv4_peers?.length || 0;
-  const ipv6Count = res_peers.data.ipv6_peers?.length || 0;
+  //res_peers.data = res_peers.data || {};
+  const ipv4Count = res_peers?.data?.ipv4_peers?.length || 0;
+  const ipv6Count = res_peers?.data?.ipv6_peers?.length || 0;
 
   const totalPeersCount = ipv4Count + ipv6Count;
 
-  res_prefixes.data = res_prefixes.data || {};
+  //res_prefixes.data = res_prefixes.data || {};
   // Ensure that the response structure is as expected
-  const ipv4Prefixes = res_prefixes.data.ipv4_prefixes?.length || 0;
-  const ipv6Prefixes = res_prefixes.data.ipv6_prefixes?.length || 0;
+  const ipv4Prefixes = res_prefixes?.data?.ipv4_prefixes?.length || 0;
+  const ipv6Prefixes = res_prefixes?.data?.ipv6_prefixes?.length || 0;
   const totalPrefixes = ipv4Prefixes + ipv6Prefixes;
 
-  res_upstreams.data = res_upstreams.data || {};
+  //res_upstreams.data = res_upstreams.data || {};
   const ipv4Upstreams = res_upstreams?.data?.ipv4_upstreams?.length || 0;
   const ipv6Upstreams = res_upstreams?.data?.ipv6_upstreams?.length || 0;
 
-  res_downstreams.data = res_downstreams.data || {};
+  //res_downstreams.data = res_downstreams.data || {};
   const ipv4Downstreams = res_downstreams?.data?.ipv4_downstreams?.length || 0;
   const ipv6Downstreams = res_downstreams?.data?.ipv6_downstreams?.length || 0;
 

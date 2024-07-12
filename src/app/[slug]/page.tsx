@@ -18,7 +18,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   // Fetch data using the functions from the api folder
   const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
-    
+  console.log('hello');  
   // const res_asn = await getASNData(asn);
   // await delay(250); // Delay for 1000 milliseconds (1 second)
   // const res_asn_peers = await getPeersData(asn);
