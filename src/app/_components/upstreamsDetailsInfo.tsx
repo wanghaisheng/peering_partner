@@ -169,7 +169,7 @@ export default function UpstreamsDetailsInfo({ res_upstreams, asn_number, res_pe
                 <td className="border-b border-gray-300 px-4 py-2 text-gray-400 font-bold text-center">{item.name}</td>
 
 
-                <td className="border-b border-gray-300 px-4 py-2 text-gray-400 font-bold" >{item.description}</td>
+                <td className="border-b border-gray-300 px-4 py-2 text-gray-400 font-bold" style={{ wordBreak: 'break-word'}} >{item.description}</td>
 
                 <td className="border-b border-gray-300 px-4 py-2 text-gray-400 font-bold">
                   {item.ipv6Asn ? (
@@ -275,7 +275,7 @@ export default function UpstreamsDetailsInfo({ res_upstreams, asn_number, res_pe
                 <td className="border-b border-gray-300 px-4 py-2 text-gray-400 font-bold text-center">{item.name}</td>
 
 
-                <td className="border-b border-gray-300 px-4 py-2 text-gray-400 font-bold" >{item.description}</td>
+                <td className="border-b border-gray-300 px-4 py-2 text-gray-400 font-bold" style={{ wordBreak: 'break-word'}} >{item.description}</td>
 
                 <td className="border-b border-gray-300 px-4 py-2 text-gray-400 font-bold">
                   {item.ipv4Asn ? (

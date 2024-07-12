@@ -57,7 +57,7 @@ export default function Page({ params }: { params: { slug: string } }) {
 
 
         {svgContent ? (
-          <div style={{ maxWidth: '100%', overflowX: 'auto' }} dangerouslySetInnerHTML={{ __html: svgContent }} />
+          <div style={{ maxWidth: '100%', }} dangerouslySetInnerHTML={{ __html: svgContent }} />
         ):(
           <div>
             No Data Available.

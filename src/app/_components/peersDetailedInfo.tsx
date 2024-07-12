@@ -112,7 +112,7 @@ export default function PeersDetailsInfo({ res_asn, res_peers, asn_number, res_p
                                     <Link href={`${item.asn}`}>AS{item.asn}</Link>
                                 </td>
                                 <td className="border-b border-gray-300 px-4 py-2 text-gray-400 font-bold text-center">{item.name}</td>
-                                <td className="border-b border-gray-300 px-4 py-2 text-gray-400 font-bold">{item.description}</td>
+                                <td className="border-b border-gray-300 px-4 py-2 text-gray-400 font-bold" style={{ wordBreak: 'break-word'}} >{item.description}</td>
                                 <td className="border-b border-gray-300 px-4 py-2 text-gray-400 font-bold">
                                     {item.ipv6Asn ? (
                                         <span role="img" aria-label="check-mark">
@@ -215,7 +215,7 @@ export default function PeersDetailsInfo({ res_asn, res_peers, asn_number, res_p
                                 <td className="border-b border-gray-300 px-4 py-2 text-gray-400 font-bold text-center">{item.name}</td>
 
 
-                                <td className="border-b border-gray-300 px-4 py-2 text-gray-400 font-bold" >{item.description}</td>
+                                <td className="border-b border-gray-300 px-4 py-2 text-gray-400 font-bold" style={{ wordBreak: 'break-word'}} >{item.description}</td>
 
                                 <td className="border-b border-gray-300 px-4 py-2 text-gray-400 font-bold">
                                     {item.ipv4Asn ? (

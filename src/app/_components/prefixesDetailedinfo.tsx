@@ -174,7 +174,7 @@ export default function PeersDetailsInfo({ res_asn, res_peers, res_prefixes, asn
                 <td className="border-b border-gray-300 px-4 py-2 text-center" style={{ color: 'rgba(37, 169, 189, 0.97)' }}><Link href={`/prefix/${item.announcedPrefix}`}>{item.announcedPrefix}</Link></td>
 
 
-                <td className="border-b border-gray-300 px-4 py-2 text-gray-400 font-bold">{item.description}</td>
+                <td className="border-b border-gray-300 px-4 py-2 text-gray-400 font-bold" style={{ wordBreak: 'break-word'}}>{item.description}</td>
                 <td className="border-b border-gray-300 px-4 py-2 text-center">
                   {item.validROA === 'Valid' ? (
                     <IoMdCheckmarkCircle size={20} color="green" /> // Customize size and color for Valid
@@ -278,7 +278,7 @@ export default function PeersDetailsInfo({ res_asn, res_peers, res_prefixes, asn
                 <td className="border-b border-gray-300 px-4 py-2 text-center" style={{ color: 'rgba(37, 169, 189, 0.97)' }}><Link href={`/prefix/${item.announcedPrefix}`}>{item.announcedPrefix}</Link></td>
 
 
-                <td className="border-b border-gray-300 px-4 py-2 text-gray-400 font-bold">{item.description}</td>
+                <td className="border-b border-gray-300 px-4 py-2 text-gray-400 font-bold" style={{ wordBreak: 'break-word'}}>{item.description}</td>
                 <td className="border-b border-gray-300 px-4 py-2 text-center">{item.validROA}</td>
 
                 <td className="border-b border-gray-300 px-4 py-2 text-center" style={{ color: 'rgba(37, 169, 189, 0.97)' }}><Link href={`/prefix/${item.parentPrefix}`}>{item.parentPrefix}</Link></td>
