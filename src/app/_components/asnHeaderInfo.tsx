@@ -52,7 +52,7 @@ export default function AsnHeaderInfo({ res_asn, res_peers, res_prefixes }: AsnH
 
         </div>
         <div className="lg:block hidden my-auto">
-          <a className="bg-sky-500 text-white font-bold py-2 px-4 rounded inline-block" href="https://www.cloudflare.com" target="_blank" rel="nofollow noopener noreferrer">Company Website</a>
+          <a className="text-white font-bold py-4 px-3 rounded inline-block" style={{background: "#30acbc"}} href="https://www.cloudflare.com" target="_blank" rel="nofollow noopener noreferrer">Company Website</a>
         </div>
 
 
