@@ -1,5 +1,4 @@
 'use client'
-
 import CountrySelector from './countrySelection/selector';
 import { SelectMenuOption } from './countrySelection/types';
 import { COUNTRIES } from './countrySelection/countries';

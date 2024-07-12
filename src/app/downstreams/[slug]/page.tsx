@@ -13,20 +13,20 @@ import DownstreamDetailsInfo from "../../_components/downstreamDetailsInfo";
 export default async function Page({ params }: { params: { slug: string } }) {
 
     const asn_number = params.slug;
-    console.log(asn_number);
-    const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
-    // Fetch data using the functions from the api folder
-    const res_asn = await getASNData(asn_number);
-    await delay(250); // Delay for 1000 milliseconds (1 second)
-    const res_asn_peers = await getPeersData(asn_number);
-    await delay(250);
-    const res_asn_prefixes = await getPrefixData(asn_number);
-    await delay(250);
-    const res_asn_downstreams = await getDownstreamData(asn_number);
-    await delay(250);
+    // console.log(asn_number);
+    // const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
+    // // Fetch data using the functions from the api folder
+    // const res_asn = await getASNData(asn_number);
+    // await delay(250); // Delay for 1000 milliseconds (1 second)
+    // const res_asn_peers = await getPeersData(asn_number);
+    // await delay(250);
+    // const res_asn_prefixes = await getPrefixData(asn_number);
+    // await delay(250);
+    // const res_asn_downstreams = await getDownstreamData(asn_number);
+    // await delay(250);
 
 
-    // const [res_asn, res_asn_peers, res_asn_prefixes, res_asn_downstreams] = await Promise.all([getASNData(asn_number), getPeersData(asn_number), getPrefixData(asn_number), getDownstreamData(asn_number)]);
+    const [res_asn, res_asn_peers, res_asn_prefixes, res_asn_downstreams] = await Promise.all([getASNData(asn_number), getPeersData(asn_number), getPrefixData(asn_number), getDownstreamData(asn_number)]);
 
     return (
         <div className="flex flex-col min-h-screen ">

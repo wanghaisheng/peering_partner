@@ -18,9 +18,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
     //const res_asn_upstreams = await getUpstreamData(asn_number);
 
-    const [res_asn, res_asn_peers, res_asn_prefixes, res_asn_upstreams] = await
-    Promise.all([getASNData(asn_number), getPeersData(asn_number), getPrefixData(asn_number), getUpstreamData(asn_number)]);
-
+    const [res_asn, res_asn_peers, res_asn_prefixes, res_asn_upstreams] = await Promise.all([getASNData(asn_number), getPeersData(asn_number), getPrefixData(asn_number), getUpstreamData(asn_number)]);
 
     return (
         <div className="flex flex-col min-h-screen ">

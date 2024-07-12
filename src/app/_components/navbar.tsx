@@ -1,4 +1,4 @@
-'use client';
+'use client'
 import { useRouter } from 'next/router';
 import React, { useCallback, FormEvent, useState, useEffect } from 'react';
 import Image from 'next/image';

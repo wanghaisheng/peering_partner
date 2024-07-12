@@ -12,17 +12,17 @@ import AsnHeader from "@/app/_components/asnHeaderInfo";
 export default async function Page({ params }: { params: { slug: string } }) {
   const asn_number = params.slug;
   //const res_asn_ix = await getIXData(asn_number);
-  const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
-  const res_asn = await getASNData(asn_number);
-    await delay(250); // Delay for 1000 milliseconds (1 second)
-    const res_asn_peers = await getPeersData(asn_number);
-    await delay(250);
-    const res_asn_prefixes = await getPrefixData(asn_number);
-    await delay(250);
-    const res_asn_ix = await getIXData(asn_number);
-    await delay(250);
+  // const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
+  // const res_asn = await getASNData(asn_number);
+  //   await delay(250); // Delay for 1000 milliseconds (1 second)
+  //   const res_asn_peers = await getPeersData(asn_number);
+  //   await delay(250);
+  //   const res_asn_prefixes = await getPrefixData(asn_number);
+  //   await delay(250);
+  //   const res_asn_ix = await getIXData(asn_number);
+  //   await delay(250);
 
-  // const [res_asn, res_asn_peers, res_asn_prefixes, res_asn_ix] = await Promise.all([getASNData(asn_number), getPeersData(asn_number), getPrefixData(asn_number), getIXData(asn_number)]);
+  const [res_asn, res_asn_peers, res_asn_prefixes, res_asn_ix] = await Promise.all([getASNData(asn_number), getPeersData(asn_number), getPrefixData(asn_number), getIXData(asn_number)]);
 
   const data = res_asn_ix?.data?.map((item: any) => ({
     country: item.country_code,
