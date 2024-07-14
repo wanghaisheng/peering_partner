@@ -25,3 +25,9 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+#content-graph svg, .modal-dialog svg {
+  width: 100%;
+  height: auto;
+  max-height: 900px;
+}

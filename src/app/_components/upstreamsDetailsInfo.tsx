@@ -158,7 +158,7 @@ export default function UpstreamsDetailsInfo({ res_upstreams, asn_number, res_pe
             </tr>
           </thead>
           <tbody>
-            {paginatedData?.map((item: any, index: number) => (
+            {data?.map((item: any, index: number) => (
               <tr key={index}>
                 <td className="border-b border-gray-300 px-4 py-2 text-center"><img src={`https://bgpview.io/assets/flags/shiny/24/${item.country}.png`} alt="Flag" className="inline-block" />
                 </td>
@@ -169,7 +169,7 @@ export default function UpstreamsDetailsInfo({ res_upstreams, asn_number, res_pe
                 <td className="border-b border-gray-300 px-4 py-2 text-gray-400 font-bold text-center">{item.name}</td>
 
 
-                <td className="border-b border-gray-300 px-4 py-2 text-gray-400 font-bold" >{item.description}</td>
+                <td className="border-b border-gray-300 px-4 py-2 text-gray-400 font-bold" style={{ wordBreak: 'break-word'}} >{item.description}</td>
 
                 <td className="border-b border-gray-300 px-4 py-2 text-gray-400 font-bold">
                   {item.ipv6Asn ? (
@@ -186,13 +186,13 @@ export default function UpstreamsDetailsInfo({ res_upstreams, asn_number, res_pe
             ))}
           </tbody>
         </table>
-        {totalPages > 1 && (
+        {/* {totalPages > 1 && (
           <div className="flex justify-center mt-4">
             <PaginationArrow direction="prev" onClick={handlePrevPage} />
 
             <PaginationArrow direction="next" onClick={handleNextPage} />
           </div>
-        )}
+        )} */}
       </div>
     );
 
@@ -264,7 +264,7 @@ export default function UpstreamsDetailsInfo({ res_upstreams, asn_number, res_pe
             </tr>
           </thead>
           <tbody>
-            {paginatedData.map((item: any, index: number) => (
+            {data.map((item: any, index: number) => (
               <tr key={index}>
                 <td className="border-b border-gray-300 px-4 py-2 text-center"><img src={`https://bgpview.io/assets/flags/shiny/24/${item.country}.png`} alt="Flag" className="inline-block" />
                 </td>
@@ -275,7 +275,7 @@ export default function UpstreamsDetailsInfo({ res_upstreams, asn_number, res_pe
                 <td className="border-b border-gray-300 px-4 py-2 text-gray-400 font-bold text-center">{item.name}</td>
 
 
-                <td className="border-b border-gray-300 px-4 py-2 text-gray-400 font-bold" >{item.description}</td>
+                <td className="border-b border-gray-300 px-4 py-2 text-gray-400 font-bold" style={{ wordBreak: 'break-word'}} >{item.description}</td>
 
                 <td className="border-b border-gray-300 px-4 py-2 text-gray-400 font-bold">
                   {item.ipv4Asn ? (
@@ -292,13 +292,13 @@ export default function UpstreamsDetailsInfo({ res_upstreams, asn_number, res_pe
             ))}
           </tbody>
         </table>
-        {totalPages > 1 && (
+        {/* {totalPages > 1 && (
           <div className="flex justify-center mt-4">
             <PaginationArrow direction="prev" onClick={handlePrevPage} />
 
             <PaginationArrow direction="next" onClick={handleNextPage} />
           </div>
-        )}
+        )} */}
       </div>
     );
 
@@ -331,30 +331,31 @@ export default function UpstreamsDetailsInfo({ res_upstreams, asn_number, res_pe
           {/* Third Row */}
           <div className="lg:w-full md:overflow-hidden overflow-scroll">
             {/* Content for the third row (full width) */}
-            <div className="col-sm-10 box">
-              <div className="flex mb-4">
-                <div
-                  className={`cursor-pointer p-2 ${selectedOptionUpstreams === 'IPv4 Upstreams' ? 'border-b-0 border' : ''}`}
-                  style={{ color: selectedOptionUpstreams === 'IPv4 Upstreams' ? 'rgba(37, 169, 189, 0.97)' : '' }}
-                  onClick={() => setSelectedOptionUpstreams('IPv4 Upstreams')}
-                >
-                  IPv4 Upstreams
-                </div>
-                <div
-                  className={`cursor-pointer p-2 ${selectedOptionUpstreams === 'IPv6 Upstreams' ? 'border-b-0 border' : ''}`}
-                  style={{ color: selectedOptionUpstreams === 'IPv6 Upstreams' ? 'rgba(37, 169, 189, 0.97)' : '' }}
-                  onClick={() => setSelectedOptionUpstreams('IPv6 Upstreams')}
-                >
-                  IPv6 Upstreams
+            <div className="w-full border border-gray-150 bg-white mb-4 p-4">
+              <div className="col-sm-10 box">
+                <div className="flex mb-4">
+                  <div
+                    className={`cursor-pointer p-2 ${selectedOptionUpstreams === 'IPv4 Upstreams' ? 'border-b-0 border' : ''}`}
+                    style={{ color: selectedOptionUpstreams === 'IPv4 Upstreams' ? 'rgba(37, 169, 189, 0.97)' : '' }}
+                    onClick={() => setSelectedOptionUpstreams('IPv4 Upstreams')}
+                  >
+                    IPv4 Upstreams
+                  </div>
+                  <div
+                    className={`cursor-pointer p-2 ${selectedOptionUpstreams === 'IPv6 Upstreams' ? 'border-b-0 border' : ''}`}
+                    style={{ color: selectedOptionUpstreams === 'IPv6 Upstreams' ? 'rgba(37, 169, 189, 0.97)' : '' }}
+                    onClick={() => setSelectedOptionUpstreams('IPv6 Upstreams')}
+                  >
+                    IPv6 Upstreams
+                  </div>
+
                 </div>
 
+                {selectedOptionUpstreams === 'IPv4 Upstreams' && <Ipv4UpstreamsTable />}
+                {selectedOptionUpstreams === 'IPv6 Upstreams' && <Ipv6UpstreamsTable />}
               </div>
-
-              {selectedOptionUpstreams === 'IPv4 Upstreams' && <Ipv4UpstreamsTable />}
-              {selectedOptionUpstreams === 'IPv6 Upstreams' && <Ipv6UpstreamsTable />}
             </div>
           </div>
-
         </div>
       </div>
     </div>

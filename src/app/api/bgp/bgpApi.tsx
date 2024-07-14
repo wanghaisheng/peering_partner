@@ -1,3 +1,5 @@
+import exp from "constants";
+
 export async function getASNData(asn: string) {
   try {
 
@@ -118,4 +120,12 @@ export async function getWhoIsData(asn_whois: string) {
     console.error('Error in getWhoIsData:', error.message);
     throw error;
   }
+}
+
+export async function getSVGData(asn_number : string){
+  
+  const response = await fetch(`https://api.bgpview.io/assets/graphs/${asn_number.startsWith("AS")? asn_number : 'AS' + asn_number}_Combined.svg`);
+  const svgText = await response.text();
+  const modifiedSvg = svgText.replace(/xlink:href="https:\/\/bgpview\.io\/asn\//g, 'xlink:href="/AS');
+  return modifiedSvg;
 }
