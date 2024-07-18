@@ -39,7 +39,7 @@ export default function AsnDetailedInfo({
   const [selectedOption, setSelectedOption] = useState<string | null>("ASN");
   const [selectedOptionPrefixes, setSelectedOptionPrefixes] = useState<'IPv4' | 'IPv6'>('IPv4');
   const [selectedOptionPeers, setSelectedOptionPeers] = useState<'IPv4 Peers' | 'IPv6 Peers'>('IPv4 Peers');
-  const [selectedOptionUpstreams, setSelectedOptionUpstreams] = useState<'IPv4 Upstreams' | 'IPv6 Upstreams'>('IPv4 Upstreams');
+  const [selectedOptionUpstreams, setSelectedOptionUpstreams] = useState<'IPv4' | 'IPv6 Upstreams'>('IPv4 Upstreams');
   const [selectedOptionDownstreams, setSelectedOptionDownstreams] = useState<'IPv4 Downstreams' | 'IPv6 Downstreams'>('IPv4 Downstreams');
 
   const [isOpen, setIsOpen] = useState(false);
@@ -247,32 +247,17 @@ export default function AsnDetailedInfo({
 
 
       {/* Information Box */}
-      <div className="md:p-4 border border-white-150">
-        {/* Add content for the information box */}
-        <div className="flex flex-wrap">
-          {/* First Row */}
-          <div className="w-full border border-white-150 bg-white mb-4 p-4">
-            {/* Content for the first column (3/4 width) */}
-            <ASNHeader 
-              res_asn={res_asn}
-              res_peers={res_peers}
-              res_prefixes={res_prefixes}
-            />
-          </div>
-          <div className="w-full border border-white-150 bg-white mb-4 p-4">
-            <div>
-                {/* Content for the second column (3/4 width) */}
-                <ASNSummary />
-              </div>
+     
               <div>
-                <ASNNetwork/>
-              </div>
-              <div>
-                <ASNContacts />
-              </div>
+                  {/* Content for the second column (3/4 width) */}
+                  <ASNSummary />
+                </div>
+                <div>
+                  <ASNNetwork/>
+                </div>
+                <div>
+                  <ASNContacts />
+                </div>
             </div>
-          </div>
-      </div>
-    </div>
   );
 }

@@ -7,7 +7,7 @@ import * as echarts from 'echarts';
 import Datepicker from "react-tailwindcss-datepicker";
 import Link from 'next/link';
 import AsnHeader from './asnHeaderInfo';
-
+import ASNTables from './asnTable';
 interface PeersDetailsInfoProps {
     res_peers: Record<string, any>;
     asn_number: string; // This type assumes that the JSON data can be of any shape
@@ -16,12 +16,28 @@ interface PeersDetailsInfoProps {
 }
 
 
-export default function PeersDetailsInfo({ res_asn, res_peers, asn_number, res_prefixes}: PeersDetailsInfoProps) {
+export default function PeersDetailsInfo({ res_asn, res_peers, asn_number, res_prefixes }: PeersDetailsInfoProps) {
 
     res_peers.data = res_peers.data || {};
     const ipv4Count = res_peers.data.ipv4_peers?.length || 0;
     const ipv6Count = res_peers.data.ipv6_peers?.length || 0;
-    const [selectedOptionPeers, setSelectedOptionPeers] = useState<'IPv4 Peers' | 'IPv6 Peers'>('IPv4 Peers');
+    const [selectedOptionPeers, setSelectedOptionPeers] = useState<'IPv4' | 'IPv6'>('IPv4');
+
+    const iPv6data = res_peers?.data?.ipv6_peers?.map((item: any) => ({
+        country: item.country_code,
+        asn: item.asn,
+        name: item.name,
+        description: item.description,
+        ipv4: res_peers?.data?.ipv4_peers?.some((ipv4Item: any) => ipv4Item.asn === item.asn),
+    }));
+
+    const iPv4data = res_peers?.data?.ipv4_peers?.map((item: any) => ({
+        country: item.country_code,
+        asn: item.asn,
+        name: item.name,
+        description: item.description,
+        ipv6: res_peers?.data?.ipv6_peers?.some((ipv6Item: any) => ipv6Item.asn === item.asn),
+    }));
 
     const totalPeersCount = ipv4Count + ipv6Count;
 
@@ -112,7 +128,7 @@ export default function PeersDetailsInfo({ res_asn, res_peers, asn_number, res_p
                                     <Link href={`${item.asn}`}>AS{item.asn}</Link>
                                 </td>
                                 <td className="border-b border-gray-300 px-4 py-2 text-gray-400 font-bold text-center">{item.name}</td>
-                                <td className="border-b border-gray-300 px-4 py-2 text-gray-400 font-bold" style={{ wordBreak: 'break-word'}} >{item.description}</td>
+                                <td className="border-b border-gray-300 px-4 py-2 text-gray-400 font-bold" style={{ wordBreak: 'break-word' }} >{item.description}</td>
                                 <td className="border-b border-gray-300 px-4 py-2 text-gray-400 font-bold">
                                     {item.ipv6Asn ? (
                                         <span role="img" aria-label="check-mark">
@@ -215,7 +231,7 @@ export default function PeersDetailsInfo({ res_asn, res_peers, asn_number, res_p
                                 <td className="border-b border-gray-300 px-4 py-2 text-gray-400 font-bold text-center">{item.name}</td>
 
 
-                                <td className="border-b border-gray-300 px-4 py-2 text-gray-400 font-bold" style={{ wordBreak: 'break-word'}} >{item.description}</td>
+                                <td className="border-b border-gray-300 px-4 py-2 text-gray-400 font-bold" style={{ wordBreak: 'break-word' }} >{item.description}</td>
 
                                 <td className="border-b border-gray-300 px-4 py-2 text-gray-400 font-bold">
                                     {item.ipv4Asn ? (
@@ -260,46 +276,45 @@ export default function PeersDetailsInfo({ res_asn, res_peers, asn_number, res_p
                     showShortcuts={true}
                 />
             </div> */}
-            <div className="w-full p-4 border border-gray-150">
+            <div className="">
 
 
                 {/* Add content for the information box */}
-                <div className="md:flex flex-wrap">
-                    <div className="w-full border border-gray-150 bg-white mb-4 p-4">
-                        <AsnHeader res_asn={res_asn} res_peers={res_peers} res_prefixes={res_prefixes}/>
-                    </div>
-                    {/* First Row */}
-                    {/*  */}
+                {/* First Row */}
+                {/*  */}
 
 
 
-                    {/* Third Row */}
-                    <div className="lg:w-full overflow-scroll md:overflow-hidden">
-                        {/* Content for the third row (full width) */}
-                        <div className="w-full border border-gray-150 bg-white mb-4 p-4">
-                            <div className="col-sm-10 box">
-                                <div className="flex mb-4">
-                                    <div
-                                        className={`cursor-pointer p-2 ${selectedOptionPeers === 'IPv4 Peers' ? 'border-b-0 border' : ''}`}
-                                        style={{ color: selectedOptionPeers === 'IPv4 Peers' ? 'rgba(37, 169, 189, 0.97)' : '' }}
-                                        onClick={() => setSelectedOptionPeers('IPv4 Peers')}
-                                    >
-                                        IPv4 Peers
-                                    </div>
-                                    <div
-                                        className={`cursor-pointer p-2 ${selectedOptionPeers === 'IPv6 Peers' ? 'border-b-0 border' : ''}`}
-                                        style={{ color: selectedOptionPeers === 'IPv6 Peers' ? 'rgba(37, 169, 189, 0.97)' : '' }}
-                                        onClick={() => setSelectedOptionPeers('IPv6 Peers')}
-                                    >
-                                        IPv6 Peers
-                                    </div>
-
-                                </div>
-
-                                {selectedOptionPeers === 'IPv4 Peers' && <Ipv4PeersTable />}
-                                {selectedOptionPeers === 'IPv6 Peers' && <Ipv6PeersTable />}
+                {/* Third Row */}
+                <div className="lg:w-full overflow-scroll md:overflow-hidden">
+                    {/* Content for the third row (full width) */}
+                    <div className="col-sm-10 box">
+                        <div className="flex mb-4">
+                            <div
+                                className={`cursor-pointer p-2 ${selectedOptionPeers === 'IPv4' ? 'border-b-0 border' : ''}`}
+                                style={{ color: selectedOptionPeers === 'IPv4' ? 'rgba(37, 169, 189, 0.97)' : '' }}
+                                onClick={() => setSelectedOptionPeers('IPv4')}
+                            >
+                                IPv4 Peers
                             </div>
+                            <div
+                                className={`cursor-pointer p-2 ${selectedOptionPeers === 'IPv6' ? 'border-b-0 border' : ''}`}
+                                style={{ color: selectedOptionPeers === 'IPv6' ? 'rgba(37, 169, 189, 0.97)' : '' }}
+                                onClick={() => setSelectedOptionPeers('IPv6')}
+                            >
+                                IPv6 Peers
+                            </div>
+
                         </div>
+                        {selectedOptionPeers === 'IPv4' && (
+                            <ASNTables data={iPv4data} ipvType="IPv4" />
+                        )}
+
+                        {selectedOptionPeers === 'IPv6' && (
+                            <ASNTables data={iPv6data} ipvType="IPv6" />
+                        )}
+                        {/* {selectedOptionPeers === 'IPv4' && <Ipv4PeersTable />}
+                        {selectedOptionPeers === 'IPv6' && <Ipv6PeersTable />} */}
                     </div>
                 </div>
             </div>

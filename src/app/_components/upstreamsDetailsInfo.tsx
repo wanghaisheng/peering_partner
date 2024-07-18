@@ -8,6 +8,7 @@ import Datepicker from "react-tailwindcss-datepicker";
 import Link from 'next/link';
 import { IoMdCheckmarkCircle, IoMdRemoveCircle } from 'react-icons/io';
 import AsnHeader from './asnHeaderInfo';
+import ASNTables from './asnTable';
 
 interface PrefixesDetailsInfoProps {
   res_upstreams: Record<string, any>;
@@ -23,7 +24,23 @@ export default function UpstreamsDetailsInfo({ res_upstreams, asn_number, res_pe
 
   const ipv4Upstreams = res_upstreams?.data?.ipv4_upstreams?.length || 0;
   const ipv6Upstreams = res_upstreams?.data?.ipv6_upstreams?.length || 0;
-  const [selectedOptionUpstreams, setSelectedOptionUpstreams] = useState<'IPv4 Upstreams' | 'IPv6 Upstreams'>('IPv4 Upstreams');
+  const [selectedOptionUpstreams, setSelectedOptionUpstreams] = useState<'IPv4' | 'IPv6'>('IPv4');
+
+  const iPv6data = res_upstreams?.data?.ipv6_upstreams?.map((item: any) => ({
+    country: item.country_code,
+    asn: item.asn,
+    name: item.name,
+    description: item.description,
+    ipv4: res_upstreams?.data?.ipv4_upstreams?.some((ipv4Item: any) => ipv4Item.asn === item.asn),
+  }));
+
+  const iPv4data = res_upstreams?.data?.ipv4_upstreams?.map((item: any) => ({
+    country: item.country_code,
+    asn: item.asn,
+    name: item.name,
+    description: item.description,
+    ipv6: res_upstreams?.data?.ipv6_upstreams?.some((ipv6Item: any) => ipv6Item.asn === item.asn),
+  }));
 
   const [value, setValue] = useState({
     startDate: new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000), // 7 days before
@@ -318,46 +335,43 @@ export default function UpstreamsDetailsInfo({ res_upstreams, asn_number, res_pe
                     showShortcuts={true}
                 />
             </div> */}
-      <div className="w-full p-4 border border-gray-150">
 
 
         {/* Add content for the information box */}
-        <div className="md:flex flex-wrap">
-             <div className="w-full border border-gray-150 bg-white mb-4 p-4">
-                <AsnHeader res_asn={res_asn} res_peers={res_peers} res_prefixes={res_prefixes}/>
-            </div>
           {/* First Row */}
 
           {/* Third Row */}
           <div className="lg:w-full md:overflow-hidden overflow-scroll">
             {/* Content for the third row (full width) */}
-            <div className="w-full border border-gray-150 bg-white mb-4 p-4">
               <div className="col-sm-10 box">
                 <div className="flex mb-4">
                   <div
-                    className={`cursor-pointer p-2 ${selectedOptionUpstreams === 'IPv4 Upstreams' ? 'border-b-0 border' : ''}`}
-                    style={{ color: selectedOptionUpstreams === 'IPv4 Upstreams' ? 'rgba(37, 169, 189, 0.97)' : '' }}
-                    onClick={() => setSelectedOptionUpstreams('IPv4 Upstreams')}
+                    className={`cursor-pointer p-2 ${selectedOptionUpstreams === 'IPv4' ? 'border-b-0 border' : ''}`}
+                    style={{ color: selectedOptionUpstreams === 'IPv4' ? 'rgba(37, 169, 189, 0.97)' : '' }}
+                    onClick={() => setSelectedOptionUpstreams('IPv4')}
                   >
                     IPv4 Upstreams
                   </div>
                   <div
-                    className={`cursor-pointer p-2 ${selectedOptionUpstreams === 'IPv6 Upstreams' ? 'border-b-0 border' : ''}`}
-                    style={{ color: selectedOptionUpstreams === 'IPv6 Upstreams' ? 'rgba(37, 169, 189, 0.97)' : '' }}
-                    onClick={() => setSelectedOptionUpstreams('IPv6 Upstreams')}
+                    className={`cursor-pointer p-2 ${selectedOptionUpstreams === 'IPv6' ? 'border-b-0 border' : ''}`}
+                    style={{ color: selectedOptionUpstreams === 'IPv6' ? 'rgba(37, 169, 189, 0.97)' : '' }}
+                    onClick={() => setSelectedOptionUpstreams('IPv6')}
                   >
                     IPv6 Upstreams
                   </div>
 
                 </div>
-
-                {selectedOptionUpstreams === 'IPv4 Upstreams' && <Ipv4UpstreamsTable />}
-                {selectedOptionUpstreams === 'IPv6 Upstreams' && <Ipv6UpstreamsTable />}
+                {selectedOptionUpstreams === 'IPv4' && (
+                  <ASNTables data={iPv4data} ipvType="IPv4" />
+                )}
+                
+                {selectedOptionUpstreams === 'IPv6' && (
+                  <ASNTables data={iPv6data} ipvType="IPv6" />
+                )} 
+                {/* {selectedOptionUpstreams === 'IPv4' && <Ipv4UpstreamsTable />}
+                {selectedOptionUpstreams === 'IPv6' && <Ipv6UpstreamsTable />} */}
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
   )
 }

@@ -8,6 +8,8 @@ import Datepicker from "react-tailwindcss-datepicker";
 import Link from 'next/link';
 import { IoMdCheckmarkCircle, IoMdRemoveCircle } from 'react-icons/io';
 import AsnHeader from './asnHeaderInfo';
+import ASNTables from './asnTable';
+
 
 interface PrefixesDetailsInfoProps {
   res_downstreams: Record<string, any>;
@@ -24,11 +26,24 @@ export default function DownstreamsDetailsInfo({ res_downstreams, asn_number, re
   const ipv4Downstreams = res_downstreams?.data?.ipv4_downstreams?.length || 0;
   const ipv6Downstreams = res_downstreams?.data?.ipv6_downstreams?.length || 0;
 
-  const [selectedOptionDownstreams, setSelectedOptionDownstreams] = useState<'IPv4 Downstreams' | 'IPv6 Downstreams'>('IPv4 Downstreams');
+  const [selectedOptionDownstreams, setSelectedOptionDownstreams] = useState<'IPv4' | 'IPv6'>('IPv4');
 
 
+  const iPv6data = res_downstreams?.data?.ipv6_downstreams?.map((item: any) => ({
+    country: item.country_code,
+    asn: item.asn,
+    name: item.name,
+    description: item.description,
+    ipv4: res_downstreams?.data?.ipv4_downstreams?.some((ipv4Item: any) => ipv4Item.asn === item.asn),
+  }));
 
-
+  const iPv4data = res_downstreams?.data?.ipv4_downstreams?.map((item: any) => ({
+    country: item.country_code,
+    asn: item.asn,
+    name: item.name,
+    description: item.description,
+    ipv6: res_downstreams?.data?.ipv6_downstreams?.some((ipv6Item: any) => ipv6Item.asn === item.asn),
+  }));
 
   const [value, setValue] = useState({
     startDate: new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000), // 7 days before
@@ -106,44 +121,44 @@ export default function DownstreamsDetailsInfo({ res_downstreams, asn_number, re
       description: item.description,
       ipv6Asn: ipv6Data.some((ipv6Item: any) => ipv6Item.asn === item.asn),
     }));
-    const PaginationArrow = ({ direction, onClick }: { direction: 'prev' | 'next'; onClick: () => void }) => (
-      <div
-        className="cursor-pointer p-2 rounded-full  text-white text-2xl"
-        onClick={onClick}
-      >
-        {direction === 'prev' ? (<div className="flex items-center px-4 py-2 text-gray-500 bg-gray-300 rounded-md"><svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19V5m5 5l-5-5-5 5" />
-        </svg></div>) : (<div className="flex items-center px-4 py-2 text-gray-500 bg-gray-300 rounded-md">
-          <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 5v14m-5-5l5 5 5-5" />
-          </svg></div>)}
-      </div>
-    );
+    // const PaginationArrow = ({ direction, onClick }: { direction: 'prev' | 'next'; onClick: () => void }) => (
+    //   <div
+    //     className="cursor-pointer p-2 rounded-full  text-white text-2xl"
+    //     onClick={onClick}
+    //   >
+    //     {direction === 'prev' ? (<div className="flex items-center px-4 py-2 text-gray-500 bg-gray-300 rounded-md"><svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    //       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19V5m5 5l-5-5-5 5" />
+    //     </svg></div>) : (<div className="flex items-center px-4 py-2 text-gray-500 bg-gray-300 rounded-md">
+    //       <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    //         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 5v14m-5-5l5 5 5-5" />
+    //       </svg></div>)}
+    //   </div>
+    // );
 
 
 
-    const itemsPerPage = 15;
-    const [currentPage, setCurrentPage] = useState(1);
+    // const itemsPerPage = 15;
+    // const [currentPage, setCurrentPage] = useState(1);
 
 
 
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    const paginatedData = data?.slice(startIndex, endIndex);
+    // const startIndex = (currentPage - 1) * itemsPerPage;
+    // const endIndex = startIndex + itemsPerPage;
+    // const paginatedData = data?.slice(startIndex, endIndex);
 
-    const totalPages = Math.ceil(data?.length / itemsPerPage);
+    // const totalPages = Math.ceil(data?.length / itemsPerPage);
 
-    const handlePrevPage = () => {
-      if (currentPage > 1) {
-        setCurrentPage(currentPage - 1);
-      }
-    };
+    // const handlePrevPage = () => {
+    //   if (currentPage > 1) {
+    //     setCurrentPage(currentPage - 1);
+    //   }
+    // };
 
-    const handleNextPage = () => {
-      if (currentPage < totalPages) {
-        setCurrentPage(currentPage + 1);
-      }
-    };
+    // const handleNextPage = () => {
+    //   if (currentPage < totalPages) {
+    //     setCurrentPage(currentPage + 1);
+    //   }
+    // };
 
 
     return (
@@ -321,33 +336,22 @@ export default function DownstreamsDetailsInfo({ res_downstreams, asn_number, re
                     showShortcuts={true}
                 />
             </div> */}
-      <div className="w-full p-4 border border-gray-150">
-
-
-        {/* Add content for the information box */}
-        <div className="md:flex flex-wrap">
-            <div className="w-full border border-gray-150 bg-white mb-4 p-4">
-                <AsnHeader res_asn={res_asn} res_peers={res_peers} res_prefixes={res_prefixes}/>
-            </div>
-          {/* First Row */}
-
           {/* Third Row */}
           <div className="w-full md:overflow-hidden overflow-scroll">
             {/* Content for the third row (full width) */}
-            <div className="w-full border border-gray-150 bg-white mb-4 p-4">
               <div className="col-sm-10 box">
                 <div className="flex mb-4">
                   <div
-                    className={`cursor-pointer p-2 ${selectedOptionDownstreams === 'IPv4 Downstreams' ? 'border-b-0 border' : ''}`}
-                    style={{ color: selectedOptionDownstreams === 'IPv4 Downstreams' ? 'rgba(37, 169, 189, 0.97)' : '' }}
-                    onClick={() => setSelectedOptionDownstreams('IPv4 Downstreams')}
+                    className={`cursor-pointer p-2 ${selectedOptionDownstreams === 'IPv4' ? 'border-b-0 border' : ''}`}
+                    style={{ color: selectedOptionDownstreams === 'IPv4' ? 'rgba(37, 169, 189, 0.97)' : '' }}
+                    onClick={() => setSelectedOptionDownstreams('IPv4')}
                   >
                     IPv4 Downstreams
                   </div>
                   <div
-                    className={`cursor-pointer p-2 ${selectedOptionDownstreams === 'IPv6 Downstreams' ? 'border-b-0 border' : ''}`}
-                    style={{ color: selectedOptionDownstreams === 'IPv6 Downstreams' ? 'rgba(37, 169, 189, 0.97)' : '' }}
-                    onClick={() => setSelectedOptionDownstreams('IPv6 Downstreams')}
+                    className={`cursor-pointer p-2 ${selectedOptionDownstreams === 'IPv6' ? 'border-b-0 border' : ''}`}
+                    style={{ color: selectedOptionDownstreams === 'IPv6' ? 'rgba(37, 169, 189, 0.97)' : '' }}
+                    onClick={() => setSelectedOptionDownstreams('IPv6')}
                   > 
                   
                     IPv6 Downstreams
@@ -355,14 +359,17 @@ export default function DownstreamsDetailsInfo({ res_downstreams, asn_number, re
                   </div>
                   
                 </div>
+                {selectedOptionDownstreams === 'IPv4' && (
+                  <ASNTables data={iPv4data} ipvType="IPv4" />
+                )}
                 
-                {selectedOptionDownstreams === 'IPv4 Downstreams' && <Ipv4DownstreamsTable />}
-                {selectedOptionDownstreams === 'IPv6 Downstreams' && <Ipv6DownstreamsTable />}
+                {selectedOptionDownstreams === 'IPv6' && (
+                  <ASNTables data={iPv6data} ipvType="IPv6" />
+                )}                
+                {/* {selectedOptionDownstreams === 'IPv4' && <Ipv4DownstreamsTable />}
+                {selectedOptionDownstreams === 'IPv6' && <Ipv6DownstreamsTable />} */}
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
   )
 }
