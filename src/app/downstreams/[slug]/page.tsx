@@ -29,11 +29,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
             <div className="w-full border border-white-150 bg-white mb-4 p-4 overflow-auto">
                 <Suspense fallback={<Loading />}>
                     <DownstreamsDetailsInfo
-                        res_asn={res_asn}
-                        res_peers={res_asn_peers}
-                        res_prefixes={res_asn_prefixes}
                         res_downstreams={res_asn_downstreams}
-                        asn_number={asn_number}
                     />
                 </Suspense>
             </div>

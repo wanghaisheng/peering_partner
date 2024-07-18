@@ -29,7 +29,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
                 />
             </div>
             <div className="w-full border border-white-150 bg-white mb-4 p-4">
-                <UpstreamsDetailsInfo res_asn={res_asn} res_peers={res_asn_peers} res_prefixes={res_asn_prefixes} res_upstreams={res_asn_upstreams} asn_number={asn_number} />
+                <UpstreamsDetailsInfo res_upstreams={res_asn_upstreams} />
             </div>
         </Layout>                    
     );

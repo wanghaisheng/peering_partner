@@ -25,10 +25,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
       <div className="w-full border border-white-150 bg-white mb-4 p-4">
         <PeersDetailsInfo
-          asn_number={asn_number}
-          res_asn={res_asn}
           res_peers={res_asn_peers}
-          res_prefixes={res_asn_prefixes}
         />
       </div>
     </Layout>  

@@ -27,10 +27,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
             <div className="w-full border border-white-150 bg-white mb-4 p-4">
                 <div className="w-full border border-white-150 bg-white mb-4 p-4">
                     <PrefixesDetailsInfo
-                        res_asn={res_asn}
-                        res_peers={res_asn_peers}
                         res_prefixes={res_asn_prefixes}
-                        asn_number={asn_number} />
+                    />
                 </div>
             </div>
         </Layout>
