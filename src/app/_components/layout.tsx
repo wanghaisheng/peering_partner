@@ -1,19 +1,24 @@
 // components/Layout.tsx
 'use client';
-
 import Navbar from "./navbar";
 import Footer from "./footer";
 import ASNSideNavbar from "./asnSideNavbar";
-import { ReactNode,  } from "react";
+import { ReactNode, Suspense, lazy } from "react";
+import Loading from "./loading";
 
+const AsnHeaderInfo = lazy(() => import('./asnHeaderInfo'));
 interface LayoutProps {
     activeOption: string;
     sidebarOpen: boolean;
     slug: string;
     children: ReactNode;
+    res_asn?: Record<string, any>; // This type assumes that the JSON data can be of any shape
+    res_peers?: Record<string, any>;
+    res_prefixes?: Record<string, any>;
 }
 
-const Layout = ({ children, activeOption, sidebarOpen, slug }: LayoutProps) => {
+const Layout = ({ children, activeOption, sidebarOpen, slug, res_asn, res_peers, res_prefixes }: LayoutProps) => {
+
     return (
         <div className="flex flex-col min-h-screen">
             <div className="md:flex flex-row min-h-screen bg-white text-gray-800 overflow-hidden">
@@ -30,7 +35,17 @@ const Layout = ({ children, activeOption, sidebarOpen, slug }: LayoutProps) => {
                         <div className="p-2 md:p-4 border border-white-150">
                             {/* Add content for the information box */}
                             <div className="md:flex md:flex-wrap">
-                                 {children}
+                            <Suspense fallback={<Loading />}>
+                                <div className="w-full border border-white-150 bg-white mb-4 p-4">
+                                    <AsnHeaderInfo
+                                        res_asn={res_asn}
+                                        res_peers={res_peers}
+                                        res_prefixes={res_prefixes}
+                                    />
+                                </div>
+                            </Suspense>
+                                <hr />
+                                {children}
                             </div>
                         </div>
                     </div>

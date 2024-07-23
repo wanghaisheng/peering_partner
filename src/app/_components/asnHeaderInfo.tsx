@@ -1,22 +1,20 @@
 'use client'
 import React, { useState } from 'react';
-
-
 interface AsnHeaderInfoProps {
-  res_asn: Record<string, any>; // This type assumes that the JSON data can be of any shape
-  res_peers: Record<string, any>;
-  res_prefixes: Record<string, any>;
+  res_asn?: Record<string, any>; // This type assumes that the JSON data can be of any shape
+  res_peers?: Record<string, any>;
+  res_prefixes?: Record<string, any>;
 }
 
 
 export default function AsnHeaderInfo({ res_asn, res_peers, res_prefixes }: AsnHeaderInfoProps) {
   
-  const ipv4Count = res_peers.data?.ipv4_peers?.length || 0;
-  const ipv6Count = res_peers.data?.ipv6_peers?.length || 0;
+  const ipv4Count = res_peers?.data?.ipv4_peers?.length || 0;
+  const ipv6Count = res_peers?.data?.ipv6_peers?.length || 0;
 
   const totalPeersCount = ipv4Count + ipv6Count;
-  const ipv4Prefixes = res_prefixes.data?.ipv4_prefixes?.length || 0;
-  const ipv6Prefixes = res_prefixes.data?.ipv6_prefixes?.length || 0;
+  const ipv4Prefixes = res_prefixes?.data?.ipv4_prefixes?.length || 0;
+  const ipv6Prefixes = res_prefixes?.data?.ipv6_prefixes?.length || 0;
   const totalPrefixes = ipv4Prefixes + ipv6Prefixes;
 
   return (

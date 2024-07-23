@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import Link from 'next/link';
 
@@ -9,6 +10,10 @@ interface StreamTablesProps {
 const ASNTables: React.FC<StreamTablesProps> = ({ data, ipvType }) => {
   const isIpv6Table = ipvType === 'IPv6'; 
 
+  if (!data || data.length === 0) {
+    return <div>No data available</div>;
+  }
+  
   const tableHeaders = Object.keys(data?.[0] || {}).map((key, index) => (
     <th key={index} className="border-b border-gray-300 px-4 py-2 text-center capitalize">
       {key}
