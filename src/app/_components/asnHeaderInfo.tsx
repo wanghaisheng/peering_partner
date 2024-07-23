@@ -25,7 +25,7 @@ export default function AsnHeaderInfo({ res_asn, res_peers, res_prefixes }: AsnH
         <div className="w-1/8 pt-4 ">
           
           <div className="flag-icon">
-            <img className="pull-left title-flag" width="78" height="78" src={`https://bgpview.io/assets/flags/shiny/64/${res_asn?.data?.country_code}.png`} title="<?php echo $country_name; ?>" />
+            <img className="pull-left title-flag" width="78" height="78" src={`https://bgpview.io/assets/flags/shiny/64/${res_asn?.data?.country_code}.png`} />
             
           </div>  
         </div>

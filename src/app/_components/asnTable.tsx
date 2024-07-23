@@ -11,7 +11,7 @@ const ASNTables: React.FC<StreamTablesProps> = ({ data, ipvType }) => {
   const isIpv6Table = ipvType === 'IPv6'; 
 
   if (!data || data.length === 0) {
-    return <div className="border-b border-gray-300 px-4 py-2 text-center capitalize">No data available</div>;
+    return <div className="border-b border-gray-300 px-4 py-2 capitalize">No data available</div>;
   }
   
   const tableHeaders = Object.keys(data?.[0] || {}).map((key, index) => (
