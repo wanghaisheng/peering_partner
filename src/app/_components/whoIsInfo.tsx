@@ -10,8 +10,8 @@ export default function RawWhoIsInfo({ res_whois } : RawWhoIsProps ) {
       return <div className="border-b border-gray-300 px-4 py-2 text-center capitalize">No data available</div>;
     }
     return (
-        <div className="overflow-y-auto p-6">
-          <div className="w-full border border-gray-400 rounded-md bg-gray-200 mb-4 p-4">
+        <div className="overflow-y-auto md:p-6">
+          <div className="w-full border border-gray-400 rounded-md bg-gray-200 mb-4 md:p-4 overflow-x-scroll">
             <div>
               <pre className="p-4 rounded-lg ">
                 {/* Render data on the screen */}
