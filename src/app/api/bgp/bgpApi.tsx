@@ -105,7 +105,6 @@ export async function getIXData(asn_ix: string) {
 
 export async function getWhoIsData(asn_whois: string) {
   try {
-    console.log(asn_whois)
     const res_whois = await fetch(`https://wq.apnic.net/query?searchtext=${asn_whois}`);
 
     if (!res_whois.ok) {
