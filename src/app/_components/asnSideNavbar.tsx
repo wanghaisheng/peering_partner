@@ -16,7 +16,7 @@ interface SideNavbarProps {
 
 export default function ASNSideNavbar({  activeOption, sidebarOpen, slug }: SideNavbarProps) {
    const [activeItem, setActiveItem] = useState<string | null | undefined>(activeOption);
-   const [isSidebarOpen, setIsSidebarOpen] = useState(sidebarOpen); // State for sidebar visibility
+   const [isSidebarOpen, setIsSidebarOpen] = useState(sidebarOpen || false); // State for sidebar visibility
 
    const Icon = isSidebarOpen ? ChevronDoubleLeftIcon : ChevronDoubleRightIcon;
 

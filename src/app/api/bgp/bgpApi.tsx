@@ -125,6 +125,8 @@ export async function getWhoIsData(asn_whois: string) {
 export async function getSVGData(asn_number : string){
   
   const response = await fetch(`https://api.bgpview.io/assets/graphs/${asn_number.startsWith("AS")? asn_number : 'AS' + asn_number}_Combined.svg`);
+  if(!response.ok)
+    return null;
   const svgText = await response.text();
   const modifiedSvg = svgText.replace(/xlink:href="https:\/\/bgpview\.io\/asn\//g, 'xlink:href="/AS');
   return modifiedSvg;

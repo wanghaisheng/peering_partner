@@ -1,31 +1,20 @@
 'use client'
-import CountrySelector from './countrySelection/selector';
-import { SelectMenuOption } from './countrySelection/types';
-import { COUNTRIES } from './countrySelection/countries';
 import React, { useState } from 'react';
-import Datepicker from "react-tailwindcss-datepicker";
-
-
 interface AsnHeaderInfoProps {
-  res_asn: Record<string, any>; // This type assumes that the JSON data can be of any shape
-  res_peers: Record<string, any>;
-  res_prefixes: Record<string, any>;
+  res_asn?: Record<string, any>; // This type assumes that the JSON data can be of any shape
+  res_peers?: Record<string, any>;
+  res_prefixes?: Record<string, any>;
 }
 
 
 export default function AsnHeaderInfo({ res_asn, res_peers, res_prefixes }: AsnHeaderInfoProps) {
   
-  // Ensure that the response structure is as expected
-  //res_peers.data = res_peers.data || {};
-  const ipv4Count = res_peers.data?.ipv4_peers?.length || 0;
-  const ipv6Count = res_peers.data?.ipv6_peers?.length || 0;
+  const ipv4Count = res_peers?.data?.ipv4_peers?.length || 0;
+  const ipv6Count = res_peers?.data?.ipv6_peers?.length || 0;
 
   const totalPeersCount = ipv4Count + ipv6Count;
-
-  //res_prefixes.data = res_prefixes.data || {};
-  // Ensure that the response structure is as expected
-  const ipv4Prefixes = res_prefixes.data?.ipv4_prefixes?.length || 0;
-  const ipv6Prefixes = res_prefixes.data?.ipv6_prefixes?.length || 0;
+  const ipv4Prefixes = res_prefixes?.data?.ipv4_prefixes?.length || 0;
+  const ipv6Prefixes = res_prefixes?.data?.ipv6_prefixes?.length || 0;
   const totalPrefixes = ipv4Prefixes + ipv6Prefixes;
 
   return (
@@ -36,7 +25,7 @@ export default function AsnHeaderInfo({ res_asn, res_peers, res_prefixes }: AsnH
         <div className="w-1/8 pt-4 ">
           
           <div className="flag-icon">
-            <img className="pull-left title-flag" width="78" height="78" src={`https://bgpview.io/assets/flags/shiny/64/${res_asn?.data?.country_code}.png`} title="<?php echo $country_name; ?>" />
+            <img className="pull-left title-flag" width="78" height="78" src={`https://bgpview.io/assets/flags/shiny/64/${res_asn?.data?.country_code}.png`} />
             
           </div>  
         </div>
