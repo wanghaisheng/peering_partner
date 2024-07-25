@@ -5,17 +5,25 @@ import Layout from "../_components/layout";
 import Loading from '../_components/loading';
 
 const AsnDetailedInfo = lazy(() => import('../_components/asnDetailedInfo'));
-
+const delay = (delayInms:number) => {
+  return new Promise(resolve => setTimeout(resolve, delayInms));
+};
 export default async function Page({ params }: { params: { slug: string } }) {
 
   const asn = params.slug;
-
+  
   const res_asn = await getASNData(asn);
+  await delay(200);
   const res_asn_peers = await getPeersData(asn);
+  await delay(200);
   const res_asn_prefixes = await getPrefixData(asn);
+  await delay(200);
   const res_asn_upstreams = await getUpstreamData(asn);
+  await delay(200);
   const res_asn_downstreams = await getDownstreamData(asn);
+  await delay(200);
   const res_asn_ix = await getIXData(asn);
+  await delay(200);
 
   return (
     <Layout activeOption="ASN Stats" sidebarOpen={false} slug={asn} res_asn={res_asn} res_peers={res_asn_peers} res_prefixes={res_asn_prefixes}>

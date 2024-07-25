@@ -6,14 +6,20 @@ import Loading from "@/app/_components/loading";
 
 const UpstreamsDetailsInfo = lazy(() => import('../../_components/upstreamsDetailsInfo'));
 
-
+const delay = (delayInms:number) => {
+    return new Promise(resolve => setTimeout(resolve, delayInms));
+  };
 export default async function Page({ params }: { params: { slug: string } }) {
 
     const asn_number = params.slug;
     const res_asn = await getASNData(asn_number);
+    await delay(200);
     const res_asn_peers = await getPeersData(asn_number);
+    await delay(200);
     const res_asn_prefixes = await getPrefixData(asn_number);
+    await delay(200);
     const res_asn_upstreams = await getUpstreamData(asn_number);
+    await delay(200);
     
     return (
         <Layout activeOption="Upstreams" sidebarOpen={false} slug={asn_number} res_asn={res_asn} res_peers={res_asn_peers} res_prefixes={res_asn_prefixes}>

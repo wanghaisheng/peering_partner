@@ -75,19 +75,6 @@ export default function WorldBGPData({
       </div>
     );
 
-
-    const handlePrevPage = () => {
-      if (currentPage > 1) {
-        setCurrentPage(currentPage - 1);
-      }
-    };
-
-    const handleNextPage = () => {
-      if (currentPage < totalPages) {
-        setCurrentPage(currentPage + 1);
-      }
-    };
-
     const data =bgpdata&&bgpdata.data&&bgpdata.data.map((item: any) => ({
       country_code: item.country_code,
       allocated_asn_count: item.allocated_asn_count,
@@ -140,17 +127,6 @@ export default function WorldBGPData({
     }, []);
 
 
-    const itemsPerPage = 15;
-    const [currentPage, setCurrentPage] = useState(1);
-
-
-
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    const paginatedData = sortedData&&sortedData.slice(startIndex, endIndex);
-
-    const totalPages = Math.ceil(data&&data.length / itemsPerPage);
-
     console.log('------------------',bgpdata)
     console.log('------------------')
 
@@ -178,7 +154,7 @@ export default function WorldBGPData({
           </thead>
           <tbody>
 
-            {paginatedData&&paginatedData.map((item:any, index:any) => (
+            {sortedData&&sortedData.map((item:any, index:any) => (
               <tr key={index}>
                 <td className="border-b border-gray-300 px-4 py-2 text-center text-gray-400 font-bold">
                   <a href={`/asnstats/countries/${item.country_code}`}>
@@ -193,12 +169,6 @@ export default function WorldBGPData({
             ))}
           </tbody>
         </table>
-        {totalPages > 1 && (
-          <div className="flex justify-center mt-4">
-            <PaginationArrow direction="prev" onClick={handlePrevPage} />
-            <PaginationArrow direction="next" onClick={handleNextPage} />
-          </div>
-        )}
       </div>
 
     );

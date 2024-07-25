@@ -100,7 +100,7 @@ const sidebarItems = [
 
       ),
       text: "Routing Information",
-      navigation: "/routing"
+      navigation: "#"
    },
    {
       svg: (

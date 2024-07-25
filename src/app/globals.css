@@ -29,5 +29,5 @@ body {
 #content-graph svg, .modal-dialog svg {
   width: 100%;
   height: auto;
-  max-height: 900px;
+  max-height: 600px;
 }

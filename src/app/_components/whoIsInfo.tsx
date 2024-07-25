@@ -11,7 +11,7 @@ export default function RawWhoIsInfo({ res_whois } : RawWhoIsProps ) {
     }
     return (
         <div className="overflow-y-auto md:p-6">
-          <div className="w-full border border-gray-400 rounded-md bg-gray-200 mb-4 md:p-4 overflow-x-scroll">
+          <div className="w-full border border-gray-400 rounded-md bg-gray-200 mb-4 md:p-4 overflow-x-scroll md:overflow-hidden">
             <div>
               <pre className="p-4 rounded-lg ">
                 {/* Render data on the screen */}
