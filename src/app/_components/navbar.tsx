@@ -81,7 +81,7 @@ export default function Navbar() {
       shortCode = 'ASN';
     }
 
-    const letters = /^[a-zA-Z\s\-]+$/;
+    const letters = /^[a-zA-Z\s\-.,!?;:'"]+$/;
 
     if (as.match(letters)) {
       shortCode = 'name';

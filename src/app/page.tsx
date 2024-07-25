@@ -66,15 +66,7 @@ export default function Home() {
           <div style={{ marginTop: showNavbar ? "60px" : 0, overflowY: "auto", flex: 1 }}>
             <MainPage />
           </div>
-          <div>
-            /--------------------
-            Hey daniella, This double image bug is done on purpose to check the dynamic scroll of the navbar, will remove this bug once we deploy web app to peeringpartner.com or we add new content below the given image ----/
-
-
-          </div>
-          <div style={{ marginTop: showNavbar ? "60px" : 0, overflowY: "auto", flex: 1 }}>
-            <MainPage />
-          </div>
+    
 
           {/* Footer */}
           <Footer />
