@@ -11,14 +11,14 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   let bgpdata = [];
   try{
-    const response = await fetch(`${backendURL}/charts/allCountries`);
+    const response = await fetch(`https://api.bgpview.io/reports/countries`);
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
     const jsonData = await response.json();
     bgpdata = jsonData;
   }catch(err){
-    
+    throw err;
   }
   return (
     <div className="h-screen " >

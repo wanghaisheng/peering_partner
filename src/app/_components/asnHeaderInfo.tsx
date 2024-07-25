@@ -92,7 +92,7 @@ export default function AsnHeaderInfo({ res_asn, res_peers, res_prefixes }: AsnH
 
               return (
                 <>
-                  <strong>ASN Allocated:</strong>
+                  <strong>ASN Allocated: </strong>
                   {day}<sup>{suffix}</sup>{monthName} {year}
                 </>
               );

@@ -53,21 +53,6 @@ export default function CountryBGPData({
       </div>
     );
 
-
-    const handlePrevPage = () => {
-      if (currentPage > 1) {
-        setCurrentPage(currentPage - 1);
-      }
-    };
-
-    const handleNextPage = () => {
-      if (currentPage < totalPages) {
-        setCurrentPage(currentPage + 1);
-      }
-    };
-
-
-
     const [sortColumn, setSortColumn] = useState('allocated_asn_count');
     const [sortOrder, setSortOrder] = useState('asc');
 
@@ -110,22 +95,6 @@ export default function CountryBGPData({
     }, []);
 
 
-    const itemsPerPage = 15;
-    const [currentPage, setCurrentPage] = useState(1);
-
-
-
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    const paginatedData = sortedData.slice(startIndex, endIndex);
-
-    const totalPages = Math.ceil(data.length / itemsPerPage);
-
-
-
-
-
-
     return (
       <div>
         <table className="min-w-full bg-white border-t border-b border-gray-300">
@@ -156,7 +125,7 @@ export default function CountryBGPData({
             </tr>
           </thead>
           <tbody className="bg-white">
-            {paginatedData.map((item: any = {}) => (
+            {sortedData.map((item: any = {}) => (
               <tr key={item.asn}>
                 <td >
                   <div className="flex items-center">
@@ -195,13 +164,6 @@ export default function CountryBGPData({
 
 
         </table>
-        {totalPages > 1 && (
-          <div className="flex justify-center mt-4">
-            <PaginationArrow direction="prev" onClick={handlePrevPage} />
-
-            <PaginationArrow direction="next" onClick={handleNextPage} />
-          </div>
-        )}
       </div>
 
 

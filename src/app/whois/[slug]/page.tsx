@@ -5,14 +5,20 @@ import Loading from "@/app/_components/loading";
 import { lazy, Suspense } from "react";
 
 const RawWhoIsInfo = lazy(() => import('@/app/_components/whoIsInfo'));
-
+const delay = (delayInms:number) => {
+  return new Promise(resolve => setTimeout(resolve, delayInms));
+};
 export default async function Page({ params }: { params: { slug: string } }) {
 
   const asn_number = params.slug;
   const res_asn = await getASNData(asn_number);
+  await delay(200);
   const res_asn_peers = await getPeersData(asn_number);
+  await delay(200);
   const res_asn_prefixes = await getPrefixData(asn_number);
+  await delay(200);
   const res_asn_whois = await getWhoIsData(asn_number);
+  await delay(200);
 
 
   return (
