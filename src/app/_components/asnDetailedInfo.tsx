@@ -59,7 +59,7 @@ export default function AsnDetailedInfo({
                   dateObj = new Intl.DateTimeFormat('en', { month: 'long' }).formatToParts(asnDate);
                   monthName = dateObj.find((part: any) => part.type === 'month')?.value || 'UnknownMonth';
                 } catch (error) {
-                  console.log("invalid date", error)
+                  console.log("Invalid date", error)
                 }
 
 
