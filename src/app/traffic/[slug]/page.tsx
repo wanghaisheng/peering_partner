@@ -14,7 +14,7 @@ export default async function TrafficPage({ params }: { params: { slug: string }
 
  
   return (
-    <body className="h-screen overflow-y-auto">
+    <div className="h-screen overflow-y-auto">
       <div className="flex flex-row min-h-screen bg-gray-100 text-gray-800">
         <div style={{ top: 0, left: 0, zIndex: 1, height: "100vh" }}>
           <SideNavbar activeOption="Live Internet Traffic" sidebarOpen={false} />
@@ -34,6 +34,6 @@ export default async function TrafficPage({ params }: { params: { slug: string }
           <Footer />
         </main>
       </div>
-    </body>
+    </div>
   );
 }
