@@ -1,31 +1,17 @@
-import { getASNData, getPeersData, getPrefixData, getDownstreamData } from '../../api/bgp/bgpApi';
-import React, { Suspense, lazy } from 'react';
-import Layout from "@/app/_components/layout";
-import Loading from '@/app/_components/loading'
+import React, { Suspense} from 'react';
+import Layout from '@/app/_components/layoutComponent/layout';
+import Loading from '@/app/_components/loading';
+import DownstreamsDetails from '../downstreams';
 
-const DownstreamsDetailsInfo = lazy(() => import('../../_components/downstreamDetailsInfo'));
-const delay = (delayInms:number) => {
-    return new Promise(resolve => setTimeout(resolve, delayInms));
-  };
 export default async function Page({ params }: { params: { slug: string } }) {
 
     const asn_number = params.slug;
-    const res_asn_downstreams = await getDownstreamData(asn_number);
-    await delay(200);
-    const res_asn = await getASNData(asn_number);
-    await delay(200);
-    const res_asn_peers = await getPeersData(asn_number);
-    await delay(200);
-    const res_asn_prefixes = await getPrefixData(asn_number);
-    await delay(200);
 
     return (
-        <Layout activeOption="Downstream" sidebarOpen={false} slug={asn_number} res_asn={res_asn} res_peers={res_asn_peers} res_prefixes={res_asn_prefixes}>
-            <div className="w-full border border-white-150 bg-white mb-4 p-4 overflow-auto">
+        <Layout activeOption="Downstream" sidebarOpen={false} slug={asn_number}>
+            <div className="w-full border border-white-150 bg-white mb-4 p-4">
                 <Suspense fallback={<Loading />}>
-                    <DownstreamsDetailsInfo
-                        res_downstreams={res_asn_downstreams}
-                    />
+                    <DownstreamsDetails asn_number={asn_number} />
                 </Suspense>
             </div>
         </Layout>

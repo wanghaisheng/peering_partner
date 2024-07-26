@@ -705,7 +705,7 @@ const searchString: string = slug?.toString() || '';
                 <div className="w-full md:w-1/2 border p-4 mb-4 bg-white">
                   <h2 className="text-2xl font-bold text-gray-800 p-4">HTTP versions</h2>
                   <p className="pl-4 text-l text-gray-400 font-bold">HTTP/1.x vs. HTTP/2 vs. HTTP/3</p>
-                  <div id="HttpVersionBubbleData" className='overflow-hidden ' style={{ height: 500 }}></div>
+                  <div id="HttpVersionBubbleData" className='overflow-hidden' style={{ height: 500 }}></div>
 
 
                 </div>
@@ -723,14 +723,14 @@ const searchString: string = slug?.toString() || '';
             <div className="border p-4 mb-4 bg-white">
               <h4 className="text-2xl font-bold text-gray-800 p-4">Layer 7 Attacks</h4>
               <p className="pl-4 text-l text-gray-400 font-bold">Top Mitigation Techniques</p>
-              <div id="SecurityandAttacks" className='overflow-hidden ' style={{ height: 500 }}></div>
+              <div id="SecurityandAttacks" className='overflow-hidden' style={{ height: 500 }}></div>
             </div>
 
             {/* Second Column - Second Row */}
             <div className="border p-4 bg-white">
               <h4 className="text-2xl font-bold text-gray-800 p-4">Layer 3/4 Attacks</h4>
               <p className="pl-4 text-l text-gray-400 font-bold">DDoS Attack Type</p>
-              <div id="Layer34AttacksBubble" className='overflow-hidden ' style={{ height: 500 }}></div>
+              <div id="Layer34AttacksBubble" className='overflow-hidden' style={{ height: 500 }}></div>
             </div>
           </div>
         </div>

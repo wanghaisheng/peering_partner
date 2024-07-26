@@ -19,7 +19,7 @@ export default function IXListInfo({ res_ix }: IXListProps) {
     }));
 
     return (
-        <div className="overflow-y-auto bg-white border-1 border-gray-150">
+        <div className="overflow-y-auto ">
             <table className="min-w-full border-t border-b bg-white">
                 <thead>
                     <tr>

@@ -7,7 +7,7 @@ interface PrefixesDetailsInfoProps {
 }
 
 
-export default function PeersDetailsInfo({ res_prefixes }: PrefixesDetailsInfoProps) {
+export default function PrefixesDetailedInfo({ res_prefixes }: PrefixesDetailsInfoProps) {
 
   const [selectedOptionPrefixes, setSelectedOptionPrefixes] = useState<'IPv4' | 'IPv6'>('IPv4');
 
