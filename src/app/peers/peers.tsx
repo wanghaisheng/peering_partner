@@ -13,10 +13,7 @@ export default async function PeersDetails({asn_number}: PeersDetailsProps) {
     if(!asn_number) {
         return;
     }
-
-    console.log('peers');
     const res_asn_peers = await Fetcher.getPeersData(asn_number);
-    console.log('peers getPeersData');
     return (
         <div className="w-full bg-white mb-4 p-4 overflow-auto md:overflow-hidden">
             <PeersDetailsInfo

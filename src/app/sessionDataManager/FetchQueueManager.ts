@@ -14,13 +14,13 @@ export class FetchQueueManager {
     return FetchQueueManager.instance;
   }
 
-  public async enqueue<T>(request: () => Promise<T>, delayTime: number): Promise<T> {
-    return new Promise<T>((resolve, reject) => {
+  public async enqueue(request: () => Promise<any>, delayTime: number): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
       this.queue = this.queue
         .then(request)
         .then(async (result) => {
-          await delay(delayTime);
-          resolve(result);
+          await delay((result.elapsedTime > delayTime)? 0 : Math.max(0, delayTime - result.elapsedTime));
+          resolve(result.data);
         })
         .catch(reject);
     });

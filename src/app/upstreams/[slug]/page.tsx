@@ -9,7 +9,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
     return (
         <Layout activeOption="Upstreams" sidebarOpen={false} slug={asn_number}>
-            <div className="w-full border border-white-150 bg-white mb-4 p-4 overflow-auto">
+            <div className="w-full border border-white-150 bg-white mb-4 p-4">
                 <Suspense fallback={<Loading />}>
                     <UpstreamsDetails asn_number={asn_number} />
                 </Suspense>
