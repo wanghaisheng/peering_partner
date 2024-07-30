@@ -16,6 +16,8 @@ export default async function AsnHeaderInfo({res_asn, res_peers, res_prefixes}: 
   const ipv6Prefixes = res_prefixes?.data?.ipv6_prefixes?.length || 0;
   const totalPrefixes = ipv4Prefixes + ipv6Prefixes;
 
+  const companyWebsite = res_asn?.data?.website;
+
   return (
     <div>
       {/* Main Header */}
@@ -38,8 +40,8 @@ export default async function AsnHeaderInfo({res_asn, res_peers, res_prefixes}: 
           </div>
 
         </div>
-        <div className="lg:block hidden my-auto">
-          <a className="text-white font-bold py-4 px-3 rounded inline-block" style={{background: "#30acbc"}} href="https://www.cloudflare.com" target="_blank" rel="nofollow noopener noreferrer">Company Website</a>
+        <div className={`${companyWebsite? "lg:block" : "hidden"}  my-auto`}>
+          <a className="text-white font-bold py-4 px-3 rounded inline-block" style={{background: "#30acbc"}} href={companyWebsite} target="_blank" rel="nofollow noopener noreferrer">Company Website</a>
         </div>
 
 

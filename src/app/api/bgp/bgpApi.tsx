@@ -4,7 +4,7 @@ export class ApiFetcher {
     private static instance: ApiFetcher;
     private fetchQueueManager = FetchQueueManager.getInstance();
     private promiseCache: Map<string, Promise<any>> = new Map();
-    private delay: number = 1000;
+    private delay: number = 1500;
 
     private constructor() {}
 

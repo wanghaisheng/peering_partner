@@ -7,17 +7,18 @@ import Loading from "../loading";
 import Header from "./header";
 
 interface LayoutProps {
+    on?: boolean;
     activeOption: string;
     sidebarOpen: boolean;
     slug: string;
     children: ReactNode;
 }
 
-const Layout = ({ children, activeOption, sidebarOpen, slug }: LayoutProps) => {
+const Layout = ({ children, activeOption, sidebarOpen, slug, on=true }: LayoutProps) => {
     return (
         <div className="flex flex-col min-h-screen">
             <div className="md:flex flex-row min-h-screen bg-white text-gray-800 overflow-hidden">
-                <div className="fixed top-5 left-0 z-10 md:z-1 h-full md:h-auto">
+                <div className={`${on? "fixed" : "hidden"} top-5 left-0 z-10 md:z-1 h-full md:h-auto`}>
                     <ASNSideNavbar activeOption={activeOption} sidebarOpen={sidebarOpen} slug={slug} />
                 </div>
                 <main className="flex flex-col md:ml-0 transition-all duration-150 ease-in flex-grow overflow-x-hidden">

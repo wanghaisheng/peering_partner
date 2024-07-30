@@ -12,72 +12,66 @@ export default function UniqueIX({ res_ix }: IXDetailsProps) {
 
     // Ensure that the response structure is as expected
 
-
+    const companyWebsite = res_ix?.data?.website;
 
     return (
-        <div className="container">
+        <div className="w-full bg-white">
             <div className=" pb-4">
                 {/* Main Header */}
-                <div className="flex">
+                <div className="w-full border bg-white p-4">
+                    <div className="flex">
 
-                    <div className="w-1/8 pt-4 ">
+                        <div className="w-1/8 pt-4 ">
 
-                        <div className="flag-icon">
-                            <img className="pull-left title-flag" width="78" height="78" src={`https://bgpview.io/assets/flags/shiny/64/${res_ix?.data?.country_code}.png`} title="<?php echo $country_name; ?>" />
+                            <div className="flag-icon">
+                                <img className="pull-left title-flag" width="78" height="78" src={`https://bgpview.io/assets/flags/shiny/64/${res_ix?.data?.country_code}.png`} title="<?php echo $country_name; ?>" />
 
-                        </div>
-                    </div>
-
-                    <div className="w-2/3 p-4">
-                        <div className="text-4xl ">
-                            <p>{res_ix?.data?.name} </p>
-                        </div>
-                        <div className="text-xl font-bold">
-                            <p className="text-gray-300">{res_ix?.data?.name_full}</p>
+                            </div>
                         </div>
 
+                        <div className="w-2/3 p-4">
+                            <div className="text-4xl ">
+                                <p>{res_ix?.data?.name} </p>
+                            </div>
+                            <div className="text-xl font-bold">
+                                <p className="text-gray-300">{res_ix?.data?.name_full}</p>
+                            </div>
+
+                        </div>
+
+
+
+
+                        <div className={`${companyWebsite ? "lg:block" : "hidden"}  my-auto`}>
+                            <a className="text-white font-bold py-4 px-3 rounded inline-block" style={{ background: "#30acbc" }} href={companyWebsite} target="_blank" rel="nofollow noopener noreferrer">Company Website</a>
+                        </div>
+
                     </div>
-
-
-
-
-                    <div className="w-1/6 p-4 ml-auto">
-                        <a href={res_ix?.data?.website} target="_blank">
-                            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-4 rounded" style={{ backgroundColor: '#2c94b3' }}>
-                                Company Website
-                            </button>
-                        </a>
+                    <hr></hr>
+                    <div className="flex flex-wrap">
+                        <div className="w-full sm:w-1/4 p-2">
+                            <strong>Tech Email:</strong> {res_ix?.data?.tech_email}
+                        </div>
+                        <div className="w-full sm:w-1/4 p-2">
+                            <strong>Tech Phone:</strong> {res_ix?.data?.tech_phone}
+                        </div>
+                        <div className="w-full sm:w-1/4 p-2">
+                            <strong>Policy Email:</strong> {res_ix?.data?.policy_email ? res_ix?.data?.policy_email : "Unknown"}
+                        </div>
+                        <div className="w-full sm:w-1/4 p-2">
+                            <strong>Policy Phone:</strong> {res_ix?.data?.policy_phone ? res_ix?.data?.policy_phone : "Unknown"}
+                        </div>
 
 
                     </div>
-
                 </div>
-
-                <hr></hr>
-                <div className="flex flex-wrap">
-                    <div className="w-full sm:w-1/4 p-2">
-                        <strong>Tech Email:</strong> {res_ix?.data?.tech_email}
-                    </div>
-                    <div className="w-full sm:w-1/4 p-2">
-                        <strong>Tech Phone:</strong> {res_ix?.data?.tech_phone}
-                    </div>
-                    <div className="w-full sm:w-1/4 p-2">
-                        <strong>Policy Email:</strong> {res_ix?.data?.policy_email ? res_ix?.data?.policy_email : "Unknown"}
-                    </div>
-                    <div className="w-full sm:w-1/4 p-2">
-                        <strong>Policy Phone:</strong> {res_ix?.data?.policy_phone ? res_ix?.data?.policy_phone : "Unknown"}
-                    </div>
-
-
-                </div>
-                <hr></hr>
             </div>
 
 
-            <div className="border border-gray-300 rounded-lg p-2">
+            <div className="border border-gray-150 p-8">
                 {/* Header Row */}
 
-                <div className="header-row pt-12 pb-4">
+                <div className="header-row">
                     <h1 className="text-gray-700 text-2xl">{res_ix?.data?.name} Summary</h1>
                 </div>
 
