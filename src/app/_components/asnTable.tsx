@@ -49,7 +49,7 @@ const ASNTables: React.FC<StreamTablesProps> = ({ data, ipvType }) => {
                 <img src={`https://bgpview.io/assets/flags/shiny/24/${item.country}.png`} alt="Flag" className="inline-block" />
               </td>
               <td className="border-b border-gray-300 px-4 py-2 text-center" style={{ color: 'rgba(37, 169, 189, 0.97)' }}>
-                <Link href={getModifiedHref(item.asn)}>AS{item.asn}</Link>
+                <Link href={`/${item.asn}`}>AS{item.asn}</Link>
               </td>
               <td className="border-b border-gray-300 px-4 py-2 text-gray-400 font-bold text-center">{item.name}</td>
               <td className="border-b border-gray-300 px-4 py-2 text-gray-400 font-bold text-center" style={{ wordBreak: 'break-word' }}>{item.description}</td>

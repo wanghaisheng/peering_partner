@@ -146,13 +146,11 @@ export default function AsnDetailedInfo({
             <div><h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV4 PREFIXES:</h2><b>{ipv4Prefixes}</b></div>
             <div><h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV4 PEERS:</h2><b>{ipv4Count}</b></div>
             <div><h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV4 UPSTREAMS:</h2><b>{ipv4Upstreams}</b></div>
-            <div><h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV4 DOWNSTREAMS:</h2><b>{ipv4Downstreams}</b></div>
           </div>
           <div className="flex-1">
             <div><h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV6 PREFIXES:</h2><b>{ipv6Prefixes}</b></div>
             <div><h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV6 PEERS:</h2><b>{ipv6Count}</b></div>
             <div><h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV6 UPSTREAMS:</h2><b>{ipv6Upstreams}</b></div>
-            <div><h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV6 DOWNSTREAMS:</h2><b>{ipv6Downstreams}</b></div>
           </div>
         </div>
         <hr />
