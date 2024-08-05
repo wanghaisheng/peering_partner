@@ -7,7 +7,7 @@ interface PeersDetailsProps {
 }
 
 const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
-const DELAY = 2000;
+const DELAY = 750;
 
 export default async function PeersDetails({ asn_number }: PeersDetailsProps) {
 
@@ -15,10 +15,13 @@ export default async function PeersDetails({ asn_number }: PeersDetailsProps) {
         return;
     }
     const res_asn = await getASNData(asn_number);
+    console.log('peers' + asn_number);
     await delay(DELAY);
     const res_asn_prefixes = await getPrefixData(asn_number);
+    console.log('peers' + asn_number);
     await delay(DELAY);
     const res_asn_peers = await getPeersData(asn_number);
+    console.log('peers' + asn_number);
     await delay(DELAY);
     return (
         <>

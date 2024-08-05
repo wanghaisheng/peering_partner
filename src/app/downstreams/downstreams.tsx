@@ -7,7 +7,7 @@ interface DownstreamsDetailsProps {
 }
 
 const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
-const DELAY = 2000;
+const DELAY = 750;
 export default async function DownstreamsDetails({asn_number}: DownstreamsDetailsProps) {
 
     if(!asn_number) {

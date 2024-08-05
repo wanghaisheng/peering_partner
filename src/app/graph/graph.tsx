@@ -6,7 +6,7 @@ interface GraphProps {
 
 
 const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
-const DELAY = 2000;
+const DELAY = 750;
 export default async function Graph({ asn_number }: GraphProps) {
 
     if (!asn_number)

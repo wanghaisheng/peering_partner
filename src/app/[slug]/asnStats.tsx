@@ -7,20 +7,25 @@ interface AsnStatsProps {
 }
 
 const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
-const DELAY = 2000;
+const DELAY = 750;
 export default async function AsnStats({ asn }: AsnStatsProps) {
   if (!asn) {
     return <div>No ASN provided</div>;
   }
   const res_asn = await getASNData(asn);
+  console.log(asn);
   await delay(DELAY);
   const res_asn_peers = await getPeersData(asn);
+  console.log(asn);
   await delay(DELAY);
   const res_asn_prefixes = await getPrefixData(asn);
+  console.log(asn);
   await delay(DELAY);
   const res_asn_upstreams = await getUpstreamData(asn);
+  console.log(asn);
   await delay(DELAY);
   const res_asn_ix = await getIXData(asn);
+  console.log(asn);
   await delay(DELAY);
 
   return (
