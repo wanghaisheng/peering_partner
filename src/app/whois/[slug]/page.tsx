@@ -10,7 +10,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   return (
     <Layout activeOption="Raw Whois" sidebarOpen={false} slug={asn_number}>
-      <WhoIsDetails asn_number={asn_number} />
+      <Suspense fallback={<Loading />}>
+        <WhoIsDetails asn_number={asn_number} />
+      </Suspense>
     </Layout>
   );
 }

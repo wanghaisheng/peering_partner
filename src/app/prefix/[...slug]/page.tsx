@@ -12,6 +12,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   const prefix = params.slug;
   console.log(prefix);
+  
   const res_prefix = await getUniquePrefixData(prefix);
 
 

@@ -1,7 +1,10 @@
 
-import {getASNData, getPeersData, getPrefixData } from '../api/bgp/bgpApi';
+// import {getASNData, getPeersData, getPrefixData } from '../api/bgp/bgpApi';
 import AsnHeaderInfo from '../_components/asnHeaderInfo';
 import PeersDetailsInfo from '../_components/peersDetailedInfo';
+import { ApiFetcher } from '../api/bgp/bgpApi';
+
+const Fetcher = ApiFetcher.getInstance();
 interface PeersDetailsProps {
     asn_number: string | null;
 }
@@ -14,15 +17,15 @@ export default async function PeersDetails({ asn_number }: PeersDetailsProps) {
     if (!asn_number) {
         return;
     }
-    const res_asn = await getASNData(asn_number);
-    console.log('peers' + asn_number);
-    await delay(DELAY);
-    const res_asn_prefixes = await getPrefixData(asn_number);
-    console.log('peers' + asn_number);
-    await delay(DELAY);
-    const res_asn_peers = await getPeersData(asn_number);
-    console.log('peers' + asn_number);
-    await delay(DELAY);
+    const res_asn = await Fetcher.getASNData(asn_number);
+    // console.log('peers' + asn_number);
+    // await delay(DELAY);
+    const res_asn_prefixes = await Fetcher.getPrefixData(asn_number);
+    // console.log('peers' + asn_number);
+    // await delay(DELAY);
+    const res_asn_peers = await Fetcher.getPeersData(asn_number);
+    // console.log('peers' + asn_number);
+    // await delay(DELAY);
     return (
         <>
             <div className="w-full border border-white-150 bg-white mb-4 p-4">

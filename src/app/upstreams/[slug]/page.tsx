@@ -9,7 +9,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
     return (
         <Layout activeOption="Upstreams" sidebarOpen={false} slug={asn_number}>
-            <UpstreamsDetails asn_number={asn_number} />
+            <Suspense fallback={<Loading />}>
+                <UpstreamsDetails asn_number={asn_number} />
+            </Suspense>
         </Layout>
     );
 }

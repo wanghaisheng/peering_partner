@@ -1,16 +1,16 @@
 import Navbar from "../../_components/navbar";
 import Footer from "../../_components/footer";
-import { getUniqueIPData } from "../../api/ip/ipapi";
+// import { getUniqueIPData } from "../../api/ip/ipapi";
+import { ApiFetcher } from "@/app/api/bgp/bgpApi";
 import UniqueIP from "@/app/_components/uniqueIP";
 
-
-
+const Fetcher = ApiFetcher.getInstance();
 
 export default async function Page({ params }: { params: { slug: string } }) {
 
   const ip = params.slug;
 
-  const res_ip = await getUniqueIPData(ip);
+  const res_ip = await Fetcher.getUniqueIPData(ip);
 
   return (
     <div className="bg-white min-h-screen">

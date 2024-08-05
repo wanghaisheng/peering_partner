@@ -1,6 +1,8 @@
 
 import Layout from '../_components/layoutComponent/layout';
 import AsnStats from './asnStats';
+import Loading from '../_components/loading';
+import { Suspense } from 'react';
 
 export default async function Page({ params }: { params: { slug: string } }) {
 
@@ -8,7 +10,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   return (
     <Layout activeOption="ASN Stats" sidebarOpen={false} slug={asn}>
+      <Suspense fallback={<Loading/>}>
           <AsnStats asn={asn} />
+      </Suspense>
     </Layout>
   );
 }

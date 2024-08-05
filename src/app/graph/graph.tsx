@@ -1,5 +1,8 @@
-import {getASNData, getPeersData, getPrefixData, getSVGData} from '../api/bgp/bgpApi';
+// import {getASNData, getPeersData, getPrefixData, getSVGData} from '../api/bgp/bgpApi';
 import AsnHeaderInfo from "../_components/asnHeaderInfo";
+import { ApiFetcher } from '../api/bgp/bgpApi';
+
+const Fetcher = ApiFetcher.getInstance();
 interface GraphProps {
     asn_number: string | null;
 }
@@ -12,14 +15,14 @@ export default async function Graph({ asn_number }: GraphProps) {
     if (!asn_number)
         return;
 
-    const svgContent = await getSVGData(asn_number);
-    await delay(DELAY);
-    const res_asn = await getASNData(asn_number);
-    await delay(DELAY);
-    const res_asn_prefixes = await getPrefixData(asn_number);
-    await delay(DELAY);
-    const res_asn_peers = await getPeersData(asn_number);
-    await delay(DELAY);
+    const svgContent = await Fetcher.getSvgData(asn_number);
+    // await delay(DELAY);
+    const res_asn = await Fetcher.getASNData(asn_number);
+    // await delay(DELAY);
+    const res_asn_prefixes = await Fetcher.getPrefixData(asn_number);
+    // await delay(DELAY);
+    const res_asn_peers = await Fetcher.getPeersData(asn_number);
+    // await delay(DELAY);
 
     return (
         <>

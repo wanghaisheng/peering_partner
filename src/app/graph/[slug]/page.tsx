@@ -9,7 +9,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   return (
     <Layout activeOption="Graph" sidebarOpen={false} slug={asn_number}>
+        <Suspense fallback={<Loading/>}>
           <Graph asn_number={asn_number} />
+        </Suspense>
     </Layout>
   );
 }

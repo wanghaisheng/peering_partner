@@ -1,16 +1,17 @@
 import Navbar from "../../_components/navbar";
 import Footer from "../../_components/footer";
-import { getUniqueIXData } from "../../api/ix/ixapi";
+// import { getUniqueIXData } from "../../api/ix/ixapi";
 import UniqueIX from "@/app/_components/uniqueIX";
 import ASNSideNavbar from "@/app/_components/asnSideNavbar";
+import { ApiFetcher } from "@/app/api/bgp/bgpApi";
 
-
+const Fetcher = ApiFetcher.getInstance();
 
 export default async function Page({ params }: { params: { slug: string } }) {
 
   const ix = params.slug;
 
-  const res_ix = await getUniqueIXData(ix);
+  const res_ix = await Fetcher.getUniqueIXData(ix);
 
   return (
     <div className="flex flex-col min-h-screen">
