@@ -15,10 +15,10 @@ export default function UniqueIP({ res_ip }: IPDetailsProps) {
 
 
   return (
-    <div className="container">
+    <div className="w-full bg-white">
       <div className=" pb-4">
         {/* Main Header */}
-        <div className="flex">
+        <div className="w-full border bg-white p-4">
 
           <div className="w-1/8 pt-4 ">
 
@@ -44,14 +44,10 @@ export default function UniqueIP({ res_ip }: IPDetailsProps) {
 
 
         </div>
-
-        <hr></hr>
-
-        <hr></hr>
       </div>
 
 
-      <div className="border border-gray-300 rounded-lg p-2">
+      <div className="border border-white-150 p-2">
 
 
         <div className="header-row pt-12 pb-4">
@@ -85,7 +81,7 @@ export default function UniqueIP({ res_ip }: IPDetailsProps) {
                   const year = asnDate.getFullYear();
                   const monthNum = asnDate.getMonth() + 1; // JavaScript months are 0-based
                   const dateObj = new Intl.DateTimeFormat('en', { month: 'long' }).formatToParts(asnDate);
-                  const monthName = dateObj.find((part:any) => part.type === 'month')?.value || 'UnknownMonth';
+                  const monthName = dateObj.find((part: any) => part.type === 'month')?.value || 'UnknownMonth';
 
                   const day = asnDate.getDate();
 
@@ -117,7 +113,6 @@ export default function UniqueIP({ res_ip }: IPDetailsProps) {
 
         </div>
 
-        <hr />
 
 
 

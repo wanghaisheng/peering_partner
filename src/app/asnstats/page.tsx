@@ -13,7 +13,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
   try{
     const response = await fetch(`https://api.bgpview.io/reports/countries`);
     if (!response.ok) {
-      throw new Error('Network response was not ok');
+      const errorText = await response.text();
+      throw new Error(`${errorText}`);
     }
     const jsonData = await response.json();
     bgpdata = jsonData;

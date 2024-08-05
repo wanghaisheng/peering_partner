@@ -99,7 +99,7 @@ const sidebarItems = [
          </svg>
 
       ),
-      text: "Routing Information",
+      text: "Home",
       navigation: "#"
    },
    {
@@ -108,7 +108,7 @@ const sidebarItems = [
   <path d="m27.49 0 1.19 1.34a27.92 27.92 0 0 0 15.37 7.59l1.37.19 1.72 1.98v14.14c0 19.52-18.73 29.13-19.53 29.52l-.71.36h-1.79l-.71-.36c-.66-.33-13.67-6.99-18.08-20.42h4.24c4.01 10.43 13.9 16 15.43 16.75 2-1.02 17.15-9.49 17.15-25.85v-12.4a32.16 32.16 0 0 1-17.15-8.5 32.11 32.11 0 0 1-17.09 8.5v9.5h-4V11.12l1.72-2 1.37-.19a27.82 27.82 0 0 0 15.34-7.59L24.49 0h3zm-.38 17.75-2.83 2.83 5.66 5.65H0v4h29.94l-5.66 5.66 2.83 2.83L37.6 28.23 27.11 17.75z"></path>
 </svg>
 ),
-      text: "IXP Statistics",
+      text: "Resources",
       navigation: "#",
    },
    {
@@ -128,7 +128,7 @@ const sidebarItems = [
          </svg>
 
       ),
-      text: "Outage Center",
+      text: "Routing Information",
       navigation: "#"
    },
 ];

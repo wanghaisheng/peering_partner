@@ -2,12 +2,12 @@
 import React from 'react';
 
 interface AsnDetailedInfoProps {
-  res_asn: Record<string, any>;
-  res_peers: Record<string, any>;
-  res_prefixes: Record<string, any>;
-  res_upstreams: Record<string, any>;
-  res_downstreams: Record<string, any>;
-  res_ix: Record<string, any>;
+  res_asn: Record<string, any> | null;
+  res_peers: Record<string, any> | null;
+  res_prefixes: Record<string, any> | null;
+  res_upstreams: Record<string, any> | null;
+  res_downstreams: Record<string, any> | null;
+  res_ix: Record<string, any> | null;
 }
 
 
@@ -31,7 +31,7 @@ export default function AsnDetailedInfo({
   const ipv4Downstreams = res_downstreams?.data?.ipv4_downstreams?.length || 0;
   const ipv6Downstreams = res_downstreams?.data?.ipv6_downstreams?.length || 0;
 
-  const totalIX = res_ix.data?.length || 0;
+  const totalIX = res_ix?.data?.length || 0;
 
   const ASNSummary = () => {
     return (
@@ -146,13 +146,11 @@ export default function AsnDetailedInfo({
             <div><h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV4 PREFIXES:</h2><b>{ipv4Prefixes}</b></div>
             <div><h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV4 PEERS:</h2><b>{ipv4Count}</b></div>
             <div><h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV4 UPSTREAMS:</h2><b>{ipv4Upstreams}</b></div>
-            <div><h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV4 DOWNSTREAMS:</h2><b>{ipv4Downstreams}</b></div>
           </div>
           <div className="flex-1">
             <div><h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV6 PREFIXES:</h2><b>{ipv6Prefixes}</b></div>
             <div><h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV6 PEERS:</h2><b>{ipv6Count}</b></div>
             <div><h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV6 UPSTREAMS:</h2><b>{ipv6Upstreams}</b></div>
-            <div><h2 className="text-l text-gray-400 font-bold p-1 inline-block">IPV6 DOWNSTREAMS:</h2><b>{ipv6Downstreams}</b></div>
           </div>
         </div>
         <hr />

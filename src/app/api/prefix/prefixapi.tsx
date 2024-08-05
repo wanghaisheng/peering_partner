@@ -8,7 +8,7 @@ export async function getUniquePrefixData(unique_prefix: string) {
 
     if (!res_prefixes.ok) {
       const errorText = await res_prefixes.text();
-      throw new Error(`Failed to fetch prefixes data. Status: ${res_prefixes.status}, Status Text: ${res_prefixes.statusText}, Response: ${errorText}`);
+      throw new Error(`${errorText}`);
     }
 
     return res_prefixes.json();
