@@ -34,6 +34,7 @@ export class ApiFetcher {
         } finally {
             const elapsedTime = Date.now() - startTime;
             await delay(Math.max(0, this.delay - elapsedTime));
+            await delay(this.retryDelay - elapsedTime);
         }
     }
 
