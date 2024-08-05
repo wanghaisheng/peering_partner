@@ -8,9 +8,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   return (
     <Layout activeOption="ASN Stats" sidebarOpen={false} slug={asn}>
-        <div className="w-full border border-white-150 bg-white mb-4 p-4 overflow-auto md:overflow-hidden">
-              <AsnStats asn={asn} />
-        </div>
+          <AsnStats asn={asn} />
     </Layout>
   );
 }

@@ -31,9 +31,6 @@ const Layout = ({ children, activeOption, sidebarOpen, slug, on=true }: LayoutPr
                         <div className="p-2 md:p-4 border border-white-150">
                             {/* Add content for the information box */}
                             <div className="md:flex md:flex-wrap">
-                                <div className="w-full border border-white-150 bg-white mb-4 p-4">
-                                    <Header asn={slug} />
-                                </div>
                                 {children}
                             </div>
                         </div>

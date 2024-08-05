@@ -8,9 +8,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
     return (
         <Layout activeOption="Prefixes" sidebarOpen={false} slug={asn_number}>
-            <div className="w-full border border-white-150 bg-white mb-4 p-4">
-                    <PrefixesDetails asn_number={asn_number}/>
-            </div>
+            <PrefixesDetails asn_number={asn_number} />
         </Layout>
     );
 }

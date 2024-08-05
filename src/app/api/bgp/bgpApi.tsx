@@ -1,11 +1,11 @@
-
 const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
+
 export class ApiFetcher {
     private static instance: ApiFetcher;
-    private promiseCache: Map<string, Promise<any>> = new Map();
     private retryCount: number = 3;
-    private retryDelay: number = 500; 
-    private delay: number = 1500;
+    private retryDelay: number = 1000;
+    private delay: number = 0;
+
     private constructor() {}
 
     public static getInstance() {
@@ -18,7 +18,7 @@ export class ApiFetcher {
     private async fetchWithRetry(url: string, retries: number = this.retryCount): Promise<any> {
         const startTime = Date.now();
         try {
-            console.log('fetching...')
+            console.log('fetching...' + url);
             const response = await fetch(url);
             if (retries <= 0 && !response.ok) {
                 const errorText = await response.text();
@@ -27,6 +27,7 @@ export class ApiFetcher {
             return await response.json();
         } catch (error) {
             if (retries > 0) {
+                console.log('retrying..' + retries);
                 await delay(this.retryDelay * retries);
                 return this.fetchWithRetry(url, retries - 1);
             }
@@ -34,59 +35,44 @@ export class ApiFetcher {
         } finally {
             const elapsedTime = Date.now() - startTime;
             await delay(Math.max(0, this.delay - elapsedTime));
-            console.log('fetched... with delay'+ Math.max(0, this.delay - elapsedTime));
+            console.log({elapsedTime});
+            console.log('fetched... with delay ' + url + ' ' + Math.max(0, this.delay - elapsedTime));
         }
-    }
-
-    private getOrFetchData(cacheKey: string, fetchFunction: () => Promise<any>) {
-        if (!this.promiseCache.has(cacheKey)) {
-            const fetchPromise = fetchFunction().then(result => {
-                this.promiseCache.delete(cacheKey);
-                return result;
-            }).catch(error => {
-                this.promiseCache.delete(cacheKey);
-                throw error;
-            });
-
-            this.promiseCache.set(cacheKey, fetchPromise);
-        }
-
-        return this.promiseCache.get(cacheKey)!;
     }
 
     public async getASNData(asn: string) {
-        const cacheKey = `asn-${asn}`;
-        return this.getOrFetchData(cacheKey, () => this.fetchWithRetry(`https://api.bgpview.io/asn/${asn}`));
+        const url = `https://api.bgpview.io/asn/${asn}`;
+        return this.fetchWithRetry(url);
     }
 
     public async getPeersData(asn: string) {
-        const cacheKey = `peers-${asn}`;
-        return this.getOrFetchData(cacheKey, () => this.fetchWithRetry(`https://api.bgpview.io/asn/${asn}/peers`));
+        const url = `https://api.bgpview.io/asn/${asn}/peers`;
+        return this.fetchWithRetry(url);
     }
 
     public async getPrefixData(asn: string) {
-        const cacheKey = `prefixes-${asn}`;
-        return this.getOrFetchData(cacheKey, () => this.fetchWithRetry(`https://api.bgpview.io/asn/${asn}/prefixes`));
+        const url = `https://api.bgpview.io/asn/${asn}/prefixes`;
+        return this.fetchWithRetry(url);
     }
 
     public async getUpstreamData(asn: string) {
-        const cacheKey = `upstreams-${asn}`;
-        return this.getOrFetchData(cacheKey, () => this.fetchWithRetry(`https://api.bgpview.io/asn/${asn}/upstreams`));
+        const url = `https://api.bgpview.io/asn/${asn}/upstreams`;
+        return this.fetchWithRetry(url);
     }
 
     public async getDownstreamData(asn: string) {
-        const cacheKey = `downstreams-${asn}`;
-        return this.getOrFetchData(cacheKey, () => this.fetchWithRetry(`https://api.bgpview.io/asn/${asn}/downstreams`));
+        const url = `https://api.bgpview.io/asn/${asn}/downstreams`;
+        return this.fetchWithRetry(url);
     }
 
     public async getIXData(asn: string) {
-        const cacheKey = `ixs-${asn}`;
-        return this.getOrFetchData(cacheKey, () => this.fetchWithRetry(`https://api.bgpview.io/asn/${asn}/ixs`));
+        const url = `https://api.bgpview.io/asn/${asn}/ixs`;
+        return this.fetchWithRetry(url);
     }
 
     public async getWhoIsData(asn: string) {
-        const cacheKey = `whois-${asn}`;
-        return this.getOrFetchData(cacheKey, () => this.fetchWithRetry(`https://wq.apnic.net/query?searchtext=${asn}`));
+        const url = `https://wq.apnic.net/query?searchtext=${asn}`;
+        return this.fetchWithRetry(url);
     }
 
     public async getSvgData(asn_number: string) {
