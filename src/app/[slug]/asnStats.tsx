@@ -12,14 +12,11 @@ export default async function AsnStats({ asn }: AsnStatsProps) {
   if (!asn) {
     return <div>No ASN provided</div>;
   }
-  // const res_asn = await fetcher.getASNData(asn);
-  // const res_asn_peers = await fetcher.getPeersData(asn);
-  // const res_asn_prefixes = await fetcher.getPrefixData(asn);
-  // const res_asn_upstreams = await fetcher.getUpstreamData(asn);
-  // const res_asn_ix = await fetcher.getIXData(asn);
-
-  const [res_asn, res_asn_peers, res_asn_prefixes, res_asn_upstreams, res_asn_ix] = 
-  await Promise.all([fetcher.getASNData(asn), fetcher.getPeersData(asn), fetcher.getPrefixData(asn), fetcher.getUpstreamData(asn), fetcher.getIXData(asn)]);
+  const res_asn = await fetcher.getASNData(asn);
+  const res_asn_peers = await fetcher.getPeersData(asn);
+  const res_asn_prefixes = await fetcher.getPrefixData(asn);
+  const res_asn_upstreams = await fetcher.getUpstreamData(asn);
+  const res_asn_ix = await fetcher.getIXData(asn);
 
   return (
     <>
