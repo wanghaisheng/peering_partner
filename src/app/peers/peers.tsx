@@ -7,7 +7,7 @@ interface PeersDetailsProps {
 }
 
 const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
-const DELAY = 500;
+const DELAY = 2000;
 
 export default async function PeersDetails({ asn_number }: PeersDetailsProps) {
 
