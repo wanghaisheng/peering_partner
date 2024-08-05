@@ -91,7 +91,8 @@ const searchString: string = slug?.toString() || '';
       try {
         const response = await fetch(`${backendURL}/charts/TrafficVolumeXY/fetch?location=${slug}`);
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          const error = await response.text();
+          throw new Error(`${error}`);
         }
         const jsonData = await response.json();
 
@@ -180,7 +181,8 @@ const searchString: string = slug?.toString() || '';
       try {
         const response = await fetch(`${backendURL}/charts/Layer7AttacksBubble/fetch?location=${slug}`);
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          const error = await response.text();
+          throw new Error(`${error}`);
         }
         const jsonData = await response.json();
         console.log("Data", jsonData)
@@ -250,7 +252,8 @@ const searchString: string = slug?.toString() || '';
       try {
         const response = await fetch(`${backendURL}/charts/Layer34AttacksBubble/fetch?location=${slug}`);
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          const error = await response.text();
+          throw new Error(`${error}`);
         }
         const jsonData = await response.json();
         console.log("Data", jsonData)
@@ -318,7 +321,8 @@ const searchString: string = slug?.toString() || '';
       try {
         const response = await fetch(`${backendURL}/charts/IpVersionBubble/fetch?location=${slug}`);
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          const error = await response.text();
+          throw new Error(`${error}`);
         }
         const jsonData = await response.json();
         console.log("Data", jsonData)
@@ -386,7 +390,8 @@ const searchString: string = slug?.toString() || '';
       try {
         const response = await fetch(`${backendURL}/charts/HttpVersionBubble/fetch?location=${slug}`);
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          const error = await response.text();
+          throw new Error(`${error}`);
         }
         const jsonData = await response.json();
         console.log("Data", jsonData)
@@ -460,7 +465,8 @@ const searchString: string = slug?.toString() || '';
       try {
         const response = await fetch(`${backendURL}/charts/TrafficTrendsXY/fetch?location=${slug}`);
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          const error = await response.text();
+          throw new Error(`${error}`);
         }
         const jsonData = await response.json();
         console.log("Data", jsonData)
@@ -561,7 +567,8 @@ const searchString: string = slug?.toString() || '';
       try {
         const response = await fetch(`${backendURL}/charts/TopAsnList/fetch?location=${slug}`);
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          const error = await response.text();
+          throw new Error(`${error}`);
         }
         const jsonData = await response.json();
 

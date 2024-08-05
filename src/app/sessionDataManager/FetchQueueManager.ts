@@ -19,8 +19,10 @@ export class FetchQueueManager {
       this.queue = this.queue
         .then(request)
         .then(async (result) => {
-          await delay((result.elapsedTime > delayTime)? 0 : Math.max(0, delayTime - result.elapsedTime));
+          console.log((result.elapsedTime > delayTime)? 0 : Math.max(0, delayTime - result.elapsedTime));
+          await delay((result.elapsedTime > delayTime)? 0 : Math.max(0, delayTime - result.elapsedTime));    
           resolve(result.data);
+          
         })
         .catch(reject);
     });

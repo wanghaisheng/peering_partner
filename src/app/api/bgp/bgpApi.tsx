@@ -1,11 +1,11 @@
-import { FetchQueueManager } from "@/app/sessionDataManager/FetchQueueManager";
+import { start } from "repl";
 
+const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
 export class ApiFetcher {
     private static instance: ApiFetcher;
-    private fetchQueueManager = FetchQueueManager.getInstance();
     private promiseCache: Map<string, Promise<any>> = new Map();
-    private delay: number = 1500;
-
+    private retryCount: number = 3;
+    private retryDelay: number = 500; 
     private constructor() {}
 
     public static getInstance() {
@@ -15,21 +15,25 @@ export class ApiFetcher {
         return ApiFetcher.instance;
     }
 
-
-    private async fetchDataWithQueue(url: string, cacheKey?: string): Promise<any> {
-        const request = async () => {
-            const startTime = Date.now();
-            const response = await fetch(url, {cache: 'no-cache'});
-            if (!response.ok) {
+    private async fetchWithRetry(url: string, retries: number = this.retryCount): Promise<any> {
+        const startTime = Date.now();
+        try {
+            const response = await fetch(url);
+            if (retries <= 0 && !response.ok) {
                 const errorText = await response.text();
-                throw new Error(`Failed to fetch data from ${url}. Status: ${response.status}, Status Text: ${response.statusText}, Response: ${errorText}`);
+                throw new Error(`${errorText}`);
             }
-            const data = await response.json();
+            return await response.json();
+        } catch (error) {
+            if (retries > 0) {
+                await delay(this.retryDelay * retries);
+                return this.fetchWithRetry(url, retries - 1);
+            }
+            throw error;
+        } finally {
             const elapsedTime = Date.now() - startTime;
-            return { elapsedTime, data };
-        };
-
-        return this.fetchQueueManager.enqueue(request, this.delay);
+            await delay(this.retryDelay - elapsedTime);
+        }
     }
 
     private getOrFetchData(cacheKey: string, fetchFunction: () => Promise<any>) {
@@ -50,45 +54,51 @@ export class ApiFetcher {
 
     public async getASNData(asn: string) {
         const cacheKey = `asn-${asn}`;
-        return this.getOrFetchData(cacheKey, () => this.fetchDataWithQueue(`https://api.bgpview.io/asn/${asn}`, cacheKey));
+        return this.getOrFetchData(cacheKey, () => this.fetchWithRetry(`https://api.bgpview.io/asn/${asn}`));
     }
 
     public async getPeersData(asn: string) {
         const cacheKey = `peers-${asn}`;
-        return this.getOrFetchData(cacheKey, () => this.fetchDataWithQueue(`https://api.bgpview.io/asn/${asn}/peers`, cacheKey));
+        return this.getOrFetchData(cacheKey, () => this.fetchWithRetry(`https://api.bgpview.io/asn/${asn}/peers`));
     }
 
     public async getPrefixData(asn: string) {
         const cacheKey = `prefixes-${asn}`;
-        return this.getOrFetchData(cacheKey, () => this.fetchDataWithQueue(`https://api.bgpview.io/asn/${asn}/prefixes`, cacheKey));
+        return this.getOrFetchData(cacheKey, () => this.fetchWithRetry(`https://api.bgpview.io/asn/${asn}/prefixes`));
     }
 
     public async getUpstreamData(asn: string) {
         const cacheKey = `upstreams-${asn}`;
-        return this.getOrFetchData(cacheKey, () => this.fetchDataWithQueue(`https://api.bgpview.io/asn/${asn}/upstreams`, cacheKey));
+        return this.getOrFetchData(cacheKey, () => this.fetchWithRetry(`https://api.bgpview.io/asn/${asn}/upstreams`));
     }
 
     public async getDownstreamData(asn: string) {
         const cacheKey = `downstreams-${asn}`;
-        return this.getOrFetchData(cacheKey, () => this.fetchDataWithQueue(`https://api.bgpview.io/asn/${asn}/downstreams`, cacheKey));
+        return this.getOrFetchData(cacheKey, () => this.fetchWithRetry(`https://api.bgpview.io/asn/${asn}/downstreams`));
     }
 
     public async getIXData(asn: string) {
         const cacheKey = `ixs-${asn}`;
-        return this.getOrFetchData(cacheKey, () => this.fetchDataWithQueue(`https://api.bgpview.io/asn/${asn}/ixs`, cacheKey));
+        return this.getOrFetchData(cacheKey, () => this.fetchWithRetry(`https://api.bgpview.io/asn/${asn}/ixs`));
     }
 
     public async getWhoIsData(asn: string) {
         const cacheKey = `whois-${asn}`;
-        return this.getOrFetchData(cacheKey, () => this.fetchDataWithQueue(`https://wq.apnic.net/query?searchtext=${asn}`, cacheKey));
+        return this.getOrFetchData(cacheKey, () => this.fetchWithRetry(`https://wq.apnic.net/query?searchtext=${asn}`));
     }
 
     public async getSvgData(asn_number: string) {
-        const response = await fetch(`https://api.bgpview.io/assets/graphs/${asn_number.startsWith("AS") ? asn_number : 'AS' + asn_number}_Combined.svg`);
+        const url = `https://api.bgpview.io/assets/graphs/${asn_number.startsWith("AS") ? asn_number : 'AS' + asn_number}_Combined.svg`;
+        try {
+            const response = await fetch(url);
             if (!response.ok) return null;
 
             const svgText = await response.text();
             const modifiedSvg = svgText.replace(/xlink:href="https:\/\/bgpview\.io\/asn\//g, 'xlink:href="/AS');
             return modifiedSvg;
+        } catch (error) {
+            console.error('Failed to fetch SVG data:', error);
+            return null;
+        }
     }
 }

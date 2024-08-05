@@ -2,12 +2,12 @@
 import React from 'react';
 
 interface AsnDetailedInfoProps {
-  res_asn: Record<string, any>;
-  res_peers: Record<string, any>;
-  res_prefixes: Record<string, any>;
-  res_upstreams: Record<string, any>;
-  res_downstreams: Record<string, any>;
-  res_ix: Record<string, any>;
+  res_asn: Record<string, any> | null;
+  res_peers: Record<string, any> | null;
+  res_prefixes: Record<string, any> | null;
+  res_upstreams: Record<string, any> | null;
+  res_downstreams: Record<string, any> | null;
+  res_ix: Record<string, any> | null;
 }
 
 
@@ -31,7 +31,7 @@ export default function AsnDetailedInfo({
   const ipv4Downstreams = res_downstreams?.data?.ipv4_downstreams?.length || 0;
   const ipv6Downstreams = res_downstreams?.data?.ipv6_downstreams?.length || 0;
 
-  const totalIX = res_ix.data?.length || 0;
+  const totalIX = res_ix?.data?.length || 0;
 
   const ASNSummary = () => {
     return (

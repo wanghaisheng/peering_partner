@@ -1,7 +1,6 @@
-// AsnStats.tsx
+
 import { ApiFetcher } from '../api/bgp/bgpApi';
 import AsnDetailedInfo from '../_components/asnDetailedInfo';
-
 interface AsnStatsProps {
   asn: string | null;
 }
@@ -12,22 +11,16 @@ export default async function AsnStats({ asn }: AsnStatsProps) {
   if (!asn) {
     return <div>No ASN provided</div>;
   }
+    
     const res_asn = await fetcher.getASNData(asn);
-    
     const res_asn_peers = await fetcher.getPeersData(asn);
-  
-    
     const res_asn_prefixes = await fetcher.getPrefixData(asn);
-  
     
     const res_asn_upstreams = await fetcher.getUpstreamData(asn);
-  
     
     const res_asn_downstreams = await fetcher.getDownstreamData(asn);
-  
     
     const res_asn_ix = await fetcher.getIXData(asn);
-  
 
     return (
       <div className="w-full bg-white mb-4 p-4 overflow-auto md:overflow-hidden">

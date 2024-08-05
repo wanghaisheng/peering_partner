@@ -26,9 +26,10 @@ const Layout = ({ children, activeOption, sidebarOpen, slug, on=true }: LayoutPr
                         <Navbar />
                     </div>
                     <div className="mt-4 md:pt-24 md:mt-8 lg:mt-12 flex-grow pt-24 md:mx-0 pl-12 pr-2 md:px-24">
+
+                            <Suspense fallback={<Loading/>}>
                         <div className="p-2 md:p-4 border border-white-150">
                             {/* Add content for the information box */}
-                            
                             <div className="md:flex md:flex-wrap">
                                 <div className="w-full border border-white-150 bg-white mb-4 p-4">
                                     <Header asn={slug} />
@@ -36,6 +37,7 @@ const Layout = ({ children, activeOption, sidebarOpen, slug, on=true }: LayoutPr
                                 {children}
                             </div>
                         </div>
+                            </Suspense>
                     </div>
                     <div className="mt-auto">
                         <Footer />
