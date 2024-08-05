@@ -1,4 +1,3 @@
-import { start } from "repl";
 
 const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
 export class ApiFetcher {

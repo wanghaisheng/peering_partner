@@ -13,7 +13,9 @@ export default async function DownstreamsDetails({asn_number}: DownstreamsDetail
     if(!asn_number) {
         return;
     }
+    console.log('downstreams');
     const res_asn_downstreams = await Fetcher.getDownstreamData(asn_number);
+    console.log('res_asn_downstreams');
 
     return (
         <div className="w-full bg-white mb-4 p-4 overflow-auto md:overflow-hidden">

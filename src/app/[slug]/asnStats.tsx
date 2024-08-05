@@ -11,16 +11,19 @@ export default async function AsnStats({ asn }: AsnStatsProps) {
   if (!asn) {
     return <div>No ASN provided</div>;
   }
-    
+    console.log('asn_stats');
     const res_asn = await fetcher.getASNData(asn);
+    console.log('res_asn');
     const res_asn_peers = await fetcher.getPeersData(asn);
+    console.log('res_asn_peers');
     const res_asn_prefixes = await fetcher.getPrefixData(asn);
-    
+    console.log('res_asn_prefixes');
     const res_asn_upstreams = await fetcher.getUpstreamData(asn);
-    
+    console.log('res_asn_upstreams');
     const res_asn_downstreams = await fetcher.getDownstreamData(asn);
-    
+    console.log('res_asn_downstreams');
     const res_asn_ix = await fetcher.getIXData(asn);
+    console.log('res_asn_ix');
 
     return (
       <div className="w-full bg-white mb-4 p-4 overflow-auto md:overflow-hidden">
