@@ -24,15 +24,16 @@ export class ApiFetcher {
                 const errorText = await response.text();
                 throw new Error(`${errorText}`);
             }
+            const elapsedTime = Date.now() - startTime;
+            console.log({elapsedTime});
+            console.log('fetched... with delay ' + url + ' ' + Math.max(0, this.delay - elapsedTime));
+            console.log('before delay:' + Date.now());
+            await delay(Math.max(0, this.delay - elapsedTime));
+            console.log('after delay:' + Date.now());
             return await response.json();
         } catch (error) {
             throw error;
-        } finally {
-            const elapsedTime = Date.now() - startTime;
-            await delay(Math.max(0, this.delay - elapsedTime));
-            console.log({elapsedTime});
-            console.log('fetched... with delay ' + url + ' ' + Math.max(0, this.delay - elapsedTime));
-        }
+        } 
     }
 
     public async getASNData(asn: string) {
