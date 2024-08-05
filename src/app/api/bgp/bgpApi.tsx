@@ -6,6 +6,7 @@ export class ApiFetcher {
     private promiseCache: Map<string, Promise<any>> = new Map();
     private retryCount: number = 3;
     private retryDelay: number = 500; 
+    private delay: number = 0;
     private constructor() {}
 
     public static getInstance() {
@@ -32,6 +33,7 @@ export class ApiFetcher {
             throw error;
         } finally {
             const elapsedTime = Date.now() - startTime;
+            await delay(Math.max(0, this.delay - elapsedTime));
             await delay(this.retryDelay - elapsedTime);
         }
     }
