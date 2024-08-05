@@ -4,7 +4,7 @@ export class ApiFetcher {
     private static instance: ApiFetcher;
     // private retryCount: number = 3;
     // private retryDelay: number = 1000;
-    private delay: number = 500;
+    private delay: number = 300;
 
     private constructor() { }
 
