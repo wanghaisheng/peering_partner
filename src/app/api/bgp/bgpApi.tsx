@@ -2,9 +2,9 @@ const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
 
 export class ApiFetcher {
     private static instance: ApiFetcher;
-    private retryCount: number = 3;
-    private retryDelay: number = 1000;
-    private delay: number = 0;
+    // private retryCount: number = 3;
+    // private retryDelay: number = 1000;
+    private delay: number = 250;
 
     private constructor() {}
 
@@ -15,22 +15,17 @@ export class ApiFetcher {
         return ApiFetcher.instance;
     }
 
-    private async fetchWithRetry(url: string, retries: number = this.retryCount): Promise<any> {
+    private async fetchWithRetry(url: string): Promise<any> {
         const startTime = Date.now();
         try {
             console.log('fetching...' + url);
             const response = await fetch(url);
-            if (retries <= 0 && !response.ok) {
+            if (!response.ok) {
                 const errorText = await response.text();
                 throw new Error(`${errorText}`);
             }
             return await response.json();
         } catch (error) {
-            if (retries > 0) {
-                console.log('retrying..' + retries);
-                await delay(this.retryDelay * retries);
-                return this.fetchWithRetry(url, retries - 1);
-            }
             throw error;
         } finally {
             const elapsedTime = Date.now() - startTime;
