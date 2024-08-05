@@ -6,7 +6,6 @@ interface AsnDetailedInfoProps {
   res_peers: Record<string, any> | null;
   res_prefixes: Record<string, any> | null;
   res_upstreams: Record<string, any> | null;
-  res_downstreams: Record<string, any> | null;
   res_ix: Record<string, any> | null;
 }
 
@@ -18,7 +17,6 @@ export default function AsnDetailedInfo({
   res_peers,
   res_prefixes,
   res_upstreams,
-  res_downstreams,
   res_ix,
 }: AsnDetailedInfoProps) {
 
@@ -28,8 +26,7 @@ export default function AsnDetailedInfo({
   const ipv6Prefixes = res_prefixes?.data?.ipv6_prefixes?.length || 0;
   const ipv4Upstreams = res_upstreams?.data?.ipv4_upstreams?.length || 0;
   const ipv6Upstreams = res_upstreams?.data?.ipv6_upstreams?.length || 0;
-  const ipv4Downstreams = res_downstreams?.data?.ipv4_downstreams?.length || 0;
-  const ipv6Downstreams = res_downstreams?.data?.ipv6_downstreams?.length || 0;
+
 
   const totalIX = res_ix?.data?.length || 0;
 
