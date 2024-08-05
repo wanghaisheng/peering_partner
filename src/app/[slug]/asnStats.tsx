@@ -1,22 +1,27 @@
 
-import { ApiFetcher } from '../api/bgp/bgpApi';
+import {getASNData, getPeersData, getPrefixData, getUpstreamData, getIXData } from '../api/bgp/bgpApi';
 import AsnDetailedInfo from '../_components/asnDetailedInfo';
 import AsnHeaderInfo from '../_components/asnHeaderInfo';
 interface AsnStatsProps {
   asn: string | null;
 }
 
-const fetcher = ApiFetcher.getInstance(); // Ensure you're using the singleton instance
-
+const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
+const DELAY = 500;
 export default async function AsnStats({ asn }: AsnStatsProps) {
   if (!asn) {
     return <div>No ASN provided</div>;
   }
-  const res_asn = await fetcher.getASNData(asn);
-  const res_asn_peers = await fetcher.getPeersData(asn);
-  const res_asn_prefixes = await fetcher.getPrefixData(asn);
-  const res_asn_upstreams = await fetcher.getUpstreamData(asn);
-  const res_asn_ix = await fetcher.getIXData(asn);
+  const res_asn = await getASNData(asn);
+  await delay(DELAY);
+  const res_asn_peers = await getPeersData(asn);
+  await delay(DELAY);
+  const res_asn_prefixes = await getPrefixData(asn);
+  await delay(DELAY);
+  const res_asn_upstreams = await getUpstreamData(asn);
+  await delay(DELAY);
+  const res_asn_ix = await getIXData(asn);
+  await delay(DELAY);
 
   return (
     <>

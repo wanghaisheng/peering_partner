@@ -1,21 +1,24 @@
-
-import { ApiFetcher } from '../api/bgp/bgpApi';
+import {getASNData, getPeersData, getPrefixData} from '../api/bgp/bgpApi';
 import PrefixesDetailedInfo from '../_components/prefixesDetailedinfo';
 import AsnHeaderInfo from '../_components/asnHeaderInfo';
 interface PrefixesDetailsProps {
     asn_number: string | null;
 }
 
-const Fetcher = ApiFetcher.getInstance();
+const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
+const DELAY = 500;
 
 export default async function PrefixesDetails({ asn_number }: PrefixesDetailsProps) {
 
     if (!asn_number) {
         return;
     }
-    const res_asn = await Fetcher.getASNData(asn_number);
-    const res_asn_prefixes = await Fetcher.getPrefixData(asn_number);
-    const res_asn_peers = await Fetcher.getPeersData(asn_number);
+    const res_asn = await getASNData(asn_number);
+    await delay(DELAY);
+    const res_asn_prefixes = await getPrefixData(asn_number);
+    await delay(DELAY);
+    const res_asn_peers = await getPeersData(asn_number);
+    await delay(DELAY);
 
     return (
         <>

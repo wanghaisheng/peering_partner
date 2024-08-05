@@ -1,22 +1,27 @@
 
-import { ApiFetcher } from "@/app/api/bgp/bgpApi";
+import {getASNData, getPeersData, getPrefixData, getIXData} from '../api/bgp/bgpApi';
 import IXListInfo from "../_components/ixListInfo";
 import AsnHeaderInfo from "../_components/asnHeaderInfo";
 interface IXListDetailsProps {
     asn_number: string | null;
 }
 
-const Fetcher = ApiFetcher.getInstance();
 
+const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
+const DELAY = 500;
 export default async function IXListDetails({ asn_number }: IXListDetailsProps) {
 
     if (!asn_number) {
         return;
     }
-    const res_asn = await Fetcher.getASNData(asn_number);
-    const res_asn_peers = await Fetcher.getPeersData(asn_number);
-    const res_asn_prefixes = await Fetcher.getPrefixData(asn_number);
-    const res_asn_ix = await Fetcher.getIXData(asn_number);
+    const res_asn = await getASNData(asn_number);
+    await delay(DELAY);
+    const res_asn_peers = await getPeersData(asn_number);
+    await delay(DELAY);
+    const res_asn_prefixes = await getPrefixData(asn_number);
+    await delay(DELAY);
+    const res_asn_ix = await getIXData(asn_number);
+    await delay(DELAY);
 
     return (
         <>

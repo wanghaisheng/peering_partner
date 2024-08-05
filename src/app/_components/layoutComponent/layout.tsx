@@ -4,7 +4,6 @@ import Footer from "../footer";
 import ASNSideNavbar from "../asnSideNavbar";
 import { ReactNode, Suspense, lazy } from "react";
 import Loading from "../loading";
-import Header from "./header";
 
 interface LayoutProps {
     on?: boolean;

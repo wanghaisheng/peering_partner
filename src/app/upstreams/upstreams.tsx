@@ -1,22 +1,27 @@
 
-import { ApiFetcher } from '../api/bgp/bgpApi';
+import {getASNData, getPeersData, getPrefixData, getUpstreamData} from '../api/bgp/bgpApi';
 import UpstreamDetailsInfo from '../_components/upstreamsDetailsInfo';
 import AsnHeaderInfo from '../_components/asnHeaderInfo';
 interface UpstreamDetailsProps {
     asn_number: string | null;
 }
 
-const Fetcher = ApiFetcher.getInstance();
 
+const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
+const DELAY = 500;
 export default async function UpstreamsDetails({ asn_number }: UpstreamDetailsProps) {
 
     if (!asn_number) {
         return;
     }
-    const res_asn = await Fetcher.getASNData(asn_number);
-    const res_asn_peers = await Fetcher.getPeersData(asn_number);
-    const res_asn_prefixes = await Fetcher.getPrefixData(asn_number);
-    const res_asn_Upstreams = await Fetcher.getUpstreamData(asn_number);
+    const res_asn = await getASNData(asn_number);
+    await delay(DELAY);
+    const res_asn_peers = await getPeersData(asn_number);
+    await delay(DELAY);
+    const res_asn_prefixes = await getPrefixData(asn_number);
+    await delay(DELAY);
+    const res_asn_Upstreams = await getUpstreamData(asn_number);
+    await delay(DELAY);
     return (
         <>
             <div className="w-full border border-white-150 bg-white mb-4 p-4">
