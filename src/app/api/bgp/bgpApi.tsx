@@ -5,7 +5,7 @@ export class ApiFetcher {
     private promiseCache: Map<string, Promise<any>> = new Map();
     private retryCount: number = 3;
     private retryDelay: number = 500; 
-    private delay: number = 0;
+    private delay: number = 875;
     private constructor() {}
 
     public static getInstance() {
@@ -18,6 +18,7 @@ export class ApiFetcher {
     private async fetchWithRetry(url: string, retries: number = this.retryCount): Promise<any> {
         const startTime = Date.now();
         try {
+            console.log('fetching...')
             const response = await fetch(url);
             if (retries <= 0 && !response.ok) {
                 const errorText = await response.text();
@@ -33,7 +34,7 @@ export class ApiFetcher {
         } finally {
             const elapsedTime = Date.now() - startTime;
             await delay(Math.max(0, this.delay - elapsedTime));
-            await delay(this.retryDelay - elapsedTime);
+            console.log('fetched... with delay'+ {delay: Math.max(0, this.delay - elapsedTime)});
         }
     }
 
