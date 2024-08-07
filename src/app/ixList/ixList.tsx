@@ -17,7 +17,7 @@ export default async function IXListDetails({ asn_number }: IXListDetailsProps) 
 
     if (!asn_number) {
         return;
-    }
+    } 
     const res_asn = await Fetcher.getASNData(asn_number);
     // await delay(DELAY);
     const res_asn_peers = await Fetcher.getPeersData(asn_number);

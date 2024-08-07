@@ -3,6 +3,7 @@ import Footer from "../../_components/footer";
 // import { getUniqueIPData } from "../../api/ip/ipapi";
 import { ApiFetcher } from "@/app/api/bgp/bgpApi";
 import UniqueIP from "@/app/_components/uniqueIP";
+import ErrorComponent from "@/app/_components/errorComponent";
 
 const Fetcher = ApiFetcher.getInstance();
 

@@ -1,5 +1,6 @@
 // import {getASNData, getPeersData, getPrefixData, getSVGData} from '../api/bgp/bgpApi';
 import AsnHeaderInfo from "../_components/asnHeaderInfo";
+import ErrorComponent from "../_components/errorComponent";
 import { ApiFetcher } from '../api/bgp/bgpApi';
 
 const Fetcher = ApiFetcher.getInstance();

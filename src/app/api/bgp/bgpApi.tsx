@@ -1,10 +1,12 @@
+import { redirect } from "next/navigation";
+
 const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
 
 export class ApiFetcher {
     private static instance: ApiFetcher;
     // private retryCount: number = 3;
     // private retryDelay: number = 1000;
-    private delay: number = 500;
+    private delay: number = 400;
 
     private constructor() { }
 
@@ -22,6 +24,7 @@ export class ApiFetcher {
             const response = await fetch(url);
             if (!response.ok) {
                 const errorText = await response.text();
+                redirect('/error');
                 throw new Error(`${errorText}`);
             }
             const elapsedTime = Date.now() - startTime;
@@ -101,4 +104,21 @@ export class ApiFetcher {
         const url = `https://api.bgpview.io/prefix/${formattedPrefix}`;
         return this.fetchWithRetry(url);
     }
+
+    public async getbgpSearchData(slug: string) {
+        try {
+      
+          const res_ix = await fetch(`https://api.bgpview.io/search?query_term=${slug}`);
+      
+          if (!res_ix.ok) {
+            const errorText = await res_ix.text();
+            throw new Error(`${errorText}`);
+          }
+      
+          return res_ix.json();
+        } catch (error: any) {
+          console.error('Error in getIXData:', error.message);
+          throw error;
+        }
+      }
 }

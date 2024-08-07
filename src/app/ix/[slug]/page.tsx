@@ -4,6 +4,7 @@ import Footer from "../../_components/footer";
 import UniqueIX from "@/app/_components/uniqueIX";
 import ASNSideNavbar from "@/app/_components/asnSideNavbar";
 import { ApiFetcher } from "@/app/api/bgp/bgpApi";
+import ErrorComponent from "@/app/_components/errorComponent";
 
 const Fetcher = ApiFetcher.getInstance();
 

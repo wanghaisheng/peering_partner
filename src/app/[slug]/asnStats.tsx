@@ -2,6 +2,7 @@
 // import {getASNData, getPeersData, getPrefixData, getUpstreamData, getIXData } from '../api/bgp/bgpApi';
 import AsnDetailedInfo from '../_components/asnDetailedInfo';
 import AsnHeaderInfo from '../_components/asnHeaderInfo';
+import ErrorComponent from '../_components/errorComponent';
 import { ApiFetcher } from '../api/bgp/bgpApi';
 
 const Fetcher = ApiFetcher.getInstance();
@@ -15,7 +16,8 @@ export default async function AsnStats({ asn }: AsnStatsProps) {
   if (!asn) {
     return <div>No ASN provided</div>;
   }
-  const res_asn = await Fetcher.getASNData(asn);
+  // try {
+    const res_asn = await Fetcher.getASNData(asn);
   // console.log(asn);
   // await delay(DELAY);
   const res_asn_peers = await Fetcher.getPeersData(asn);
@@ -47,4 +49,7 @@ export default async function AsnStats({ asn }: AsnStatsProps) {
       </div>
     </>
   );
+  // } catch {
+  //   return <ErrorComponent />
+  // }
 }
