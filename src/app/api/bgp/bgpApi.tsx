@@ -6,7 +6,7 @@ export class ApiFetcher {
     private static instance: ApiFetcher;
     // private retryCount: number = 3;
     // private retryDelay: number = 1000;
-    private delay: number = 750;
+    private delay: number = 400;
 
     private constructor() { }
 
@@ -21,6 +21,7 @@ export class ApiFetcher {
         const startTime = Date.now();
         try {
             console.log('fetching...' + url);
+            console.log(new Date().toLocaleString());
             const response = await fetch(url);
             if (!response.ok) {
                 const errorText = await response.text();
