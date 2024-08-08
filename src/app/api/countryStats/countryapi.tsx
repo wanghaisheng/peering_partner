@@ -1,8 +1,6 @@
 export async function getWorldData() {
   try {
-
     const res_ix = await fetch(`https://api.bgpview.io/reports/countries`);
-
     if (!res_ix.ok) {
       const errorText = await res_ix.text()
       return []

@@ -3,17 +3,18 @@ import Footer from "../../_components/footer";
 import { getUniquePrefixData } from "../../api/prefix/prefixapi";
 import UniquePrefix from "../../_components/uniquePrefix";
 import PrefixHeaderInfo from "@/app/_components/prefixHeaderInfo";
+import { ApiFetcher } from "@/app/api/bgp/bgpApi";
 
-
+const Fetcher = ApiFetcher.getInstance();
 
 
 
 export default async function Page({ params }: { params: { slug: string } }) {
 
   const prefix = params.slug;
-  console.log(prefix);
+  // console.log(prefix);
   
-  const res_prefix = await getUniquePrefixData(prefix);
+  const res_prefix = await Fetcher.getUniquePrefixData(prefix);
 
 
 

@@ -1,6 +1,5 @@
 'use client'
 import Image from "next/image";
-import Link from "next/link";
 import { useState, useEffect } from "react";
 import { IoMdCheckmarkCircle, IoMdRemoveCircle } from 'react-icons/io';
 
@@ -335,7 +334,7 @@ export default function UniquePrefix({
               }`}
             onClick={() => handleOptionClick("Prefix")}
           >
-            <Link href="#Prefix">Prefix</Link>
+            <a href="#Prefix">Prefix</a>
           </li>
           <li
             className={`pb-1 ${selectedOption === "Routing"
@@ -344,7 +343,7 @@ export default function UniquePrefix({
               }`}
             onClick={() => handleOptionClick("Routing")}
           >
-            <Link href="#Routing">Routing</Link>
+            <a href="#Routing">Routing</a>
           </li>
 
         </ul>

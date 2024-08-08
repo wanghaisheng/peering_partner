@@ -6,7 +6,7 @@ export class ApiFetcher {
     private static instance: ApiFetcher;
     // private retryCount: number = 3;
     // private retryDelay: number = 1000;
-    private delay: number = 400;
+    private delay: number = 750;
 
     private constructor() { }
 
@@ -24,16 +24,12 @@ export class ApiFetcher {
             const response = await fetch(url);
             if (!response.ok) {
                 const errorText = await response.text();
+                console.error(`${errorText}`);
                 redirect('/error');
-                throw new Error(`${errorText}`);
             }
             const elapsedTime = Date.now() - startTime;
-            console.log({ elapsedTime });
-            console.log('fetched... with delay ' + url + ' ' + Math.max(0, this.delay - elapsedTime));
-            console.log('before delay:' + Date.now());
             await delay(Math.max(0, this.delay - elapsedTime));
-            console.log('after delay:' + Date.now());
-            return await response.json();
+            return response.json();
         } catch (error) {
             throw error;
         }

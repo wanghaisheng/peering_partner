@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 
 interface IXDetailsProps {
     res_ix: Record<string, any>; // This type assumes that the JSON data can be of any shape
@@ -128,15 +126,15 @@ export default function UniqueIX({ res_ix }: IXDetailsProps) {
                                     <td className="border-b border-gray-300 px-4 py-2 flex items-center justify-center"><img src={`https://bgpview.io/assets/flags/shiny/24/${item.country_code}.png`} alt="Flag" className="inline-block" />
                                     </td>
 
-                                    <td className="border-b border-gray-300 px-4 py-2 text-center " style={{ color: 'rgba(37, 169, 189, 0.97)' }}><Link href={`/AS${item.asn}`}>AS{item.asn}</Link></td>
+                                    <td className="border-b border-gray-300 px-4 py-2 text-center " style={{ color: 'rgba(37, 169, 189, 0.97)' }}><a href={`/AS${item.asn}`}>AS{item.asn}</a></td>
 
 
                                     <td className="border-b border-gray-300 px-4 py-2 text-center" >{item.name}</td>
 
-                                    <td className="border-b border-gray-300 px-4 py-2 text-center" style={{ color: 'rgba(37, 169, 189, 0.97)' }}><Link href={`/ip/${item.ipv4_address}`}>{item.ipv4_address}</Link></td>
+                                    <td className="border-b border-gray-300 px-4 py-2 text-center" style={{ color: 'rgba(37, 169, 189, 0.97)' }}><a href={`/ip/${item.ipv4_address}`}>{item.ipv4_address}</a></td>
 
 
-                                    <td className="border-b border-gray-300 px-4 py-2 text-center" style={{ color: 'rgba(37, 169, 189, 0.97)' }}><Link href={`/ip/${item.ipv6_address}`}>{item.ipv6_address}</Link></td>
+                                    <td className="border-b border-gray-300 px-4 py-2 text-center" style={{ color: 'rgba(37, 169, 189, 0.97)' }}><a href={`/ip/${item.ipv6_address}`}>{item.ipv6_address}</a></td>
 
                                     <td className="border-b text-gray-400  px-4 py-2 text-center" style={{ whiteSpace: 'nowrap' }}>{(item.speed / 1000)} Gbps</td>
 

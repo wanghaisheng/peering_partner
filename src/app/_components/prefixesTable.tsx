@@ -1,6 +1,5 @@
 'use client';
 import React from 'react';
-import Link from 'next/link';
 import { IoMdCheckmarkCircle, IoMdRemoveCircle } from 'react-icons/io';
 
 interface StreamTablesProps {
@@ -34,7 +33,7 @@ const PrefixesTable = ({ data, ipvType } : StreamTablesProps) => {
                 <td className="border-b border-gray-300 px-4 py-2 text-center"><img src={`https://bgpview.io/assets/flags/shiny/24/${item.country}.png`} alt="Flag" className="inline-block" />
                 </td>
 
-                <td className="border-b border-gray-300 px-4 py-2 text-center" style={{ color: 'rgba(37, 169, 189, 0.97)' }}><Link href={`/prefix/${item.announcedPrefix}`}>{item.announcedPrefix}</Link></td>
+                <td className="border-b border-gray-300 px-4 py-2 text-center" style={{ color: 'rgba(37, 169, 189, 0.97)' }}><a href={`/prefix/${item.announcedPrefix}`}>{item.announcedPrefix}</a></td>
 
 
                 <td className="border-b border-gray-300 px-4 py-2 text-gray-400 font-bold text-center" style={{ wordBreak: 'break-word' }}>{item.description}</td>
@@ -45,7 +44,7 @@ const PrefixesTable = ({ data, ipvType } : StreamTablesProps) => {
                   )}
                 </td>
 
-                <td className="border-b border-gray-300 px-4 py-2 text-center" style={{ color: 'rgba(37, 169, 189, 0.97)' }}><Link href={`/prefix/${item.parentPrefix}`}>{item.parentPrefix}</Link></td>
+                <td className="border-b border-gray-300 px-4 py-2 text-center" style={{ color: 'rgba(37, 169, 189, 0.97)' }}><a href={`/prefix/${item.parentPrefix}`}>{item.parentPrefix}</a></td>
 
                 <td className="border-b border-gray-300 px-4 py-2 text-gray-400 font-bold text-center">{item.RIR}</td>
               </tr>

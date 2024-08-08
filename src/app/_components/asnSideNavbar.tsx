@@ -1,6 +1,5 @@
 'use client'
 import React, { useState } from 'react';
-import Link from 'next/link';
 
 import {
    ChevronDoubleLeftIcon,
@@ -127,7 +126,7 @@ navigation: `/graph/${slug}`,
                   <ul className="mt-6 space-y-2 tracking-wide">
                      {sidebarItems.map((item, index) => item?.navigation && (
                      <li className="min-w-max hover:bg-white rounded-xl" key={index}>
-                        <Link href={item?.navigation} passHref>
+                        <a href={item?.navigation}>
                            <div
                            className={`group flex items-center space-x-4 rounded-md pl-2 md:px-4 py-3 text-gray-600 ${activeItem === item.text ? 'bg-gradient-to-r from-sky-600 to-cyan-400 text-white' : ''}`}
                            onClick={() => handleItemClick(item?.text || '')}
@@ -135,7 +134,7 @@ navigation: `/graph/${slug}`,
                            {item?.svg}
                            <span className="group-hover:text-gray-700">{isSidebarOpen ? item?.text : ''}</span>
                            </div>
-                        </Link>
+                        </a>
                      </li>
                      ))}
                   </ul>

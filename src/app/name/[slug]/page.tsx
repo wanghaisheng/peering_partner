@@ -3,19 +3,16 @@ import SideNavbar from "../../_components/sideNavbar";
 import Footer from "../../_components/footer";
 import { getbgpSearchData } from "../../api/bgpSeach/bgpSearchApi";
 import NameResults from "../../_components/nameResults";
+import { ApiFetcher } from "@/app/api/bgp/bgpApi";
 
-
+const Fetcher = ApiFetcher.getInstance();
 
 
 export default async function Page({ params }: { params: { slug: string } }) {
 
   const name = params.slug;
 
-  const bgpSearcdata = await getbgpSearchData(name);
-
-
-
-
+  const bgpSearcdata = await Fetcher.getbgpSearchData(name);
 
   return (
     <div>
