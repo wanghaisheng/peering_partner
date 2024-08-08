@@ -1,16 +1,12 @@
 import React from 'react';
-import Aref from '../../../public/aref.png'; 
+import Navbar from './navbar';
+
 
 const ErrorComponent: React.FC = () => {
   return (
-    <div className='min-h-screen w-full bg-white'>
-      <div className='h-16 w-full bg-blue-600'>
-        <img 
-          className='pt-1 pl-5' 
-          src={(Aref as { src: string }).src}
-          alt="Error Icon"
-          
-        />
+    <div className='min-h-screen w-full bg-white overflow-hidden'>
+      <div className="fixed top-0 left-0 right-0 z-20 bg-white shadow">
+        <Navbar />
       </div>
       <div className="min-h-screen text-black flex flex-col justify-center items-center w-full text-center p-4">
         <h1 className="text-4xl font-bold p-4">Hang Tight!</h1>
