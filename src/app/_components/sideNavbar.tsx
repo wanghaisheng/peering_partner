@@ -88,8 +88,8 @@ const sidebarItems = [
          </svg>
 
       ),
-      text: "ASN Stats",
-      navigation: "/asnstats",
+      text: "ASN Statistics",
+      navigation: "/asnstatistics",
    },
    // Add more items as needed
    {
@@ -119,7 +119,7 @@ const sidebarItems = [
 
       ),
       text: "Live Internet Traffic",
-      navigation: "/traffic/worldwide"
+      navigation: "#"
    },
    {
       svg: (

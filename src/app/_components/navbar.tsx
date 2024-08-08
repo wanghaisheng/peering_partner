@@ -91,7 +91,7 @@ export default function Navbar() {
     if (as.match(domainPattern)) {
       shortCode = 'domain';
     }
-    if(typeof window != 'undefined'){
+    if (typeof window != 'undefined') {
       switch (shortCode) {
         case 'ASN':
           window.location.href = `/${searchText}`;
@@ -111,10 +111,10 @@ export default function Navbar() {
         default:
           alert('Invalid Search');
       }
-    }else{
+    } else {
       console.log("Window not defined");
     }
-    
+
 
   };
 
@@ -137,7 +137,7 @@ export default function Navbar() {
 
   return (
     <div  >
-      <nav  className=" bg-[rgba(37,169,189,0.97)]  z-100 p-4 md:p-8 lg:pb-6 z-70">
+      <nav className=" bg-[rgba(37,169,189,0.97)]  z-100 p-4 md:p-8 lg:pb-6 z-70">
         <div className="flex flex-col md:flex-row items-center justify-between">
           <div className="flex items-center space-x-4 flex-grow">
             <div className="text-white text-lg font-bold">
@@ -149,15 +149,15 @@ export default function Navbar() {
               <a
                 aria-current="page"
                 className="inline-block rounded-lg px-2 py-1 text-lg font-bold text-white transition-all duration-200 hover:bg-gray-100 hover:text-gray-900"
-                href="#"
+                href="https://search.peeringpartner.com/"
               >
-                Solutions
+                Home
               </a>
               <a
                 className="inline-block rounded-lg px-2 py-1 text-lg font-bold text-white transition-all duration-200 hover:bg-gray-100 hover:text-gray-900"
                 href="#"
               >
-                Learn
+                Resources
               </a>
               <a
                 className="inline-block rounded-lg px-2 py-1 text-lg font-bold text-white transition-all duration-200 hover:bg-gray-100 hover:text-gray-900"
@@ -166,14 +166,15 @@ export default function Navbar() {
                 API
               </a>
               <a
-                className="inline-block rounded-lg px-2 py-1 text-lg font-bold text-white transition-all duration-200 hover:bg-gray-100 hover:text-gray-900"
-                href="#"
+                className="flex rounded-lg px-2 py-1 text-lg font-bold text-white transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 whitespace-nowrap"
+                href="https://peeringpartner.com/"
               >
-                About
+                Main Site
               </a>
+
             </div>
             <div className="md:text-right pl-20 w-full hidden lg:block"> {/* Use md:text-right for medium screens and above */}
-            <form className="relative mx-auto w-[562px]" onSubmit={handleSubmit}>
+              <form className="relative mx-auto w-[562px]" onSubmit={handleSubmit}>
                 <label className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
