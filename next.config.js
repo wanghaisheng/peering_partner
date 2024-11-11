@@ -6,8 +6,7 @@ const nextConfig = {
       'puppeteer-extra-plugin-stealth',
       'puppeteer-extra-plugin-recaptcha',
     ],
-  },
-      distDir: 'build',
+  }
 };
 
 module.exports = nextConfig
